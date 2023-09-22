@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CityController;
+use App\Http\Controllers\Admin\ManagerController;
 use App\Http\Controllers\Public\SiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,4 +32,5 @@ Route::domain('risroll.test')->group(function () {
 
 Route::prefix('administrator')->group(function() {
     Route::resource('city', CityController::class);
+    Route::resource('manager', ManagerController::class);
 });

@@ -26,11 +26,6 @@ class CityController extends Controller
         return redirect()->route('city.index')->with('alert', trans('alerts.cities.created'));
     }
 
-    public function show(City $city)
-    {
-        //
-    }
-
     public function edit(City $city)
     {
         return view('admin.city.edit', compact('city'));

@@ -31,6 +31,9 @@
                     <li class="list-group-item">
                         <a href="{{ route('city.index') }}">Города</a>
                     </li>
+                    <li class="list-group-item">
+                        <a href="{{ route('manager.index') }}">Менеджеры</a>
+                    </li>
                 </div>
             </div>
             <div class="col col-9">
