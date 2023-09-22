@@ -6,6 +6,9 @@
             <div class="col m-3">
                 <div>{{ $manager->name }}</div>
                 <div>{{ $manager->email }}</div>
+                @foreach($manager->cities as $city)
+                <div>{{$city->city_name}}</div>
+                @endforeach
                 <a href="{{ route('manager.edit', [ $manager->id ]) }}">Изменить пароль</a>
                 <x-form method="delete" :action="route('manager.destroy', [ $manager->id ])">
                     <button class="btn btn-danger">Удалить менеджера</button>

@@ -5,30 +5,40 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Manager\ManagerCreateRequest;
 use App\Http\Requests\Manager\ManagerUpdateRequest;
+use App\Models\City;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class ManagerController extends Controller
 {
     public function index()
     {
-        $managers = User::all();
+        $managers = User::with('cities')->get();
         return view('admin.manager.index', compact('managers'));
     }
 
     public function create()
     {
-        return view('admin.manager.create');
+        $cities = City::orderBy('city_name')->pluck('city_name', 'id');
+        return view('admin.manager.create', compact('cities'));
     }
 
     public function store(ManagerCreateRequest $request)
     {
-        User::create([
+
+        $user = User::make([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        DB::transaction(function() use ($request, $user) {
+
+            $user->save();
+            $user->cities()->sync($request->city);
+        });
 
         return redirect()->route('manager.index')->with('alert', trans('alerts.managers.created'));
     }
