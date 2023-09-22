@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Public\SiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,8 @@ Route::domain('risroll.test')->group(function () {
     Route::get('/product/{name}', [SiteController::class, 'product'])->name('product.base');
 });
 
-Route::prefix('administrator')->middleware('auth')->group(function() {
-
+Route::prefix('administrator')->group(function() {
+    Route::resources(
+        ['cities', CityController::class]
+    );
 });

@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 
 class SiteController extends Controller
 {
-    public function index(string $subdomain = 'samara') {
-        dd($subdomain);
+    public function index(Request $request) {
+        dd($request->route()->parameters());
     }
 
-    public function product( string $name, string $subdomain = 'samara') {
-        dd($name . $subdomain);
+    public function product(Request $request) {
+        dd($request->route()->parameters());
     }
 }
