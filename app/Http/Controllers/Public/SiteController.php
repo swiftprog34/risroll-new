@@ -10,4 +10,8 @@ class SiteController extends Controller
     public function index(string $subdomain = 'samara') {
         dd($subdomain);
     }
+
+    public function product( string $name, string $subdomain = 'samara') {
+        dd($name . $subdomain);
+    }
 }

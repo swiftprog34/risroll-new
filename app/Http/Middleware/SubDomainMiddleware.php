@@ -15,10 +15,10 @@ class SubDomainMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (in_array($request->subdomain, config('subdomains'))) {
-            return $next($request);
+        if (!in_array($request->subdomain, config('subdomains'))) {
+            return  redirect()->route('index.base');
         }
 
-        return  redirect()->route('index.base');
+        return $next($request);
     }
 }
