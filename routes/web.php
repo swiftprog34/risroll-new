@@ -30,7 +30,5 @@ Route::domain('risroll.test')->group(function () {
 });
 
 Route::prefix('administrator')->group(function() {
-    Route::resources(
-        ['cities', CityController::class]
-    );
+    Route::resource('city', CityController::class);
 });

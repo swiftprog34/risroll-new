@@ -12,12 +12,13 @@ class CityController extends Controller
 {
     public function index()
     {
-        //
+        $cities = City::all();
+        return view('admin.city.index', compact($cities));
     }
 
     public function create()
     {
-        //
+        return view('admin.city.create');
     }
 
     public function store(CityCreateRequest $request)
