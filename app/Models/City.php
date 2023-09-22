@@ -14,4 +14,8 @@ class City extends Model
     public function users(){
         return $this->belongsToMany(User::class)->withTimestamps();
     }
+
+    public function pickupPoints() {
+        return $this->hasMany(Pickup::class);
+    }
 }

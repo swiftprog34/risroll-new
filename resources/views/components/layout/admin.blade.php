@@ -34,6 +34,9 @@
                     <li class="list-group-item">
                         <a href="{{ route('manager.index') }}">Менеджеры</a>
                     </li>
+                    <li class="list-group-item">
+                        <a href="{{ route('pickup.index') }}">Точки самовывоза</a>
+                    </li>
                 </div>
             </div>
             <div class="col col-9">
