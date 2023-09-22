@@ -17,11 +17,11 @@ return new class extends Migration
             $table->string('slug', 128);
             $table->string('city_name', 255);
             $table->string('email', 128);
-            $table->tinyInteger('phone');
+            $table->string('phone');
             $table->string('vk_link', 255)->nullable();
             $table->string('instagram_link', 256)->nullable();
-            $table->tinyInteger('w_id');
-            $table->tinyInteger('restaurant_id');
+            $table->string('w_id');
+            $table->string('restaurant_id');
             $table->text('contact_map')->nullable();
             $table->text('contact_page_info')->nullable();
             $table->text('delivery_map')->nullable();

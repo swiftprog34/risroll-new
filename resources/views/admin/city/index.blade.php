@@ -1,4 +1,4 @@
-<x-layout.main title="Cars catalog">
+<x-layout.admin title="Все города">
     <a href="{{ route('city.create') }}">Добавить город</a> |
     <hr>
     <div class="row">
@@ -11,4 +11,4 @@
             </div>
         @endforeach
     </div>
-</x-layout.main>
+</x-layout.admin>

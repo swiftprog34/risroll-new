@@ -13,7 +13,7 @@ class CityController extends Controller
     public function index()
     {
         $cities = City::all();
-        return view('admin.city.index', compact($cities));
+        return view('admin.city.index', compact('cities'));
     }
 
     public function create()
@@ -23,7 +23,8 @@ class CityController extends Controller
 
     public function store(CityCreateRequest $request)
     {
-        //
+        City::create($request->validated());
+        return redirect()->route('city.index')->with('alert', trans('alerts.cities.created'));
     }
 
     public function show(City $city)
@@ -33,12 +34,13 @@ class CityController extends Controller
 
     public function edit(City $city)
     {
-        //
+        return view('admin.city.edit', compact('city'));
     }
 
     public function update(CityUpdateRequest $request, City $city)
     {
-        //
+        $city->update($request->all());
+        return redirect()->route('city.index')->with('alert', trans('alerts.cities.edited'));
     }
 
     public function destroy(City $city)

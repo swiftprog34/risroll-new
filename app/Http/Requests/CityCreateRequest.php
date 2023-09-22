@@ -25,10 +25,10 @@ class CityCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'slug'          => [ 'required', 'min:2', 'max:64', $this->slugUniqueRule() ],
+            'slug'          => [ 'required', 'regex:/^[a-zA-Z]+$/u', 'min:2', 'max:64', $this->slugUniqueRule() ],
             'city_name'     => [ 'required', 'min:2', 'max:64', $this->nameUniqueRule() ],
             'email'         => 'required | string | email',
-            'phone'         => 'required | number | min:10 | max|10',
+            'phone'         => 'required |regex:/(8)[0-9]{10}/',
             'w_id'          => 'required',
             'restaurant_id' => 'required',
         ];
