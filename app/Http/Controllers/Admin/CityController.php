@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CityCreateRequest;
-use App\Http\Requests\CityUpdateRequest;
+use App\Http\Requests\City\CityCreateRequest;
+use App\Http\Requests\City\CityUpdateRequest;
 use App\Models\City;
-use Illuminate\Http\Request;
 
 class CityController extends Controller
 {
