@@ -16,6 +16,9 @@
             <x-form-select name="city" label="Привязка к городу" :options="$cities"  :size="$cities->count()" placeholder="Не выбрана" />
         </div>
         <div class="mb-3">
+            <x-form-select name="role" label="Роль менеджера" :options="$roles"  :size="$roles->count()" placeholder="Не выбрана" />
+        </div>
+        <div class="mb-3">
             <button class="btn btn-success">Сохранить</button>
         </div>
     </x-form>

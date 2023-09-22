@@ -6,6 +6,7 @@
             <div class="col m-3">
                 <div>{{ $manager->name }}</div>
                 <div>{{ $manager->email }}</div>
+                <div>{{ $manager->role->text() }}</div>
                 @foreach($manager->cities as $city)
                 <div>{{$city->city_name}}</div>
                 @endforeach

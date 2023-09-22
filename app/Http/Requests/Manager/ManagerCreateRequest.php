@@ -28,6 +28,7 @@ class ManagerCreateRequest extends FormRequest
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'city' => 'required|integer|exists:cities,id',
+            'role' => 'required|integer',
         ];
     }
 
@@ -38,6 +39,7 @@ class ManagerCreateRequest extends FormRequest
             'email'         => 'Email',
             'password'      => 'Пароль',
             'city'          => 'Город',
+            'role'          => 'Роль',
         ];
     }
 }
