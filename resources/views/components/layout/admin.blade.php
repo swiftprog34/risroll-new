@@ -40,6 +40,9 @@
                     <li class="list-group-item">
                         <a href="{{ route('promotion.index') }}">Акции</a>
                     </li>
+                    <li class="list-group-item">
+                        <a href="{{ route('zone.index') }}">Зоны доставки</a>
+                    </li>
                 </div>
             </div>
             <div class="col col-9">

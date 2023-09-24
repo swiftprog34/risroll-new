@@ -22,4 +22,8 @@ class City extends Model
     public function promotions() {
         return $this->hasMany(Promotion::class);
     }
+
+    public function deliveryZones() {
+        return $this->hasMany(DeliveryZone::class);
+    }
 }
