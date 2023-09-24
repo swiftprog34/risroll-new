@@ -18,4 +18,8 @@ class DeliveryZone extends Model
     public function goodsReceivings() {
         return $this->hasMany(GoodsReceiving::class);
     }
+
+    public function indices() {
+        return $this->hasMany(Index::class);
+    }
 }
