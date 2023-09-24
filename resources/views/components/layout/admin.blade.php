@@ -37,6 +37,9 @@
                     <li class="list-group-item">
                         <a href="{{ route('pickup.index') }}">Точки самовывоза</a>
                     </li>
+                    <li class="list-group-item">
+                        <a href="{{ route('promotion.index') }}">Акции</a>
+                    </li>
                 </div>
             </div>
             <div class="col col-9">

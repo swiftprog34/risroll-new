@@ -18,4 +18,8 @@ class City extends Model
     public function pickupPoints() {
         return $this->hasMany(Pickup::class);
     }
+
+    public function promotions() {
+        return $this->hasMany(Promotion::class);
+    }
 }

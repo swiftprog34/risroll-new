@@ -1,7 +1,7 @@
 <x-layout.admin title="Редактировать параметры: {{$city->city_name}}">
     <x-form action="{{ route('city.update', [ $city->id ]) }}" method="patch">
         @bind($city)
-            @include('admin.city.base_form')
+        @include('admin.city.base_form')
         <div class="mb-3">
             <x-form-input name="vk_link" label="Ссылка на группу ВК (Необязательно)" />
         </div>
