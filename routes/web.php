@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminMainController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\DeliveryZoneController;
+use App\Http\Controllers\Admin\GoodsReceivingController;
 use App\Http\Controllers\Admin\ManagerController;
 use App\Http\Controllers\Admin\PickupPointController;
 use App\Http\Controllers\Admin\PromotionController;
@@ -41,4 +42,5 @@ Route::prefix('administrator')->group(function() {
     Route::resource('pickup', PickupPointController::class);
     Route::resource('promotion', PromotionController::class);
     Route::resource('zone', DeliveryZoneController::class);
+    Route::resource('receiving', GoodsReceivingController::class);
 });
