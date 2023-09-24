@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminMainController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\ManagerController;
 use App\Http\Controllers\Admin\PickupPointController;
@@ -32,6 +33,7 @@ Route::domain('risroll.test')->group(function () {
 });
 
 Route::prefix('administrator')->group(function() {
+    Route::get('/', [AdminMainController::class, 'index'])->name('admin.index');
     Route::resource('city', CityController::class);
     Route::resource('manager', ManagerController::class);
     Route::resource('pickup', PickupPointController::class);
