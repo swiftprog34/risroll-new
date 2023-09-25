@@ -24,6 +24,7 @@ class DeliveryZoneRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'city_id' => 'required|integer|exists:cities,id',
+            'min_delivery_price' => 'numeric|min:0'
         ];
     }
 
@@ -32,6 +33,7 @@ class DeliveryZoneRequest extends FormRequest
         return [
             'name'          => 'Наименование зоны доставки',
             'city_id'          => 'Город',
+            'min_delivery_price'          => 'Бесплатная доставка от',
         ];
     }
 }

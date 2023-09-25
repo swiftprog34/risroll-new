@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('indices', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('value', 6);
+            $table->string('value');
             $table->foreignIdFor(DeliveryZone::class)->constrained()->onDelete('cascade');
         });
     }

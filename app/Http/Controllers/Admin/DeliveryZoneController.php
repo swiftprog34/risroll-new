@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\DeliveryZone\DeliveryZoneRequest;
 use App\Models\City;
 use App\Models\DeliveryZone;
+use App\Models\Index;
 use Illuminate\Http\Request;
 
 class DeliveryZoneController extends Controller
@@ -29,16 +30,34 @@ class DeliveryZoneController extends Controller
         return redirect()->route('zone.index')->with('alert', trans('alerts.zones.created'));
     }
 
-    public function edit(DeliveryZone $zone)
+    public function edit(string $id)
     {
+        $zone = DeliveryZone::with('indices')->with('goodsReceivings')->firstOrFail();
         $cities = City::orderBy('city_name')->pluck('city_name', 'id');
-        return view('admin.zone.edit', compact('zone', 'cities'));
+        $indices = $zone->indices->implode('value', ', ');
+        $receivings = $zone->goodsReceivings;
+        return view('admin.zone.edit', compact('zone', 'cities', 'indices', 'receivings'));
     }
 
     public function update(DeliveryZoneRequest $request, DeliveryZone $zone)
     {
-        $zone->update($request->all());
-        return redirect()->route('zone.index')->with('alert', trans('zones.pickups.edited'));
+        $zone->update($request->validated());
+        if($request->has('indicies')) {
+            $indices = explode(",", $request->indicies);
+            $currentIndices = $zone->indices;
+            foreach ($currentIndices as $currentIndex) {
+                $index = Index::findOrFail($currentIndex->id);
+                $index->delete();
+            }
+            foreach ($indices as $index) {
+                $index = Index::create([
+                    'value' => trim($index),
+                    'delivery_zone_id' => $zone->id
+                ]);
+            }
+        }
+
+        return redirect()->route('zone.edit', [$zone->id])->with('alert', trans('alerts.zones.edited'));
     }
 
     public function destroy(DeliveryZone $zone)

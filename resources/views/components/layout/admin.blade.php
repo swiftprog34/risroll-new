@@ -43,9 +43,6 @@
                     <li class="list-group-item">
                         <a href="{{ route('zone.index') }}">Зоны доставки</a>
                     </li>
-                    <li class="list-group-item">
-                        <a href="{{ route('receiving.index') }}">Способы получения товаров</a>
-                    </li>
                 </div>
             </div>
             <div class="col col-9">

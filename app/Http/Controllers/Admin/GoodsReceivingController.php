@@ -28,7 +28,7 @@ class GoodsReceivingController extends Controller
     public function store(GoodsReceivingCreateRequest $request)
     {
         GoodsReceiving::create($request->validated());
-        return redirect()->route('receiving.index')->with('alert', trans('alerts.receivings.created'));
+        return redirect()->route('zone.edit', [ $request->delivery_zone_id ])->with('alert', trans('alerts.receivings.created'));
     }
 
     public function edit(GoodsReceiving $receiving)
@@ -41,12 +41,13 @@ class GoodsReceivingController extends Controller
     public function update(GoodsReceivingCreateRequest $request, GoodsReceiving $receiving)
     {
         $receiving->update($request->all());
-        return redirect()->route('receiving.index')->with('alert', trans('zones.receivings.edited'));
+        return redirect()->route('zone.edit', [ $request->delivery_zone_id ])->with('alert', trans('alerts.receivings.edited'));
     }
 
     public function destroy(GoodsReceiving $receiving)
     {
+        $id = $receiving->delivery_zone_id;
         $receiving->delete();
-        return redirect()->route('receiving.index')->with('alert', trans('alerts.receivings.deleted'));
+        return redirect()->route('zone.edit', [ $id ])->with('alert', trans('alerts.receivings.deleted'));
     }
 }

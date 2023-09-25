@@ -10,7 +10,7 @@ class IndexController extends Controller
 
     public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     public function show(string $id)
@@ -20,6 +20,6 @@ class IndexController extends Controller
 
     public function destroy(string $id)
     {
-        //
+        dd($id);
     }
 }
