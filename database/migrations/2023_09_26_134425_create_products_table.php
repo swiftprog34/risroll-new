@@ -15,12 +15,14 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('uid');
+            $table->string('sku');
             $table->string('title');
             $table->string('slug');
             $table->text('description');
             $table->string('price');
             $table->boolean('is_active')->default(false);
-            $table->foreignIdFor(Category::class)->constrained()->onDelete('cascade');
+            $table->string('category_uid');
         });
     }
 

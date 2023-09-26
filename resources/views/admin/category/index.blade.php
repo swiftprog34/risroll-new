@@ -6,7 +6,11 @@
                 <div>{{ $category->title }}</div>
                 <div>{{ $category->city->city_name }}</div>
                 <div>Видимость на сайте: {{ $category->is_active }}</div>
-                <a href="{{ route('category.edit', [ $category->id ]) }}">Редактировать</a>
+                @foreach($category->products as $product)
+                    <div>{{ $product->title }}</div>
+                    <div>{{ $product->sku}}</div>
+                    <div>{{ $product->price}}</div>
+                @endforeach
             </div>
         @endforeach
     </div>

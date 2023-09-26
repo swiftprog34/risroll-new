@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminMainController;
+use App\Http\Controllers\Admin\CategoryContoller;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\DeliveryZoneController;
 use App\Http\Controllers\Admin\GoodsReceivingController;
 use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\ManagerController;
 use App\Http\Controllers\Admin\PickupPointController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PromotionController;
 use App\Http\Controllers\Public\SiteController;
 use Illuminate\Support\Facades\Route;
@@ -45,4 +47,7 @@ Route::prefix('administrator')->group(function() {
     Route::resource('zone', DeliveryZoneController::class);
     Route::resource('receiving', GoodsReceivingController::class);
     Route::resource('index', IndexController::class);
+    Route::resource('category', CategoryContoller::class);
+    Route::resource('product', ProductController::class);
+    Route::post('fetch-data/{restaurantID}/{wid}/{cityId}', [AdminMainController::class, 'fetchData'])->name('fetch.mobidel.data');
 });
