@@ -18,4 +18,8 @@ class Category extends Model
     public function products() {
         return $this->hasMany(Product::class, 'category_uid', 'uid');
     }
+
+    public function image() {
+        return $this->morphOne(Image::class, 'imageable');
+    }
 }

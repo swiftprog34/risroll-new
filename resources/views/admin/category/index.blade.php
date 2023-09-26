@@ -7,7 +7,7 @@
                 <div>{{ $category->city->city_name }}</div>
                 <div>Видимость на сайте: {{ $category->is_active }}</div>
                 @foreach($category->products as $product)
-                    <div>{{ $product->title }}</div>
+                    <div> <a href="{{ route('product.edit', [ $product->id ]) }}">{{ $product->title }}</a></div>
                     <div>{{ $product->sku}}</div>
                     <div>{{ $product->price}}</div>
                 @endforeach

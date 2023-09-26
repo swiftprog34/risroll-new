@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CategoryContoller;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\DeliveryZoneController;
 use App\Http\Controllers\Admin\GoodsReceivingController;
+use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\ManagerController;
 use App\Http\Controllers\Admin\PickupPointController;
@@ -49,5 +50,6 @@ Route::prefix('administrator')->group(function() {
     Route::resource('index', IndexController::class);
     Route::resource('category', CategoryContoller::class);
     Route::resource('product', ProductController::class);
+    Route::resource('image', ImageController::class);
     Route::post('fetch-data/{restaurantID}/{wid}/{cityId}', [AdminMainController::class, 'fetchData'])->name('fetch.mobidel.data');
 });
