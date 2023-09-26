@@ -2,7 +2,7 @@
     <x-form action="{{ route('zone.update', [ $zone->id ]) }}" method="patch">
         @bind($zone)
         <div class="mb-3">
-            <x-form-input name="name" label="Наименование зоны доставки" />
+            <x-form-input type="text" name="name" label="Наименование зоны доставки" />
         </div>
         <div class="mb-3">
             <x-form-input name="min_delivery_price" label="Бесплатная доставка от" />
