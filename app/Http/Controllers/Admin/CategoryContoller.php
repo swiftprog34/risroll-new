@@ -14,14 +14,15 @@ class CategoryContoller extends Controller
         return view('admin.category.index', compact('categories'));
     }
 
-    public function edit(string $id)
+    public function edit(Category $category)
     {
-        //
+        return view('admin.category.edit', compact('category'));
     }
 
-    public function update(Request $request, string $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        $category->update($request->only('description'));
+        return redirect()->route('category.edit', [$category->id])->with('alert', trans('alerts.categories.edited'));
     }
 
 }
