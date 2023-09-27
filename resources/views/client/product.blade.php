@@ -71,9 +71,9 @@
     <script src="/client/script.js"></script>
     <!---->
 
-    <!-- Подключение шрифтов --
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&amp;subset=cyrillic" rel="stylesheet">
-    <!---->
+
+{{--    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&amp;subset=cyrillic" rel="stylesheet">--}}
+
 
     <script src="/client/lib/jquery.lazyload.min.js"></script>
     <script>
