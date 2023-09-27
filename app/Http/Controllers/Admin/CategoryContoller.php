@@ -4,14 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\City;
 use Illuminate\Http\Request;
 
 class CategoryContoller extends Controller
 {
     public function index()
     {
-        $categories = Category::with('products')->with('city')->get();
-        return view('admin.category.index', compact('categories'));
+        $citiesWithNested = City::with('categories.products')->get();
+        return view('admin.category.index', compact('citiesWithNested'));
     }
 
     public function edit(Category $category)
