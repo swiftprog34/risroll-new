@@ -14,8 +14,10 @@ class PromotionController extends Controller
 
     public function index()
     {
-        $promotions = Promotion::with('city')->get();
-        return view('admin.promotion.index', compact('promotions'));
+        $citiesWithNested = City::with(['promotions' => function($promotions) {
+            $promotions->orderBy('sort_order');
+        }])->get();
+        return view('admin.promotion.index', compact('citiesWithNested'));
     }
 
     public function create()
@@ -76,5 +78,19 @@ class PromotionController extends Controller
     {
         $promotion->delete();
         return redirect()->route('promotion.index')->with('alert', trans('alerts.promotions.deleted'));
+    }
+
+    public function updateOrder(Request $request){
+        if($request->has('ids')){
+            $arr = explode(',',$request->input('ids'));
+
+            foreach($arr as $sortOrder => $id){
+                $category = Promotion::find($id);
+                $category->sort_order = $sortOrder;
+                $category->save();
+            }
+            return ['success'=>true,'message'=>'Updated'];
+        }
+        return ['success'=>false,'message'=>'error'];
     }
 }

@@ -19,4 +19,18 @@ class ProductController extends Controller
         //
     }
 
+    public function updateOrder(Request $request){
+        if($request->has('ids')){
+            $arr = explode(',',$request->input('ids'));
+
+            foreach($arr as $sortOrder => $id){
+                $category = Product::find($id);
+                $category->sort_order = $sortOrder;
+                $category->save();
+            }
+            return ['success'=>true,'message'=>'Updated'];
+        }
+        return ['success'=>false,'message'=>'error'];
+    }
+
 }

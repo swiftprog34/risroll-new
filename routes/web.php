@@ -52,4 +52,7 @@ Route::prefix('administrator')->group(function() {
     Route::resource('product', ProductController::class);
     Route::resource('image', ImageController::class);
     Route::post('fetch-data/{restaurantID}/{wid}/{cityId}', [AdminMainController::class, 'fetchData'])->name('fetch.mobidel.data');
+    Route::post('category/update-order', [CategoryContoller::class, 'updateOrder']);
+    Route::post('product/update-order', [ProductController::class, 'updateOrder']);
+    Route::post('promotion/update-order', [PromotionController::class, 'updateOrder']);
 });
