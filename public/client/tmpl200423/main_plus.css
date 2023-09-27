@@ -1,0 +1,250 @@
+:root {
+    --shadow: 0 0 6px 0 rgba(0,0,0,.04), 0 4px 10px 0 rgba(13,35,67,.05);
+}
+
+
+
+
+a {
+    text-decoration: none !important;
+}
+
+
+@media screen and (max-width: 1025px) {
+
+    body {
+        font-size: 16px !important;
+    }
+    .heading h2 {
+        font-size: 1.312em; /* 21 */
+        font-weight: 900;
+    }
+    .s_h1, h1 {
+        font-size: 1.125em; /* 18 */
+        font-weight: 900;
+    }
+    .s_h2, h2, h3, h4 {
+        font-size: 1.0em !important; /* 16 */
+        font-weight: 700;
+    }
+    .s_h3 {
+        font-size: 0.875em; /* 14 */
+    }
+    .s_h4 {
+        font-size: 0.75em; /* 12 */
+    }
+    p {
+        line-height: 1.35em !important;
+    }
+}
+
+
+
+
+main {
+    position: relative;
+    top: ;
+    max-width: 100%;
+}
+
+@media screen and (max-width: 767px) {
+    main {
+        top: 0px;
+        margin-top: 12px !important;
+    }
+}
+
+
+section {
+    position: relative;
+    margin: 1em auto 4em auto;
+}
+
+
+.container {
+    box-sizing: border-box;
+    width: 94%;
+    max-width: 1320px;
+    margin: auto;
+}
+.theme02 .container {
+    width: 94%;
+    max-width: 1420px;
+}
+@media screen and (max-width: 1400px) {
+    .container {
+        max-width: 1280px;
+    }
+}
+@media screen and (max-width: 767px) {
+    .container {
+        top: 0;
+        max-width: 1280px;
+    }
+    .theme02 .container {
+        width: 100%;
+        max-width: 1280px;
+    }
+}
+
+
+
+
+.margin-off {
+    margin: 0 auto;
+}
+
+p {
+    margin: 12px 0;
+}
+
+
+@media screen and (max-width: 1025px) {
+    .container {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 0 16px !important;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Theme 01 */
+.theme01 {
+    display: table !important;
+    table-layout: fixed;
+    width: 100%;
+}
+.theme01 aside {
+    display: none !important;
+}
+/* --- */
+
+/* Theme 02 */
+.theme02 {
+    display: table !important;
+    table-layout: fixed;
+    width: 100%;
+}
+.theme02 {
+
+}
+.theme02 main {
+
+}
+
+.theme02 .main_top,
+.theme02 header,
+.theme02 nav {
+    display: none;
+}
+
+
+@media screen and (max-width: 1025px) {
+    .theme02 main {
+        padding: 0;
+    }
+
+    .theme02 .header_bg2,
+    .theme02 nav {
+        display: block;
+    }
+}
+/* --- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Ð‘Ð»Ð¾Ðº Ð¿Ð¾Ð¸ÑÐºÐ° */
+.search {
+    height: 36px;
+}
+/* */
+
+
+
+
+
+
+
+
+
+
+
+/* Ð¨ÐºÐ°Ð»Ð° Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¾Ð² */
+.gift {
+    top: 64px;
+}
+
+.slider_scale_items .owl-stage {
+    margin-left: 0.5%;
+}
+
+@media screen and (max-width: 1900px) {
+
+    .slider_scale_items .owl-stage {
+        margin-left: -2.0%;
+    }
+
+}
+
+@media screen and (max-width: 1700px) {
+
+    .slider_scale_items .owl-stage {
+        margin-left: -1.2%;
+    }
+
+}
+
+@media screen and (max-width: 1480px) {
+
+    .slider_scale_items .owl-stage {
+        margin-left: -5.7%;
+    }
+
+}
+
+@media screen and (max-width: 1024px) {
+
+    .gift {
+        top: 0;
+    }
+
+    .slider_scale_items .owl-stage {
+        margin-left: -22%;
+    }
+
+}
+/* */
+
+
+
+.back_menu { display: none !important; }
