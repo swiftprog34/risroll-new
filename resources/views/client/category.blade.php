@@ -3,7 +3,6 @@
 <div class="theme">
     @include('client.components.header')
     <main class="animated fadeIn container">
-        <!-- Хлебные крошки -->
         <div class="breadcrumbs" itemscope itemtype="http://schema.org/BreadcrumbList">
             <span itemscope itemprop="itemListElement" itemtype="http://schema.org/ListItem">
                 <a itemprop="item" title="Главная" href="{{route('index')}}">
@@ -19,10 +18,8 @@
                 </a>
             </span>
         </div>
-        <!-- -->
         <div class="title_filters_grid">
-            <h1 class="cat_name">Заказать вкусные роллы в Тюмени недорого</h1>
-            <!-- Фильтры -->
+            <h1 class="cat_name">{{$cityWithNested->city_name}} - Заказать вкусные роллы недорого</h1>
             <div class="filters">
                 <div class="filter_off" id="delItemsFilters">
                     <img src="/client/images/icons/ic_clear_filters.png">
@@ -34,13 +31,12 @@
                         <!--<span class="hide">x</span>--></div>
                 </div>
             </div>
-            <!-- -->
         </div>
-        <!-- Холодные роллы -->
+
         <div class="text_block">
-            {{$currentCategory->description}}
+            {!!  $currentCategory->description !!}
         </div>
-        <!-- Товары -->
+
         <section class="products">
             <div class="products-grid st_grid">
                 @foreach($currentCategory->products as $product)
@@ -49,8 +45,8 @@
                         <div class="image cover">
                             <a href="{{route('product', ['city' => session('city'), 'id' => $product->uid])}}">
                                 <img class="lazyImg"
-                                     src="images/noimg.png"
-                                     data-original="https://ris72.ru/admin/images/maxi/goods01/17296378766443caa2b8e512.71362084.jpg"
+                                     src="/client/images/noimg.png"
+                                     data-original="{{$product->image}}"
                                      title="" alt=""/>
                                 <noscript><img src="admin/images/maxi/goods01/17296378766443caa2b8e512.71362084.jpg"
                                                alt=""/></noscript>
@@ -98,10 +94,9 @@
 
             </span>
         </section>
-        <!-- -->
-        <!-- Холодные роллы -->
+
         <div class="text_block2">
-            {{$currentCategory->bottom_description}}
+            {!! $currentCategory->bottom_description !!}
         </div>
     </main>
     <div class="slider03">
@@ -112,7 +107,7 @@
             @foreach($cityWithNested->categories as $category)
                 <a class="slider_item "
                    href="{{route('category', ['city' => session('city'), 'id' => $category->uid])}}">
-                    <img src="admin/images/categories/goods01.png@20230423141958" alt="{{$category->title}}"
+                    <img src="{{$category->image}}" alt="{{$category->title}}"
                          title="{{$category->title}}"/>
                     <span class="cat">{{$category->title}}</span>
                 </a>
@@ -153,19 +148,6 @@
 <script src="/client/lib/animate_add.js" async></script>
 @include('client.components.readmore')
 <!---->
-<!-- Подарочное инфо -->
-<link rel="stylesheet" type="text/css" href="/client/lib/md-modal/component.css"/>
-<script src="/client/lib/md-modal/modernizr.custom.js" async></script>
-<div class="md-modal md-effect-2" id="modal-hint">
-    <div class="md-content">
-        <p>
-            Lorem, ipsum dolor sit amet consectetur, adipisicing elit. Ad ab perspiciatis eos sequi eum. Officiis nihil
-            aliquam a cupiditate voluptatibus fuga deserunt enim optio ut distinctio blanditiis, eaque rerum error est
-            itaque dolores ex iusto quos quibusdam quaerat minima molestiae?
-        </p>
-        <input type="hidden" class="close" value="НЕТ">
-    </div>
-</div>
 <div class="md-overlay"></div>
 <!-- classie.js by @desandro: https://github.com/desandro/classie -->
 <script src="/client/lib/md-modal/classie.js" async></script>

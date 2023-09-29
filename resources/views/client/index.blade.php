@@ -7,14 +7,15 @@
             <a rel="nofollow" class="item"
                href="https://2gis.ru/tyumen/firm/70000001067384312?m=65.574369%2C57.174742%2F14.25">
                 <img src="/client/images/color_icons/ic_map.png">
-                <span>Тюмень, ул. Широтная, д.43/2
-
-Тюмень, ул. Эрвье, д.10</span>
+                <span>
+                    @foreach($cityWithNested->pickupPoints as $point)
+                        {{$point->name}}
+                    @endforeach</span>
                 <img src="/client/images/icons/ic_link.png">
             </a>
             <a rel="nofollow" class="item" href="tel:+7(345)2500765">
                 <img src="/client/images/color_icons/ic_phone.png">
-                <span>500-765</span>
+                <span>{{$cityWithNested->phone}}</span>
                 <img src="/client/images/icons/ic_link.png">
             </a>
         </div>
@@ -82,7 +83,7 @@
                 <div class="line"><img src="/client/images/de-line-1.png" alt=""/></div>
             </div>
             <div class="text_block">
-                {{$cityWithNested->top_info}}
+                {!!  $cityWithNested->top_info !!}
             </div>
         </div>
         <br><br>
@@ -108,7 +109,7 @@
         </div>
         <div class="container">
             <div class="text_block2">
-                {{$cityWithNested->bottom_info}}
+                {!! $cityWithNested->bottom_info !!}
             </div>
         </div>
         <!-- Политика конфиденциальности и Пользовательское соглашение -->

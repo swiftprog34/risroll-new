@@ -17,6 +17,8 @@ class SiteController extends Controller
         $subdomain = $request->route()->parameter('subdomain') ?: 'samara';
         $cityWithNested = City::where('slug', $subdomain)->with(['categories' => function($categories) {
             $categories->orderBy('sort_order');
+        }])->with(['pickupPoints' => function($points) {
+            $points->orderBy('name');
         }])->firstOrFail();
         $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
         return view('client.index', compact('categoriesMainDesktop', 'cityWithNested'));
