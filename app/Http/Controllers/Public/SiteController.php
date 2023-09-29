@@ -105,4 +105,18 @@ class SiteController extends Controller
         $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
         return view('client.privacy', compact('categoriesMainDesktop', 'cityWithNested'));
     }
+
+    public function promotions(Request $request) {
+        $subdomain = $request->route()->parameter('subdomain') ?: 'samara';
+        $cityWithNested = City::where('slug', $subdomain)->with(['categories' => function($categories) {
+            $categories->orderBy('sort_order');
+        }])->with(['pickupPoints' => function($points) {
+            $points->orderBy('name');
+        }])->with(['promotions' => function($promotions) {
+            $promotions->orderBy('sort_order');
+        }])->firstOrFail();
+
+        $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
+        return view('client.promotions', compact('categoriesMainDesktop', 'cityWithNested'));
+    }
 }

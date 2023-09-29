@@ -60,7 +60,7 @@
                     <span class="h3">RisRoll - доставка готовых блюд!</span>
                 </div>
                 <div class="second_row">
-                    <a href="{{route('index', session('city'))}}">Акции</a>
+                    <a href="{{route('promotions', session('city'))}}">Акции</a>
                     <a href="{{route('index', session('city'))}}">Контакты</a>
                     <a href="{{route('index', session('city'))}}">Доставка и Оплата</a>
                 </div>
@@ -132,7 +132,7 @@
             <button type="submit"><img src="/client/images/icons/ic_search_black.png"/></button>
         </form>
         <div class="nav_list">
-            <a class="item r2" href="{{route('index', session('city'))}}">
+            <a class="item r2" href="{{route('promotions', session('city'))}}">
                 <i class="ic_win_stock black"></i>
                 <span>Акции</span>
                 <img src="/client/images/icons/ic_link.png">

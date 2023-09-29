@@ -43,13 +43,14 @@ Route::domain('risroll.test')->group(function () {
     Route::get('/', [SiteController::class, 'index'])->name('index');
     Route::get('/product-category/{id}', [SiteController::class, 'category'])->name('category');
     Route::get('/product/{id}', [SiteController::class, 'product'])->name('product');
-    Route::get('/checkout/', [SiteController::class, 'checkout'])->name('checkout');
-    Route::get('/terms-of-use/', [SiteController::class, 'terms'])->name('terms');
-    Route::get('/privacy-policy/', [SiteController::class, 'privacy'])->name('privacy');
-    Route::get('/cart/create-order/', [SiteController::class, 'createOrder'])->name('public.order.create');
-    Route::post('/cart/add-product/', [CartController::class, 'addProduct'])->name('cart.add');
-    Route::post('/cart/change-quantity/', [CartController::class, 'changeQuantity'])->name('cart.change-quantity');
-    Route::post('/cart/remove-product/', [CartController::class, 'removeProduct'])->name('cart.remove');
+    Route::get('/checkout', [SiteController::class, 'checkout'])->name('checkout');
+    Route::get('/terms-of-use', [SiteController::class, 'terms'])->name('terms');
+    Route::get('/privacy-policy', [SiteController::class, 'privacy'])->name('privacy');
+    Route::get('/promotions', [SiteController::class, 'promotions'])->name('promotions');
+    Route::get('/cart/create-order', [SiteController::class, 'createOrder'])->name('public.order.create');
+    Route::post('/cart/add-product', [CartController::class, 'addProduct'])->name('cart.add');
+    Route::post('/cart/change-quantity', [CartController::class, 'changeQuantity'])->name('cart.change-quantity');
+    Route::post('/cart/remove-product', [CartController::class, 'removeProduct'])->name('cart.remove');
 });
 
 Route::prefix('administrator')->group(function() {
