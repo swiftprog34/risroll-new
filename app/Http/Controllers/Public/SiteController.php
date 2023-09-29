@@ -17,8 +17,8 @@ class SiteController extends Controller
         $subdomain = $request->route()->parameter('subdomain') ?: 'samara';
         $cityWithNested = City::where('slug', $subdomain)->with(['categories' => function($categories) {
             $categories->orderBy('sort_order');
-        }])->get();
-        $categoriesMainDesktop = Category::where('city_id', $cityWithNested[0]->id)->take(8)->get();
+        }])->firstOrFail();
+        $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
         return view('client.index', compact('categoriesMainDesktop', 'cityWithNested'));
     }
 
@@ -28,12 +28,12 @@ class SiteController extends Controller
 
         $cityWithNested = City::where('slug', $subdomain)->with(['categories' => function($categories) {
             $categories->orderBy('sort_order');
-        }])->get();
+        }])->firstOrFail();
 
         $currentCategory = Category::where(["uid" => $uid])->with(['products' => function($products){
             $products->orderBy('sort_order');
         }])->firstOrFail();
-        $categoriesMainDesktop = Category::take(8)->get();
+        $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
         return view('client.category', compact('cityWithNested', 'currentCategory', 'categoriesMainDesktop'));
     }
 
@@ -43,9 +43,9 @@ class SiteController extends Controller
 
         $cityWithNested = City::where('slug', $subdomain)->with(['categories' => function($categories) {
             $categories->orderBy('sort_order');
-        }])->get();
+        }])->firstOrFail();
 
-        $categoriesMainDesktop = Category::take(8)->get();
+        $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
         $product = Product::where(["uid"=> $uid])->firstOrFail();
         return view('client.product', compact('cityWithNested', 'categoriesMainDesktop', 'product'));
     }
@@ -60,8 +60,8 @@ class SiteController extends Controller
         $subdomain = $request->route()->parameter('subdomain') ?: 'samara';
         $cityWithNested = City::where('slug', $subdomain)->with(['categories' => function($categories) {
             $categories->orderBy('sort_order');
-        }])->get();
-        $categoriesMainDesktop = Category::where('city_id', $cityWithNested[0]->id)->take(8)->get();
+        }])->firstOrFail();
+        $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
         return view('client.checkout', compact('categoriesMainDesktop', 'cityWithNested'));
     }
 
