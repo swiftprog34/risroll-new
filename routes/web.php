@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\GoodsReceivingController;
 use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\ManagerController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PickupPointController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PromotionController;
@@ -43,9 +44,10 @@ Route::domain('risroll.test')->group(function () {
     Route::get('/product-category/{id}', [SiteController::class, 'category'])->name('category');
     Route::get('/product/{id}', [SiteController::class, 'product'])->name('product');
     Route::get('/checkout/', [SiteController::class, 'checkout'])->name('checkout');
-    Route::post('/cart/add-roduct/{product_id}', [CartController::class, 'addProduct'])->name('cart.add');
-    Route::post('/cart/change-quantity/{product_id}/{quantity}', [CartController::class, 'changeQuantity'])->name('cart.change-quantity');
-    Route::post('/cart/remove-product/{product_id}', [CartController::class, 'removeProduct'])->name('cart.remove');
+    Route::get('/cart/create-order/', [SiteController::class, 'createOrder'])->name('public.order.create');
+    Route::post('/cart/add-product/', [CartController::class, 'addProduct'])->name('cart.add');
+    Route::post('/cart/change-quantity/', [CartController::class, 'changeQuantity'])->name('cart.change-quantity');
+    Route::post('/cart/remove-product/', [CartController::class, 'removeProduct'])->name('cart.remove');
 });
 
 Route::prefix('administrator')->group(function() {
@@ -60,6 +62,7 @@ Route::prefix('administrator')->group(function() {
     Route::resource('category', CategoryContoller::class);
     Route::resource('product', ProductController::class);
     Route::resource('image', ImageController::class);
+    Route::resource('order', OrderController::class);
     Route::post('fetch-data/{restaurantID}/{wid}/{cityId}', [AdminMainController::class, 'fetchData'])->name('fetch.mobidel.data');
     Route::post('category/update-order', [CategoryContoller::class, 'updateOrder']);
     Route::post('product/update-order', [ProductController::class, 'updateOrder']);

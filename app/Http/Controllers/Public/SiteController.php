@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Public;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\City;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -66,5 +67,9 @@ class SiteController extends Controller
 
     public function chooseCity($choosedCity) {
 
+    }
+
+    public function createOrder($request) {
+        dd($request);
     }
 }
