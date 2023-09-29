@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\ManagerController;
 use App\Http\Controllers\Admin\PickupPointController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PromotionController;
+use App\Http\Controllers\Public\CartController;
 use App\Http\Controllers\Public\SiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,8 +42,10 @@ Route::domain('risroll.test')->group(function () {
     Route::get('/', [SiteController::class, 'index'])->name('index');
     Route::get('/product-category/{id}', [SiteController::class, 'category'])->name('category');
     Route::get('/product/{id}', [SiteController::class, 'product'])->name('product');
-//    Route::get('/', [SiteController::class, 'index'])->name('index.base');
-//    Route::get('/product/{name}', [SiteController::class, 'product'])->name('product.base');
+    Route::get('/checkout/', [SiteController::class, 'checkout'])->name('checkout');
+    Route::post('/cart/add-roduct/{product_id}', [CartController::class, 'addProduct'])->name('cart.add');
+    Route::post('/cart/change-quantity/{product_id}/{quantity}', [CartController::class, 'changeQuantity'])->name('cart.change-quantity');
+    Route::post('/cart/remove-product/{product_id}', [CartController::class, 'removeProduct'])->name('cart.remove');
 });
 
 Route::prefix('administrator')->group(function() {

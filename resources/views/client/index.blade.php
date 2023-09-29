@@ -38,11 +38,6 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="#fff">
     <!---->    <!---->
 
-    <!--Verify-->
-    {{--	<meta name="yandex-verification" content="0a6bc92f73ab889f" />--}}
-    {{--	<meta name="google-site-verification" content="GM1BpueKXOnRJEITbrJU8LEvVhfZ-qNf1SFxNkALBJs" />--}}
-    <!---->
-
     <!--Open Graph-->
     <meta property="og:title" content=""/>
     <meta property="og:description" content=""/>
@@ -269,7 +264,7 @@
                 </div>
 
                 <a rel="nofollow" class="basket"
-                   href="https://ris72.ru/%D0%A0%D1%94%D0%A0%D1%95%D0%A1%D0%82%D0%A0%C2%B7%D0%A0%D1%91%D0%A0%D0%85%D0%A0%C2%B0">
+                   href="{{route('checkout')}}">
                     <span class="s_h2 basketPrice">0₽</span>
                     <div class="icon rounded basket-area"><img src="/client/images/icons/ic_basket-2_white.png" alt=""/>
                     </div>
@@ -425,7 +420,7 @@
         <div class="item basket" href="">
             <div><span class="basketPrice">0₽</span></div>
             <a class="basket-area-mobile"
-               href="https://ris72.ru/%D0%A0%D1%94%D0%A0%D1%95%D0%A1%D0%82%D0%A0%C2%B7%D0%A0%D1%91%D0%A0%D0%85%D0%A0%C2%B0"
+               href="{{route('checkout')}}"
                onclick="(document.getElementById('page-preloader').style.display='flex')">
                 <img src="/client/images/icons/ic_basket_black.png" alt=""/>
                 <label>Корзина</label>
@@ -485,17 +480,17 @@
 
             <a rel="nofollow" class="item"
                href="https://2gis.ru/tyumen/firm/70000001067384312?m=65.574369%2C57.174742%2F14.25">
-                <img src="images/color_icons/ic_map.png">
+                <img src="/client/images/color_icons/ic_map.png">
                 <span>Тюмень, ул. Широтная, д.43/2
 
 Тюмень, ул. Эрвье, д.10</span>
-                <img src="images/icons/ic_link.png">
+                <img src="/client/images/icons/ic_link.png">
             </a>
 
             <a rel="nofollow" class="item" href="tel:+7(345)2500765">
-                <img src="images/color_icons/ic_phone.png">
+                <img src="/client/images/color_icons/ic_phone.png">
                 <span>500-765</span>
-                <img src="images/icons/ic_link.png">
+                <img src="/client/images/icons/ic_link.png">
             </a>
 
 

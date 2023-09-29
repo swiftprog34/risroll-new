@@ -54,9 +54,14 @@ class SiteController extends Controller
 
     }
 
-    public function checkout()
+    public function checkout(Request $request)
     {
-
+        $subdomain = $request->route()->parameter('subdomain') ?: 'samara';
+        $cityWithNested = City::where('slug', $subdomain)->with(['categories' => function($categories) {
+            $categories->orderBy('sort_order');
+        }])->get();
+        $categoriesMainDesktop = Category::where('city_id', $cityWithNested[0]->id)->take(8)->get();
+        return view('client.checkout', compact('categoriesMainDesktop', 'cityWithNested'));
     }
 
     public function chooseCity($choosedCity) {
