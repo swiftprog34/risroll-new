@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Рис - Доставка вкусной еды</title>
     <meta name="description"
-          content="Risroll - Заказать доставку суши сетов и роллов в городе Тюмень по доступным ценам!">
+          content="Risroll - Заказать доставку суши сетов и роллов в городе {{$cityWithNested->city_name}} по доступным ценам!">
     <meta name="keywords" content=" ">
     <link rel="canonical" href="{{route('index')}}">
     <link rel="apple-touch-icon" sizes="57x57" href="/client/images/favicon/apple-icon-57x57.png@v=2">
@@ -45,7 +45,7 @@
     <link rel="stylesheet" href="/client/tmpl200423/style.css">
     <link rel="stylesheet" href="/client/tmpl200423/product-one.css">
     <link rel="stylesheet" href="/client/tmpl200423/cart.css">
-    <link rel="stylesheet" href="/client/tmpl200423/cart_plus.css">
+{{--    <link rel="stylesheet" href="/client/tmpl200423/cart_plus.css">--}}
     <link rel="stylesheet" href="/client/tmpl200423/footer.css">
     <!---->
     <script src="/client/lib/jquery-2.1.4.min.js"></script>

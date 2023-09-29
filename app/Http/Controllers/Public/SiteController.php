@@ -51,7 +51,7 @@ class SiteController extends Controller
         }])->firstOrFail();
 
         $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
-        $product = Product::where(["uid"=> $uid])->firstOrFail();
+        $product = Product::where(["uid"=> $uid])->with('category')->firstOrFail();
         return view('client.product', compact('cityWithNested', 'categoriesMainDesktop', 'product'));
     }
 
@@ -76,5 +76,33 @@ class SiteController extends Controller
 
     public function createOrder($request) {
         dd($request);
+    }
+
+    public function terms(Request $request) {
+        $subdomain = $request->route()->parameter('subdomain') ?: 'samara';
+        $cityWithNested = City::where('slug', $subdomain)->with(['categories' => function($categories) {
+            $categories->orderBy('sort_order');
+        }])->with(['pickupPoints' => function($points) {
+            $points->orderBy('name');
+        }])->with(['promotions' => function($promotions) {
+            $promotions->orderBy('sort_order');
+        }])->firstOrFail();
+
+        $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
+        return view('client.terms', compact('categoriesMainDesktop', 'cityWithNested'));
+    }
+
+    public function privacy(Request $request) {
+        $subdomain = $request->route()->parameter('subdomain') ?: 'samara';
+        $cityWithNested = City::where('slug', $subdomain)->with(['categories' => function($categories) {
+            $categories->orderBy('sort_order');
+        }])->with(['pickupPoints' => function($points) {
+            $points->orderBy('name');
+        }])->with(['promotions' => function($promotions) {
+            $promotions->orderBy('sort_order');
+        }])->firstOrFail();
+
+        $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
+        return view('client.privacy', compact('categoriesMainDesktop', 'cityWithNested'));
     }
 }

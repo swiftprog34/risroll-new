@@ -34,8 +34,8 @@
         </ul>
         <div class="lastline">
             <p class="">Copyright © 2023 RisRoll. Все права защищены!</p>
-            <a rel="nofollow" href="https://ris72.ru/page_terms.php">Пользовательское соглашение</a>
-            <a rel="nofollow" href="https://ris72.ru/page_privacy.php">Политика конфиденциальности</a>
+            <a rel="nofollow" href="{{route('terms', ['city' => session('city')])}}">Пользовательское соглашение</a>
+            <a rel="nofollow" href="{{route('privacy', ['city' => session('city')])}}">Политика конфиденциальности</a>
         </div>
     </div>
     <div class="bg0"></div>

@@ -12,7 +12,8 @@
             </span>
             ->
             <span itemscope itemprop="itemListElement" itemtype="http://schema.org/ListItem">
-                <a itemprop="item" title="Холодные роллы" href="holodnie-rolli.html">
+                <a itemprop="item" title="{{$currentCategory->title}}"
+                   href="{{route('category', ['city' => session('city'), 'id' => $currentCategory->uid])}}">
                     <span itemprop="name">{{$currentCategory->title}}</span>
                     <meta itemprop="position" content="2">
                 </a>
@@ -48,7 +49,7 @@
                                      src="/client/images/noimg.png"
                                      data-original="{{$product->image}}"
                                      title="" alt=""/>
-                                <noscript><img src="admin/images/maxi/goods01/17296378766443caa2b8e512.71362084.jpg"
+                                <noscript><img src="{{$product->image}}"
                                                alt=""/></noscript>
                             </a>
                         </div>
@@ -85,8 +86,8 @@
                     <span itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
                 <meta itemprop="name" content="{{$product->title}}"/>
                 <meta itemprop="description" content="{{$product->title}}"/>
-                <link itemprop="thumbnailUrl" href="admin/images/maxi/goods01/615930086446c06f3e2299.21274215.jpg"/>
-                <link itemprop="contentUrl" href="admin/images/maxi/goods01/615930086446c06f3e2299.21274215.jpg"/>
+                <link itemprop="thumbnailUrl" href="{{$product->image}}"/>
+                <link itemprop="contentUrl" href="{{$product->image}}"/>
                 <meta itemprop="author" content=""/>
                 <meta itemprop="datePublished" content="{{$product->created_at}}">
             </span>
@@ -115,7 +116,7 @@
         </div>
         <script>
             $(document).ready(function () {
-                var $owl = $(".home-slider3").owlCarousel({
+                $(".home-slider3").owlCarousel({
                     margin: 60,
                     smartSpeed: 400,
                     navSpeed: 400,
@@ -141,7 +142,6 @@
             });
         </script>
     </div>
-    <link href="tmpl200423/footer.css@20230613191201.css" type="text/css" rel="stylesheet">
     @include('client.components.footer')
 </div>
 <script src="/client/lib/tooltip.js"></script>

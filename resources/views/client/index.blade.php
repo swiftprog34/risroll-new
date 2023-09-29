@@ -95,7 +95,7 @@
                        href="{{route('category', ['city' => session('city'), 'id' => $category->uid])}}"
                        onclick="(document.getElementById('page-preloader').style.display='flex')">
                         <img class=""
-                             src="/client/admin/images//client/admin/images/categories/goods01.png@20230423141958"
+                             src="{{$category->image}}"
                              alt="{{$category->title}}"/>
                         <span class="s_h3">{{ $category->title }}</span>
                     </a>

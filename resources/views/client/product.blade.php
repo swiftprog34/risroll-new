@@ -5,21 +5,29 @@
     <main class="animated fadeIn container">
         <div class="breadcrumbs" itemscope itemtype="http://schema.org/BreadcrumbList">
             <span itemscope itemprop="itemListElement" itemtype="http://schema.org/ListItem">
-                <a itemprop="item" title="Главная" href="/">
+                <a itemprop="item" title="Главная" href="{{route('index')}}">
                     <span itemprop="name">Главная</span>
                     <meta itemprop="position" content="1">
                 </a>
             </span>
             ->
             <span itemscope itemprop="itemListElement" itemtype="http://schema.org/ListItem">
-                <a itemprop="item" title="Запечённые роллы"
+                <a itemprop="item" title="{{$product->category->title}}"
+                   href="{{route('category', ['city' => session('city'), 'id' => $product->category->uid])}}">
+                    <span itemprop="name">{{$product->category->title}}</span>
+                    <meta itemprop="position" content="2">
+                </a>
+            </span>
+            ->
+            <span itemscope itemprop="itemListElement" itemtype="http://schema.org/ListItem">
+                <a itemprop="item" title="{{$product->title}}"
                    href="{{route('product', ['city' => session('city'), 'id' =>  $product->uid])}}">
                     <span itemprop="name">{{$product->title}}</span>
                     <meta itemprop="position" content="3">
                 </a>
             </span>
         </div>
-        <a class="back_menu" href="https://ris72.ru/history.back();return&#32;false;"
+        <a class="back_menu" href="{{route('index', session('city'))}}history.back();return&#32;false;"
            onclick="history.back();return false;">
             <i class="ic_back"></i>
             <span>Вернуться назад</span>
@@ -27,7 +35,7 @@
         <section class="product" id="item-{{$product->id}}">
             <div class="product-item ani">
                 <div class="item_photo ">
-                    <img class="photo" src="/client/admin/images/maxi/goods11/13916663656444f119112f27.51474733.jpg"
+                    <img class="photo" src="{{$product->image}}"
                          title="{{$product->title}}" alt="{{$product->title}}"/>
                 </div>
                 <div class="information">
@@ -61,7 +69,7 @@
             <span itemscope itemtype="http://schema.org/Product">
     <meta itemprop="name" content="{{$product->title}}">
     <meta itemprop="description" content="{{$product->text}}<br> ">
-    <link itemprop="image" href="/client/admin/images/maxi/goods11/13916663656444f119112f27.51474733.jpg"/>
+    <link itemprop="image" href="{{$product->image}}"/>
     <span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
         <meta itemprop="price" content="{{$product->price}}">
         <meta itemprop="priceCurrency" content="RUB">
