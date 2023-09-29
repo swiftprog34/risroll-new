@@ -201,7 +201,7 @@
 
                 <div class="logo">
                     <a class="" href="" style="margin: 0;">
-                        <img style="position: relative; left: -2px;" src="images/logo.png" alt="" />
+                        <img style="position: relative; left: -2px;" src="/client/images/logo.png" alt="" />
                     </a>
                 </div>
 
