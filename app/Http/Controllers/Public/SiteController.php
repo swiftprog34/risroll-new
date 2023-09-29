@@ -19,7 +19,10 @@ class SiteController extends Controller
             $categories->orderBy('sort_order');
         }])->with(['pickupPoints' => function($points) {
             $points->orderBy('name');
+        }])->with(['promotions' => function($promotions) {
+            $promotions->orderBy('sort_order');
         }])->firstOrFail();
+
         $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
         return view('client.index', compact('categoriesMainDesktop', 'cityWithNested'));
     }

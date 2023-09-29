@@ -5,7 +5,7 @@
     <main>
         <div class="delivery_info_grid">
             <a rel="nofollow" class="item"
-               href="https://2gis.ru/tyumen/firm/70000001067384312?m=65.574369%2C57.174742%2F14.25">
+               href="{{$cityWithNested->gis_link}}">
                 <img src="/client/images/color_icons/ic_map.png">
                 <span>
                     @foreach($cityWithNested->pickupPoints as $point)
@@ -21,19 +21,18 @@
         </div>
         <div class="slider02">
             <div class="home-slider owl-carousel owl-theme ">
-                <div class="home-slider__item">
-                    <img src="/client/admin/images/maxi/banners/4919544546446b19c8f7819.68816904.jpg" alt="" title=""/>
-                </div>
-                <div class="home-slider__item">
-                    <img src="/client/admin/images/maxi/banners/153106616446b21a6df543.46077799.jpg" alt="" title=""/>
-                </div>
+                @foreach($cityWithNested->promotions as $promotion)
+                    <div class="home-slider__item">
+                        <img src="{{$promotion->image}}" alt="{{$promotion->name}}" title="{{$promotion->name}}"/>
+                    </div>
+                @endforeach
             </div>
         </div>
         <!-- Owl Carousel -->
         <link rel="stylesheet" href="/client/lib/carousel/carousel.css"/>
         <script src="/client/lib/carousel/owl.carousel_v2.min.js"></script>
         <script>
-            $(document).ready(function () {
+            $(document).ready(function(){
 
                 $(".home-slider").owlCarousel({
 
@@ -41,12 +40,12 @@
                     smartSpeed: 400,
                     navSpeed: 400,
 
-                    navText: ['<span class="arrow-prev"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"> <circle cx="17" cy="17" r="17" fill="#373535"></circle> <path d="M14.759 9.8418L20.9409 16.9997L14.759 24.1576" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>', '<span class="arrow-next"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"> <circle cx="17" cy="17" r="17" fill="#373535"></circle> <path d="M14.759 9.8418L20.9409 16.9997L14.759 24.1576" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path> </svg></span>'],
+                    navText: ['<span class="arrow-prev"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"> <circle cx="17" cy="17" r="17" fill="#373535"></circle> <path d="M14.759 9.8418L20.9409 16.9997L14.759 24.1576" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>','<span class="arrow-next"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"> <circle cx="17" cy="17" r="17" fill="#373535"></circle> <path d="M14.759 9.8418L20.9409 16.9997L14.759 24.1576" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path> </svg></span>'],
 
                     responsive: {
                         1480: {
                             center: true,
-
+                            items: 1.47,
                             loop: true,
                             nav: true,
                             autoplay: true,
@@ -56,7 +55,7 @@
                         },
                         767: {
                             center: true,
-
+                            items: 1.3,
                             loop: true,
                             nav: true,
                             autoplay: true,
@@ -75,6 +74,7 @@
                     }
                 });
             });
+
         </script>
         <div class="container">
             <div class="heading mobile-none000">
@@ -102,11 +102,6 @@
                 @endforeach
             </div>
         </section>
-        <div class="heading">
-            <div class="line"><img src="/client/images/de-line-1.png" alt=""/></div>
-            <h2>Вкуснейшие хиты сезона</h2>
-            <div class="line"><img src="/client/images/de-line-1.png" alt=""/></div>
-        </div>
         <div class="container">
             <div class="text_block2">
                 {!! $cityWithNested->bottom_info !!}
@@ -114,7 +109,7 @@
         </div>
         <!-- Политика конфиденциальности и Пользовательское соглашение -->
         <!-- -->
-        <link href="/client/tmpl200423/footer.css" type="text/css" rel="stylesheet">
+
         @include('client.components.footer')
     </main>
 </div>

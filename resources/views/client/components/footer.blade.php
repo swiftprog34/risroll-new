@@ -26,10 +26,11 @@
         </ul>
         <ul class="f_info">
             <li>Ресторан доставки еды</li>
-            <li>Тюмень, ул. Широтная, д.43/2
-                Тюмень, ул. Эрвье, д.10
+            <li>{{$cityWithNested->city_name}}, @foreach($cityWithNested->pickupPoints as $point)
+                    {{$point->name}}
+                @endforeach
             </li>
-            <li><a rel="nofollow" href="tel:500-765">500-765</a></li>
+            <li><a rel="nofollow" href="tel:{{$cityWithNested->phone}}">{{$cityWithNested->phone}}</a></li>
         </ul>
         <div class="lastline">
             <p class="">Copyright © 2023 RisRoll. Все права защищены!</p>
