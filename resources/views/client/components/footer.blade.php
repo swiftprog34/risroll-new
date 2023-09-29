@@ -4,19 +4,6 @@
         <div class="social">
             <a rel="nofollow" href="{{$cityWithNested->vk_link}}" target="_blank"><i class="vk"></i></a>
         </div>
-        <!--
-                <br>
-
-                <div class="app_download">
-                    <a rel="nofollow" href="" target="_blank">
-                        <img src="/client/images/appstore.png" alt="Скачать из App Store" />
-                    </a>
-                    &nbsp;&nbsp;&nbsp;
-                    <a rel="nofollow" href="" target="_blank">
-                        <img src="/client/images/googleplay.png" alt="Скачать из Google Play" />
-                    </a>
-                </div>
-        -->
         <ul class="f_cats">
             @foreach($cityWithNested->categories as $category)
                 <li>
