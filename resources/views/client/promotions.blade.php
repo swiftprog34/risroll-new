@@ -23,7 +23,9 @@
         <div class="title_filters_grid">
             <h1 class="cat_name">Акции</h1>
         </div>
-
+        <div class="page_text">
+            {!! $cityWithNested->promotions_page_info !!}
+        </div>
         <section class="stock">
             <div class="stock-grid">
                 @foreach($cityWithNested->promotions as $promotion)

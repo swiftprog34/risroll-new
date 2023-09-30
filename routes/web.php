@@ -48,6 +48,7 @@ Route::domain('risroll.test')->group(function () {
     Route::get('/privacy-policy', [SiteController::class, 'privacy'])->name('privacy');
     Route::get('/promotions', [SiteController::class, 'promotions'])->name('promotions');
     Route::get('/contacts', [SiteController::class, 'contacts'])->name('contacts');
+    Route::get('/delivery', [SiteController::class, 'delivery'])->name('delivery');
     Route::get('/cart/create-order', [SiteController::class, 'createOrder'])->name('public.order.create');
     Route::post('/cart/add-product', [CartController::class, 'addProduct'])->name('cart.add');
     Route::post('/cart/change-quantity', [CartController::class, 'changeQuantity'])->name('cart.change-quantity');

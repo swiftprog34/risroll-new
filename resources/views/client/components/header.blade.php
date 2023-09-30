@@ -62,7 +62,7 @@
                 <div class="second_row">
                     <a href="{{route('promotions', session('city'))}}">Акции</a>
                     <a href="{{route('contacts', session('city'))}}">Контакты</a>
-                    <a href="{{route('index', session('city'))}}">Доставка и Оплата</a>
+                    <a href="{{route('delivery', session('city'))}}">Доставка и Оплата</a>
                 </div>
             </div>
         </div>
@@ -144,7 +144,7 @@
                 <img src="/client/images/icons/ic_link.png">
             </a>
             <a class="item r2"
-               href="{{route('index')}}">
+               href="{{route('delivery', session('city'))}}">
                 <i class="ic_win_info black"></i>
                 <span>Доставка и Оплата</span>
                 <img src="/client/images/icons/ic_link.png">
