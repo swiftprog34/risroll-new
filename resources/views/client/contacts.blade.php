@@ -22,7 +22,8 @@
         </div>
         <div class="page_text">
             <h1>Ресторан доставки RisRoll</h1>
-            <p>{{$cityWithNested->city_name}}</p></div>
+            <p>{!! $cityWithNested->contact_page_info !!}</p>
+        </div>
         <div class="contacts_grid">
             <div class="item">
                 <div class="worktime h5">
@@ -84,6 +85,11 @@
                 <img class="icon" src="client/images/color_icons/ic_vk.png" alt=""/>
                 <h3>Группа ВК</h3>
             </a>
+        </div>
+        <div class="container">
+            <div class="text_block2">
+                {!! $cityWithNested->contact_map !!}
+            </div>
         </div>
     </main>
     @include('client.components.footer')
