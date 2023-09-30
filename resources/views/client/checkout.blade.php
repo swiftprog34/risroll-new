@@ -463,20 +463,9 @@
 <!-- classie.js by @desandro: https://github.com/desandro/classie -->
 <script src="/client/lib/md-modal/classie.js" async></script>
 <script src="/client/lib/md-modal/modalEffects.js" async></script>
-<!-- for the blur effect -->
-<!-- by @derSchepp https://github.com/Schepp/CSS-Filters-Polyfill -->
-<!--
-<script>
-	// this is important for IEs
-	var polyfilter_scriptpath = '/lib/md-modal/';
-</script>
-<script src="/lib/md-modal/cssParser.js" async></script>
-<script src="/lib/md-modal/css-filters-polyfill.js" async></script>
--->
 @include('client.components.totop')
-<!--end-->
-<link href="/client/tmpl200423/win.css" type="text/css" rel="stylesheet">
 @include('client.components.close_win')
 @include('client.components.cookies_check')
+@include('client.components.cart')
 </body>
 </html>

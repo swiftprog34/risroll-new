@@ -61,7 +61,7 @@
                             <div class="weight">
                                 <span class="s_h3">xxxx8шт.   Вес: xxxx250г.</span>
                                 <input type='hidden' id='price-{{$product->id}}' value='{{$product->price}}'
-                                       data-external_id=''>
+                                       data-external_id='{{$product->uid}}'>
                             </div>
                             <div class="cost-line">
                                 <p class="cost">
@@ -147,17 +147,13 @@
 <script src="/client/lib/tooltip.js"></script>
 <script src="/client/lib/animate_add.js" async></script>
 @include('client.components.readmore')
-<!---->
 <div class="md-overlay"></div>
-<!-- classie.js by @desandro: https://github.com/desandro/classie -->
 <script src="/client/lib/md-modal/classie.js" async></script>
 <script src="/client/lib/md-modal/modalEffects.js" async></script>
-<!-- -->
 @include('client.components.totop')
-<!--end-->
-<link href="/client/tmpl200423/win.css" type="text/css" rel="stylesheet">
 @include('client.components.close_win')
 @include('client.components.cookies_check')
+@include('client.components.cart')
 </body>
 </html>
 

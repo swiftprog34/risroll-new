@@ -22,13 +22,12 @@
                         @endif</p>
                     <div class="products-grid">
                         @foreach($cityWithNested->products as $product)
-                            <div class="product-item ani st_item" id="item-{{$product->id}}"
-                                 data-price="{{$product->price}}"
+                            <div class="product-item ani st_item" id="item-{{$product->id}}" data-price="{{$product->price}}"
                                  data-tags="" data-pos="{{$loop->index}}">
                                 <div class="image cover">
                                     <a href="{{route('product', ['city' => session('city'), 'id' => $product->uid])}}">
                                         <img class="lazyImg"
-                                             src="/client//client/images/noimg.png"
+                                             src="/client/images/noimg.png"
                                              data-original="{{$product->image}}"
                                              title="" alt=""/>
                                         <noscript><img src="{{$product->image}}"
@@ -43,7 +42,7 @@
                                     <div class="weight">
                                         <span class="s_h3">xxxx8шт.   Вес: xxxx250г.</span>
                                         <input type='hidden' id='price-{{$product->id}}' value='{{$product->price}}'
-                                               data-external_id=''>
+                                               data-external_id='{{$product->uid}}'>
                                     </div>
                                     <div class="cost-line">
                                         <p class="cost">
@@ -53,12 +52,10 @@
                                             <div class="s_h3 addToCart" data-id="{{$product->id}}">Добавить</div>
                                         </div>
                                         <div class="button-active hide">
-                                            <div class="updateCart minus animinus" data-cid="0" data-type="-">
-                                                <span>-</span>
+                                            <div class="updateCart minus animinus" data-cid="0" data-type="-"><span>-</span>
                                             </div>
                                             <div class="kolvo"><span>0</span></div>
-                                            <div class="updateCart plus aniplus" data-cid="0" data-type="+">
-                                                <span>+</span></div>
+                                            <div class="updateCart plus aniplus" data-cid="0" data-type="+"><span>+</span></div>
                                         </div>
                                     </div>
                                 </div>
@@ -71,11 +68,11 @@
         </main>
     </div>
     <script src="/client/lib/animate_add.js" async></script>
-    <!---->
     @include('client.components.totop')
-    <!--end-->
 @include('client.components.close_win')
 @include('client.components.cookies_check')
+@include('client.components.cart')
+@include('client.components.readmore')
 </body>
 </html>
-@include('client.components.readmore')
+

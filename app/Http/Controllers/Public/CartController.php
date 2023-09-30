@@ -13,24 +13,32 @@ class CartController extends Controller
 
     public function addProduct(Request $request)
     {
-        $id = session()->getId();
-        $userCart = Cart::where('session_id', $id)->first();
+        $sid = session()->getId();
+        $userCart = Cart::where('session_id', $sid)->first();
         if($userCart === null) {
             $userCart = Cart::make([
-                'session_id' => $id,
+                'session_id' => $sid,
             ]);
         }
 
-        DB::transaction(function() use ($request, $userCart) {
-            $userCart->save();
-            $product = Product::where('id', $request->product_id)->firstOrFail();
-            $userCart->products()->attach($userCart->session_id,
-                [
-                    'product_id' => $product->id,
-                    'price' => $product->price,
-                    'quantity' => 1
-                ]);
+        $userCart->save();
+        $product = Product::where('id', $request->id)->firstOrFail();
+        $userCart->products()->attach($userCart->session_id,
+            [
+                'product_id' => $product->id,
+                'price' => $product->price,
+                'quantity' => 1
+            ]);
+
+        $sum = $userCart->products->sum(function ($product) {
+            return $product->pivot->price * $product->pivot->quantity;
         });
+
+        return response()->json([
+            'status' => 1,
+            'data' => $sum,
+            'key' => $sid
+        ]);
     }
 
     public function changeQuantity(Request $request) {

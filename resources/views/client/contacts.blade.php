@@ -94,12 +94,10 @@
     </main>
     @include('client.components.footer')
     <script src="/client/lib/animate_add.js" async></script>
-    <!---->
-    @include('client.components.totop')
-    <!--end-->
+@include('client.components.totop')
 @include('client.components.close_win')
 @include('client.components.cookies_check')
+@include('client.components.cart')
 </body>
 </html>
 @include('client.components.readmore')
-<!---->

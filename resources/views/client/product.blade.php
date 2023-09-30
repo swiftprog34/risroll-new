@@ -51,7 +51,7 @@
                     <div class="product_row item_weight">
                         <span>xxxxx8шт.   Вес: xxxxxx320г.</span>
                         <input type='hidden' id='price-{{$product->id}}' value='{{$product->price}}'
-                               data-external_id=''>
+                               data-external_id='{{$product->uid}}'>
                     </div>
                     <div class="item_button">
                         <div class="button-passive ">
@@ -92,6 +92,7 @@
         }
     });
 </script>
+@include('client.components.cart')
 </body>
 </html>
 

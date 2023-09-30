@@ -107,19 +107,15 @@
                 {!! $cityWithNested->bottom_info !!}
             </div>
         </div>
-        <!-- Политика конфиденциальности и Пользовательское соглашение -->
-        <!-- -->
-
         @include('client.components.footer')
     </main>
 </div>
 <script src="/client/lib/animate_add.js" async></script>
-<!---->
 @include('client.components.totop')
-<!--end-->
 @include('client.components.close_win')
 @include('client.components.cookies_check')
+@include('client.components.cart')
+@include('client.components.readmore')
 </body>
 </html>
-@include('client.components.readmore')
-<!---->
+
