@@ -59,6 +59,7 @@ class AdminMainController extends Controller
                     $prepares_product['description'] = $product["description"]["description"];
                     $prepares_product['sku'] = $product["description"]["oneCID"];
                     $prepares_product['category_uid'] = $product["description"]["parent"];
+                    $prepares_product['city_id'] = $cityId;
                     try {
                         $prepares_product->save();
                     } catch (\Throwable $e) {

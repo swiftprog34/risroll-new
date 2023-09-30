@@ -32,9 +32,10 @@
 </script>
 <div class="main_top">
     <div class="top_bar">
-        <form action="{{route('index', session('city'))}}" method="get" class="search">
+        <form action="{{route('search', session('city'))}}" method="post" class="search">
+            @csrf
             <input type="hidden" name="tmpl" value="">
-            <input type="text" name="s" placeholder="Найти" required>
+            <input type="text" name="tmpl" placeholder="Найти" required>
             <button type="submit"><img src="/client/images/icons/ic_search_black.png"/></button>
         </form>
         <div class="item">
@@ -126,9 +127,10 @@
             </a>
         </div>
         <br>
-        <form action="{{route('index', session('city'))}}" method="get" class="search">
+        <form action="{{route('search', session('city'))}}" method="post" class="search">
+            @csrf
             <input type="hidden" name="tmpl" value="">
-            <input type="text" name="s" placeholder="Найти" required>
+            <input type="text" name="tmpl" placeholder="Найти" required>
             <button type="submit"><img src="/client/images/icons/ic_search_black.png"/></button>
         </form>
         <div class="nav_list">

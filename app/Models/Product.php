@@ -15,6 +15,10 @@ class Product extends Model
         return $this->belongsTo(Category::class, 'category_uid', 'uid');
     }
 
+    public function city() {
+        return $this->belongsTo(City::class);
+    }
+
     public function image() {
         return $this->morphOne(Image::class, 'imageable');
     }
