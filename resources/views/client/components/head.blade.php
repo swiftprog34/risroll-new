@@ -45,6 +45,7 @@
     <link rel="stylesheet" href="/client/tmpl200423/style.css">
     <link rel="stylesheet" href="/client/tmpl200423/product-one.css">
     <link rel="stylesheet" href="/client/tmpl200423/cart.css">
+    <link rel="stylesheet" href="/client/tmpl200423/pages.css">
 {{--    <link rel="stylesheet" href="/client/tmpl200423/cart_plus.css">--}}
     <link rel="stylesheet" href="/client/tmpl200423/footer.css">
     <!---->

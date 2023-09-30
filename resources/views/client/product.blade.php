@@ -5,7 +5,7 @@
     <main class="animated fadeIn container">
         <div class="breadcrumbs" itemscope itemtype="http://schema.org/BreadcrumbList">
             <span itemscope itemprop="itemListElement" itemtype="http://schema.org/ListItem">
-                <a itemprop="item" title="Главная" href="{{route('index')}}">
+                <a itemprop="item" title="Главная" href="{{route('index', session('city'))}}">
                     <span itemprop="name">Главная</span>
                     <meta itemprop="position" content="1">
                 </a>
@@ -46,7 +46,7 @@
                         <h2 class="cost h1 s_h1">{{$product->price}}₽</h2>
                     </div>
                     <div class="product_row item_desc">
-                        <p class="s_h3">{{$product->text}}<br></p>
+                        <p class="s_h3">{{$product->description}}<br></p>
                     </div>
                     <div class="product_row item_weight">
                         <span>xxxxx8шт.   Вес: xxxxxx320г.</span>
@@ -68,7 +68,7 @@
             </div>
             <span itemscope itemtype="http://schema.org/Product">
     <meta itemprop="name" content="{{$product->title}}">
-    <meta itemprop="description" content="{{$product->text}}<br> ">
+    <meta itemprop="description" content="{{$product->description}}<br> ">
     <link itemprop="image" href="{{$product->image}}"/>
     <span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
         <meta itemprop="price" content="{{$product->price}}">

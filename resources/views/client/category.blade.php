@@ -5,7 +5,7 @@
     <main class="animated fadeIn container">
         <div class="breadcrumbs" itemscope itemtype="http://schema.org/BreadcrumbList">
             <span itemscope itemprop="itemListElement" itemtype="http://schema.org/ListItem">
-                <a itemprop="item" title="Главная" href="{{route('index')}}">
+                <a itemprop="item" title="Главная" href="{{route('index', session('city'))}}">
                     <span itemprop="name">Главная</span>
                     <meta itemprop="position" content="1">
                 </a>
@@ -56,7 +56,7 @@
                         <div class="text">
                             <a href="">
                                 <h3 class="title" title="{{$product->title}}">{{$product->title}}</h3>
-                                <p class="desc" title="{{$product->text}}">{{$product->text}}</p>
+                                <p class="desc" title="{{$product->description}}">{{$product->description}}</p>
                             </a>
                             <div class="weight">
                                 <span class="s_h3">xxxx8шт.   Вес: xxxx250г.</span>
