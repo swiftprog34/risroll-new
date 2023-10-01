@@ -54,6 +54,7 @@ Route::domain('risroll.test')->middleware('cart')->group(function () {
     Route::post('/cart/add-product', [CartController::class, 'addProduct'])->name('cart.add');
     Route::post('/cart/change-quantity', [CartController::class, 'changeQuantity'])->name('cart.change-quantity');
     Route::post('/cart/remove-product', [CartController::class, 'removeProduct'])->name('cart.remove');
+    Route::post('/cart/clear', [CartController::class, 'clearCart'])->name('cart.clear');
 });
 
 Route::prefix('administrator')->group(function() {

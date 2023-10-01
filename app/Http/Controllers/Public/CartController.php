@@ -54,10 +54,12 @@ class CartController extends Controller
 
         $products = $userCart->products;
         $allcart = 0;
+        $price = 0;
         foreach ($products as $product) {
             if($product->id == $request->id) {
                 $product->pivot->quantity += $request->quantity;
                 $allcart = $product->pivot->quantity;
+                $price = $product->pivot->price;
             }
         }
 
@@ -79,6 +81,7 @@ class CartController extends Controller
             'key' => $sid,
             'allcart' => $allcart,
             'all' => $allcart,
+            'price' => $price,
         ]);
     }
 
@@ -86,12 +89,12 @@ class CartController extends Controller
         $sid = session()->getId();
         $userCart = Cart::where('session_id', $sid)->firstOrFail();
 
-        $filteredProducts = $userCart->products->reject(function ($product, $request) {
-            return $product->id != $request->product_id;
-        });
-
-        $userCart->products()->sync($userCart->session_id,
-            $filteredProducts);
+        $products = $userCart->products;
+        foreach ($products as $product) {
+            if($product->id == $request->id) {
+                $userCart->products()->detach($request->id);
+            }
+        }
 
         $sum = $userCart->products->sum(function ($product) {
             return $product->pivot->price * $product->pivot->quantity;
@@ -101,6 +104,18 @@ class CartController extends Controller
             'status' => 1,
             'data' => $sum,
             'key' => $sid
+        ]);
+    }
+
+    public function clearCart() {
+        $sid = session()->getId();
+        $userCart = Cart::where('session_id', $sid)->firstOrFail();
+
+        $userCart->products->sync([]);
+
+        return response()->json([
+            'status' => 1,
+            'data' => 0,
         ]);
     }
 }

@@ -179,6 +179,141 @@
         });
     });
 
+    $('body').on('click', '.removeCart', function () {
+        let btn = $(this);
+
+        let id = btn.data('id');
+        $.ajax({
+            url: '{{ url("/cart/remove-product") }}',
+            type: 'post',
+            data: {
+                id: id,
+            },
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            dataType: 'json',
+            success: function (resp) {
+
+                if (resp.status === 0) {
+                    alert(resp.data);
+                    return false;
+                }
+
+                btn.parent().parent().fadeOut(500);
+
+                $('span.basketPrice').html(resp.data + '₽');
+
+                // Подарки - начало
+                $('#nextGiftSum span').html(resp.giftnext);
+
+                $('#giftRange').css('width', resp.giftprc + '%');
+                // Подарки - конец
+
+                if ($('.orderCost span').length) {
+                    $('#total').val(resp.data);
+                    $('#dtotal').val(resp.dtotal);
+                    $('.orderCost span, .orderCost2 span').html(resp.data);
+                    $('.order span').html(resp.data);
+                    $('#bonusCost').val('0');
+                    $('.bonusCost').html('0₽');
+                    $('#chargeBonusBox span').html('Списать бонусы');
+                    $('#couponDiscount').val('1');
+                    $('#resetCouponBtn').addClass('hide');
+                    $('#applyCouponBtn').removeClass('hide');
+                    $('#applyCouponInfo').empty();
+                    $('#applyCouponInfo').removeClass('text-info text-error');
+                    $('input[name=chargebonus]').prop('checked', false);
+
+                    cartTotal();
+
+                    /* RCMD - Start */
+                    $('#rcmd-' + id).removeClass('active');
+
+                    $('#rcmd-' + id + ' .addRcmd').removeClass('hide');
+
+                    $('#rcmd-' + id + ' .issetRcmd').addClass('hide');
+
+                    $('#title_recommend').show();
+
+                    /* RCMD - End */
+
+                    // Подарки - начало
+                    $('.slider_scale_items .item').each(function (i) {
+                        var giftWeight = $(this).data('weight');
+
+                        var giftId = $(this).data('id');
+
+                        if (resp.giftsum >= giftWeight) {
+                            if ($.cookie('giftid') == giftId) {
+                                $(this).find('.button.c3').removeClass('hide');
+                                $(this).find('.button.c2').addClass('hide');
+                            } else {
+                                $(this).find('.button.c3').addClass('hide');
+                                $(this).find('.button.c2').removeClass('hide');
+                            }
+
+                            $(this).find('.button.c1').addClass('hide');
+                        } else {
+                            $(this).find('.button.c3').addClass('hide');
+                            $(this).find('.button.c2').addClass('hide');
+                            $(this).find('.button.c1').removeClass('hide');
+                        }
+                    });
+
+                    if (resp.giftnext > 0) {
+                        $('#nextSumBlock').removeClass('hide');
+                        $('#nextSumFull').addClass('hide');
+                    } else {
+                        $('#nextSumBlock').addClass('hide');
+                        $('#nextSumFull').removeClass('hide');
+                    }
+
+                    if ($.cookie('giftweight') > resp.giftsum) {
+                        $.cookie('giftid', 0);
+                        $.cookie('giftcost', 0);
+                        $.cookie('giftweight', 0);
+                    }
+                    // Подарки - конец
+
+                    if (resp.data <= 0) {
+                        $('.cart').addClass('hide');
+                        $('.emptyCart').removeClass('hide');
+                    }
+                }
+            }
+        });
+    });
+
+    $('body').on('click', '.cleanCartBtn', function () {
+        $.ajax({
+            url: '{{ url("/cart/clear") }}',
+            type: 'post',
+            data: {
+                id: id,
+            },
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            dataType: 'json',
+            success: function (resp) {
+                if (resp.status === 0) {
+                    $('#cartMsg').html(resp.data);
+                    return false;
+                }
+                $('span.basketPrice').html('0₽');
+                $('.cart').addClass('hide');
+                $('.emptyCart').removeClass('hide');
+                $('#modal-0').removeClass('md-show');
+
+                /* Подарки - начало */
+                $.cookie('giftid', 0);
+                $.cookie('giftcost', 0);
+                $.cookie('giftweight', 0);
+            }
+        });
+    });
+
 
     // функция сброса стоимости и модификаторов на странице карточки товара
     function cart_product_reset(btn) {

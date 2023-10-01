@@ -4,14 +4,14 @@
     @include('client.components.header')
     <div class="breadcrumbs container" itemscope itemtype="http://schema.org/BreadcrumbList">
         <span itemscope itemprop="itemListElement" itemtype="http://schema.org/ListItem">
-            <a itemprop="item" title="Главная" href="">
+            <a itemprop="item" title="Главная" href="{{route('index', session('city'))}}">
                 <span itemprop="name">Главная</span>
                 <meta itemprop="position" content="1">
             </a>
         </span>
         ->
         <span itemscope itemprop="itemListElement" itemtype="http://schema.org/ListItem">
-            <a itemprop="item" title="" href="/%D0%BA%D0%BE%D1%80%D0%B7%D0%B8%D0%BD%D0%B0">
+            <a itemprop="item" title="" href="{{route('checkout', session('city'))}}">
                 <span itemprop="name">Корзина</span>
                 <meta itemprop="position" content="2">
             </a>
@@ -22,10 +22,12 @@
     <input type="hidden" id="dtotal" value="25">
     <!-- Updated 10.12.2022 - end -->
     <!--Если в корзине нет товаров-->
-    <div class="emptyCart hide">
-        <img src="images/no_cart.png">
+    @if($userCart->products->count() <= 0 )
+    <div class="emptyCart">
+        <img src="/client/images/no_cart.png">
         <span>Корзина пуста!</span>
     </div>
+    @else
     <!---->
     <div class="cart ">
         <input type="hidden" id="bonusBal" value="0">
@@ -121,30 +123,36 @@
             <h2>Вы добавили</h2>
             <div class="cart_block">
                 <div class="every" id="cart-list">
-                    <div class="cart_item">
-                        <div class="image">
-                            <!--<img class="lazyImg" src="images/noimg.png" data-original="https://ris72.ru/admin/images/maxi/goods10/1703383466444ed443b0209.87271863.jpg">-->
-                            <img class="" src="/client/admin/images/maxi/goods10/1703383466444ed443b0209.87271863.jpg">
+                    @foreach($userCart->products as $cartProduct)
+                        <div class="cart_item">
+                            <div class="image">
+                                <!--<img class="lazyImg" src="images/noimg.png" data-original="https://ris72.ru/admin/images/maxi/goods10/1703383466444ed443b0209.87271863.jpg">-->
+                                <img class="" src="{{$cartProduct->image}}">
+                            </div>
+                            <div class="product">
+                                <p class="cat">{{$cartProduct->category->title}}</p>
+                                <h3 class="title">{{$cartProduct->title}}</h3>
+                            </div>
+                            <div class="button">
+                                <div class="updateCart minus" data-id="{{$cartProduct->id}}"
+                                     data-cid="{{$cartProduct->id}}" data-type="-1"><span>-</span></div>
+                                <div class="kolvo"><span>{{$cartProduct->pivot->quantity}}</span></div>
+                                <div class="updateCart plus" data-id="{{$cartProduct->id}}"
+                                     data-cid="{{$cartProduct->id}}" data-type="+1"><span>+</span></div>
+                            </div>
+                            <div class="calc">
+                                <p class="formula"><span>{{$cartProduct->pivot->quantity}}</span>
+                                    х {{$cartProduct->price}}₽</p>
+                                <h3 class="result">{{$cartProduct->pivot->quantity * $cartProduct->pivot->price}}₽</h3>
+                            </div>
+                            <div class="clear">
+                                <a href="javascript:void(0);" class="removeCart" data-cid="{{$cartProduct->id}}"
+                                   data-id="{{$cartProduct->id}}">
+                                    <img src="/client/images/icons/ic_clear.png" width="32px">
+                                </a>
+                            </div>
                         </div>
-                        <div class="product">
-                            <p class="cat">Соусы</p>
-                            <h3 class="title">Васаби (30гр)</h3>
-                        </div>
-                        <div class="button">
-                            <div class="updateCart minus" data-cid="110_0_0" data-type="-"><span>-</span></div>
-                            <div class="kolvo"><span>1</span></div>
-                            <div class="updateCart plus" data-cid="110_0_0" data-type="+"><span>+</span></div>
-                        </div>
-                        <div class="calc">
-                            <p class="formula"><span>1</span> х 25₽</p>
-                            <h3 class="result">25₽</h3>
-                        </div>
-                        <div class="clear">
-                            <a href="javascript:void(0);" class="removeCart" data-cid="110_0_0" data-id="110">
-                                <img src="/client/images/icons/ic_clear.png" width="32px">
-                            </a>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="lastline">
                     <a href="javascript:void(0);" class="md-trigger" data-modal="modal-0">Очистить корзину</a>
@@ -219,16 +227,13 @@
                     <h3>Выберите адрес самовывоза</h3>
                     <select id="pickup-points" name="points">
                         <!--<option value="" data-discount="0" data-content="">Не выбран</option>-->
+                        @foreach($cityWithNested->pickupPoints as $pickup)
                         <option
                             data-content=""
-                            value="1:г.Тюмень, ул.Широтная, д.43/2:0" data-discount="0">
-                            г.Тюмень, ул.Широтная, д.43/2
+                            value="{{$pickup->id}}" data-discount="0">
+                            {{$cityWithNested->city_name}}, {{$pickup->name}}
                         </option>
-                        <option
-                            data-content=""
-                            value="2:г.Тюмень, ул. Ю.-Р.Г. Эрвье, 10:0" data-discount="0">
-                            г.Тюмень, ул. Ю.-Р.Г. Эрвье, 10
-                        </option>
+                        @endforeach
                     </select>
                     <div id="pickup-content">
                     </div>
@@ -348,31 +353,6 @@
             </div>
             <input type="hidden" id="bonusMax" value="0">
             <input type="hidden" id="bonusMaxPrc" value="50">
-            <!--
-
-                        <div class=" hide">
-
-                            <h2 class="s_h1">Хотите списать бонусы?</h2>
-                            <div class="block bonuses_minus">
-                                <div class="check-material">
-                                    <input id="jopa" type="checkbox" name="chargebonus" value="1">
-                                    <label for="jopa"></label>
-                                </div>
-                                <label for="jopa" id="chargeBonusBox" ><span>Списать бонусы</span></label>
-                            </div>
-                        </div>
-            -->
-            <!--
-                        <h2>У вас есть промокод?</h2>
-                        <div class="block">
-                            <div class="coupon">
-                                <input type="text" name="couponCode" placeholder="Ваш промокод" value="" autocomplete="off">
-                                <span id="applyCouponBtn" >Применить</span>
-                                <span id="resetCouponBtn" class="hide">Отменить</span>
-                            </div>
-                            <div id="applyCouponInfo"></div>
-                        </div>
-            -->
             <div class="block itog">
                 <div>
                     <p class="orderCost2">Сумма заказа: <span>25</span>₽</p>
@@ -393,6 +373,7 @@
             </div>
         </div>
     </div>
+    @endif
 </div>
 <script>
     var dates = [new Date("2020-12-25"), new Date("2020-12-31"), new Date("2020-12-26"), new Date("2021-01-01"), new Date("2021-01-02"), new Date("2021-01-03"), new Date("2020-12-29"), new Date("2020-12-30"), new Date("2021-03-05"), new Date("2021-03-04"), new Date("2021-05-22"),];
@@ -427,7 +408,7 @@
         <br>
         <div>
             <input type="submit" class="close" value="НЕТ">
-            <input type="submit" id="cleanCartBtn" class="btn_ok" value="ДА">
+            <input type="submit" class="btn_ok cleanCartBtn" value="ДА">
         </div>
     </div>
 </div>
@@ -445,20 +426,6 @@
         </div>
     </div>
 </div>
-<!-- -->
-<!-- Текст для шкалы подарков --
-<link rel="stylesheet" type="text/css" href="https://ris72.ru/lib/md-modal/component.css" />
-<script src="https://ris72.ru/lib/md-modal/modernizr.custom.js" async></script>
-
-<div class="md-modal md-effect-2" id="modal-hint">
-    <div class="md-content">
-        <p>
-            Lorem, ipsum dolor sit amet consectetur, adipisicing elit. Ad ab perspiciatis eos sequi eum. Officiis nihil aliquam a cupiditate voluptatibus fuga deserunt enim optio ut distinctio blanditiis, eaque rerum error est itaque dolores ex iusto quos quibusdam quaerat minima molestiae?
-        </p>
-        <input type="hidden" class="close" value="НЕТ">
-    </div>
-</div>
-<!-- -->
 <div class="md-overlay"></div>
 <!-- classie.js by @desandro: https://github.com/desandro/classie -->
 <script src="/client/lib/md-modal/classie.js" async></script>
