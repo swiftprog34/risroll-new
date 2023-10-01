@@ -28,7 +28,7 @@
                                 <div class="image cover">
                                     <a href="{{route('product', ['city' => session('city'), 'id' => $product->uid])}}">
                                         <img class="lazyImg"
-                                             src="/client/images/noimg.png"
+                                             src="{{$product->image == null ? "/client/images/noimg.png" : $product->image->path}}"
                                              data-original="{{$product->image}}"
                                              title="" alt=""/>
                                         <noscript><img src="{{$product->image}}"

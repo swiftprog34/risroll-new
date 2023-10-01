@@ -55,7 +55,7 @@ class AdminMainController extends Controller
                     $prepares_product['title'] = $product["description"]["name"];
                     $prepares_product['slug'] = Str::slug($product["description"]["name"], '-', 'ru');
                     //$prepares_product['img'] = $product["description"]["image"];
-                    $prepares_product['price'] = $product["description"]["price"];
+                    $prepares_product['price'] = $product["description"]["price"] / 100;
                     $prepares_product['description'] = $product["description"]["description"];
                     $prepares_product['sku'] = $product["description"]["oneCID"];
                     $prepares_product['category_uid'] = $product["description"]["parent"];

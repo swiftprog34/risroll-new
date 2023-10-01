@@ -10,4 +10,13 @@
             <button class="btn btn-success">Обновить</button>
         </div>
     </x-form>
+    <h3>Обновить изображение акции</h3>
+    <x-form action="{{ route('image.store') }}" enctype="multipart/form-data" method="post">
+        <input type="hidden" name="id" value="{{$promotion->id }}">
+        <input type="hidden" name="model" value="promotion">
+        <x-form-input type="file" name="image" label="Новое изображение" />
+        <div class="mb-3">
+            <button class="btn btn-success">Обновить изображение</button>
+        </div>
+    </x-form>
 </x-layout.admin>

@@ -22,9 +22,11 @@
         <div class="slider02">
             <div class="home-slider owl-carousel owl-theme ">
                 @foreach($cityWithNested->promotions as $promotion)
+                    @if($promotion->image !== null)
                     <div class="home-slider__item">
-                        <img src="{{$promotion->image}}" alt="{{$promotion->name}}" title="{{$promotion->name}}"/>
+                        <img src="{{$promotion->image == null ? "/client/images/noimg.png" : $promotion->image->path}}" alt="{{$promotion->name}}" title="{{$promotion->name}}"/>
                     </div>
+                    @endif
                 @endforeach
             </div>
         </div>
@@ -95,7 +97,7 @@
                        href="{{route('category', ['city' => session('city'), 'id' => $category->uid])}}"
                        onclick="(document.getElementById('page-preloader').style.display='flex')">
                         <img class=""
-                             src="{{$category->image}}"
+                             src="{{$category->image == null ? "/client/images/noimg.png" : $category->image->path}}"
                              alt="{{$category->title}}"/>
                         <span class="s_h3">{{ $category->title }}</span>
                     </a>

@@ -73,7 +73,7 @@
             <div class="menu">
                 @foreach($categoriesMainDesktop as $category)
                     <div class="menu_item">
-                        <img class="preview" src="{{$category->image}}"
+                        <img class="preview" src={{$category->image == null ? "/client/images/noimg.png" : $category->image->path}}
                              alt="{{$category->title}}"/>
                         <a href="{{route('category', ['city' => session('city'), 'id' => $category->uid])}}">{{$category->title}}</a>
                     </div>
@@ -156,7 +156,7 @@
             @foreach($cityWithNested->categories as $category)
                 <a class="item r3"
                    href="{{route('category', ['city' => session('city'), 'id' => $category->uid])}}">
-                    <img class="photo" src="{{$category->image}}"
+                    <img class="photo" src={{$category->image == null ? "/client/images/noimg.png" : $category->image->path}}
                          alt="{{$category->title}}"/>
                     <span class="cat">{{$category->title}}</span>
                 </a>

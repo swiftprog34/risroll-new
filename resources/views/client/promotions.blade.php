@@ -19,7 +19,6 @@
                 </a>
             </span>
         </div>
-
         <div class="title_filters_grid">
             <h1 class="cat_name">Акции</h1>
         </div>
@@ -29,25 +28,26 @@
         <section class="stock">
             <div class="stock-grid">
                 @foreach($cityWithNested->promotions as $promotion)
-                <div class="stock-item">
-                    <div class="image">
-                        <img class="lazyImg" src="/client/images/noimg.png"
+                    @if($promotion->image !== null)
+                        <div class="stock-item">
+                            <div class="image">
+                                <img class="lazyImg" src={{$promotion->image == null ? "/client/images/noimg.png" : $promotion->image->path}}
                              data-original="{{$promotion->image}}">
-                        <noscript><img
-                                src="{{$promotion->image}}">
-                        </noscript>
-                    </div>
-                    <div class="text">
-                        <h3 class="title">{{$promotion->name}}</h3>
-                        <p class="desc">
-                            {!!  $promotion->description !!}
-                        </p>
-                    </div>
-                </div>
+                                <noscript><img
+                                        src="{{$promotion->image}}">
+                                </noscript>
+                            </div>
+                            <div class="text">
+                                <h3 class="title">{{$promotion->name}}</h3>
+                                <p class="desc">
+                                    {!!  $promotion->description !!}
+                                </p>
+                            </div>
+                        </div>
+                    @endif
                 @endforeach
             </div>
         </section>
-
     </main>
     @include('client.components.footer')
 </div>

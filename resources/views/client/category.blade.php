@@ -44,7 +44,7 @@
                         <div class="image cover">
                             <a href="{{route('product', ['city' => session('city'), 'id' => $product->uid])}}">
                                 <img class="lazyImg"
-                                     src="/client/images/noimg.png"
+                                     src={{$product->image == null ? "/client/images/noimg.png" : $product->image->path}}
                                      data-original="{{$product->image}}"
                                      title="" alt=""/>
                                 <noscript><img src="{{$product->image}}"
@@ -137,7 +137,8 @@
             @foreach($cityWithNested->categories as $category)
                 <a class="slider_item "
                    href="{{route('category', ['city' => session('city'), 'id' => $category->uid])}}">
-                    <img src="{{$category->image}}" alt="{{$category->title}}"
+                    <img src="{{$category->image == null ? "/client/images/noimg.png" : $category->image->path}}"
+                         alt="{{$category->title}}"
                          title="{{$category->title}}"/>
                     <span class="cat">{{$category->title}}</span>
                 </a>

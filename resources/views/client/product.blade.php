@@ -35,7 +35,7 @@
         <section class="product" id="item-{{$product->id}}">
             <div class="product-item ani">
                 <div class="item_photo ">
-                    <img class="photo" src="{{$product->image}}"
+                    <img class="photo" src={{$product->image == null ? "/client/images/noimg.png" : $product->image->path}}
                          title="{{$product->title}}" alt="{{$product->title}}"/>
                 </div>
                 <div class="information">

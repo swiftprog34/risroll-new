@@ -127,7 +127,7 @@
                         <div class="cart_item">
                             <div class="image">
                                 <!--<img class="lazyImg" src="images/noimg.png" data-original="https://ris72.ru/admin/images/maxi/goods10/1703383466444ed443b0209.87271863.jpg">-->
-                                <img class="" src="{{$cartProduct->image}}">
+                                <img class="" src="{{$cartProduct->image == null ? "/client/images/noimg.png" : $cartProduct->image->path}}">
                             </div>
                             <div class="product">
                                 <p class="cat">{{$cartProduct->category->title}}</p>

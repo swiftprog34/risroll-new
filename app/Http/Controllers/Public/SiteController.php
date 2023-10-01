@@ -21,7 +21,7 @@ class SiteController extends Controller
         }])->with(['pickupPoints' => function($points) {
             $points->orderBy('name');
         }])->with(['promotions' => function($promotions) {
-            $promotions->orderBy('sort_order');
+            $promotions->orderBy('sort_order')->with('image');
         }])->firstOrFail();
 
         $sid = session()->getId();
