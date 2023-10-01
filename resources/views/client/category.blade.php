@@ -33,11 +33,9 @@
                 </div>
             </div>
         </div>
-
         <div class="text_block">
             {!!  $currentCategory->description !!}
         </div>
-
         <section class="products">
             <div class="products-grid st_grid">
                 @foreach($currentCategory->products as $product)
@@ -67,15 +65,47 @@
                                 <p class="cost">
                                     {{$product->price}}₽
                                 </p>
-                                <div class="button-passive ">
-                                    <div class="s_h3 addToCart" data-id="{{$product->id}}">Добавить</div>
-                                </div>
-                                <div class="button-active hide">
-                                    <div class="updateCart minus animinus" data-cid="0" data-type="-"><span>-</span>
+                                @if($userCart != null)
+                                    @if($userCart->products->contains('id', $product->id))
+                                        @foreach($userCart->products as $cartProduct)
+                                            @if($cartProduct->id == $product->id)
+                                                <div class="button-passive hide">
+                                                    <div class="s_h3 addToCart" data-id="{{$product->id}}">Добавить
+                                                    </div>
+                                                </div>
+                                                <div class="button-active ">
+                                                    <div class="updateCart minus animinus" data-id="{{$product->id}}"
+                                                         data-cid="{{$userCart->session_id}}" data-type="-1">
+                                                        <span>-</span>
+                                                    </div>
+                                                    <div class="kolvo"><span>{{$cartProduct->pivot->quantity}}</span>
+                                                    </div>
+                                                    <div class="updateCart plus aniplus" data-id="{{$product->id}}"
+                                                         data-cid="{{$userCart->session_id}}" data-type="+1">
+                                                        <span>+</span>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    @else
+                                        <div class="button-passive ">
+                                            <div class="s_h3 addToCart" data-id="{{$product->id}}">Добавить</div>
+                                        </div>
+                                        <div class="button-active hide">
+                                            <div class="updateCart minus animinus"  data-id="{{$product->id}}" data-cid="0" data-type="-1">
+                                                <span>-</span>
+                                            </div>
+                                            <div class="kolvo"><span>0</span></div>
+                                            <div class="updateCart plus aniplus"  data-id="{{$product->id}}" data-cid="0" data-type="+1">
+                                                <span>+</span>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @else
+                                    <div class="button-passive ">
+                                        <div class="s_h3 addToCart" data-id="{{$product->id}}">Добавить</div>
                                     </div>
-                                    <div class="kolvo"><span>0</span></div>
-                                    <div class="updateCart plus aniplus" data-cid="0" data-type="+"><span>+</span></div>
-                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -95,7 +125,6 @@
 
             </span>
         </section>
-
         <div class="text_block2">
             {!! $currentCategory->bottom_description !!}
         </div>

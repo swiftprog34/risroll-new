@@ -54,14 +54,50 @@
                                data-external_id='{{$product->uid}}'>
                     </div>
                     <div class="item_button">
-                        <div class="button-passive ">
-                            <div class="addToCart" data-id="{{$product->id}}">Добавить</div>
-                        </div>
-                        <div class="button-active hide">
-                            <div class="updateCart minus animinus" data-cid="0" data-type="-"><span>-</span></div>
-                            <div class="kolvo"><span>0</span></div>
-                            <div class="updateCart plus aniplus" data-cid="0" data-type="+"><span>+</span></div>
-                        </div>
+                        @if($userCart != null)
+                            @if($userCart->products->contains('id', $product->id))
+                                @foreach($userCart->products as $cartProduct)
+                                    @if($cartProduct->id == $product->id)
+                                        <div class="button-passive hide">
+                                            <div class="s_h3 addToCart" data-id="{{$product->id}}">Добавить
+                                            </div>
+                                        </div>
+                                        <div class="button-active ">
+                                            <div class="updateCart minus animinus" data-id="{{$product->id}}"
+                                                 data-cid="{{$userCart->session_id}}" data-type="-1">
+                                                <span>-</span>
+                                            </div>
+                                            <div class="kolvo"><span>{{$cartProduct->pivot->quantity}}</span>
+                                            </div>
+                                            <div class="updateCart plus aniplus" data-id="{{$product->id}}"
+                                                 data-cid="{{$userCart->session_id}}" data-type="+1">
+                                                <span>+</span>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            @else
+                                <div class="button-passive ">
+                                    <div class="s_h3 addToCart" data-id="{{$product->id}}">Добавить</div>
+                                </div>
+                                <div class="button-active hide">
+                                    <div class="updateCart minus animinus" data-id="{{$product->id}}" data-cid="0"
+                                         data-type="-1">
+                                        <span>-</span>
+                                    </div>
+                                    <div class="kolvo"><span>0</span></div>
+                                    <div class="updateCart plus aniplus" data-id="{{$product->id}}" data-cid="0"
+                                         data-type="+1">
+                                        <span>+</span>
+                                    </div>
+                                </div>
+                            @endif
+                        @else
+                            <div class="button-passive ">
+                                <div class="s_h3 addToCart" data-id="{{$product->id}}">Добавить</div>
+                            </div>
+                        @endif
+
                     </div>
                     <br><br>
                 </div>

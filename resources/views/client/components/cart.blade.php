@@ -29,25 +29,11 @@
                     return false;
                 }
 
-                //if(parseInt(external_id) !== 0) {
-                //if(parseInt(external_id) !== 0 && mods.length > 0) {
-                // if (btn.hasClass('addToCart_mods')) {
-                //     btn.addClass('hide');
-                //     btn.parent().find('.order_info').removeClass('hide').html('<h3>Товар успешно добавлен</h3>');
-                //     // сбрасываем выбранные данные
-                //     setTimeout(function () {
-                //         cart_product_reset(btn);
-                //         cart_product_update();
-                //         // cid type
-                //         //btn.prop('data-cid', id).prop('type', '+').addClass('updateCart');
-                //     }, 1500);
-                // } else {
                 btn.parent().addClass('hide');
                 btn.parent().parent().find('.button-active').removeClass('hide');
                 btn.parent().parent().find('.button-active .kolvo').text(1);
                 btn.parent().parent().find('.button-active .minus').attr('data-cid', resp.key);
                 btn.parent().parent().find('.button-active .plus').attr('data-cid', resp.key);
-                // }
 
                 $('span.basketPrice').html(resp.data + '₽');
 
@@ -62,6 +48,133 @@
 
                 $('#giftRange').css('width', resp.giftprc + '%');
                 // Подарки - конец
+            }
+        });
+    });
+
+    $('body').on('click', '.updateCart', function () {
+        let btn = $(this),
+            cid = btn.attr('data-cid'),
+            id = btn.data('id'),
+            type = btn.data('type');
+        $.ajax({
+            url: '{{ url("/cart/change-quantity") }}',
+            type: 'post',
+            data: {
+                id: id,
+                quantity: type,
+            },
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            dataType: 'json',
+            success: function (resp) {
+
+                if (resp.status == 0) {
+                    alert(resp.data);
+                    return false;
+                }
+
+                $('span.basketPrice').html(resp.data + '₽');
+
+                btn.parent().find('.kolvo').html(resp.all);
+
+                // Подарки - начало
+                $('#nextGiftSum span').html(resp.giftnext);
+
+                $('#giftRange').css('width', resp.giftprc + '%');
+                // Подарки - конец
+
+                if ($('div.cart').length) {
+                    btn.parent().find('.kolvo').html(resp.allcart); // Fix 03.11.2021
+
+                    if (resp.allcart < 1) // Fix 03.11.2021
+                    {
+                        btn.parent().parent().fadeOut(500);
+
+                        $('#rcmd-' + resp.id).removeClass('active');
+                        $('#rcmd-' + resp.id + ' .addRcmd').removeClass('hide');
+                        $('#rcmd-' + resp.id + ' .issetRcmd').addClass('hide');
+                        if ($(".slider_recommend .slider_item:visible").length > 0) {
+                            $('#title_recommend').show();
+                        }
+                    } else {
+                        calc = btn.parent().parent().find('.calc');
+                        calc.find('.formula').html(resp.all + ' х ' + resp.price + '₽');
+                        aPrice = parseFloat(resp.allcart * resp.price); // Fix 03.11.2021
+                        calc.find('.result').html(parseFloat(aPrice.toFixed(0)) + '₽'); // Fix 03.11.2021
+                    }
+
+                    $('#total').val(resp.data);
+                    $('#dtotal').val(resp.dtotal);
+                    $('.orderCost span, .orderCost2 span').html(resp.data);
+                    $('.order span').html(resp.data);
+                    $('#bonusCost').val('0');
+                    $('.bonusCost').html('0₽');
+                    $('#chargeBonusBox span').html('Списать бонусы');
+                    $('input[name=chargebonus]').prop('checked', false);
+                    $('#couponDiscount').val('1');
+                    $('#resetCouponBtn').addClass('hide');
+                    $('#applyCouponBtn').removeClass('hide');
+                    $('#applyCouponInfo').empty();
+                    $('#applyCouponInfo').removeClass('text-info text-error');
+
+                    cartTotal();
+
+                    // Подарки - начало
+                    $('.slider_scale_items .item').each(function (i) {
+                        var giftWeight = $(this).data('weight');
+
+                        var giftId = $(this).data('id');
+
+                        if (resp.giftsum >= giftWeight) {
+                            if ($.cookie('giftid') == giftId) {
+                                $(this).find('.button.c3').removeClass('hide');
+                                $(this).find('.button.c2').addClass('hide');
+                            } else {
+                                $(this).find('.button.c3').addClass('hide');
+                                $(this).find('.button.c2').removeClass('hide');
+                            }
+
+                            $(this).find('.button.c1').addClass('hide');
+                        } else {
+                            $(this).find('.button.c3').addClass('hide');
+                            $(this).find('.button.c2').addClass('hide');
+                            $(this).find('.button.c1').removeClass('hide');
+                        }
+                    });
+
+                    if (resp.giftnext > 0) {
+                        $('#nextSumBlock').removeClass('hide');
+                        $('#nextSumFull').addClass('hide');
+                    } else {
+                        $('#nextSumBlock').addClass('hide');
+                        $('#nextSumFull').removeClass('hide');
+                    }
+
+                    if (parseInt($.cookie('giftweight')) > parseInt(resp.giftsum)) {
+                        $.cookie('giftid', 0);
+                        $.cookie('giftcost', 0);
+                        $.cookie('giftweight', 0);
+                    }
+                    // Подарки - конец
+
+                    if (resp.data <= 0) {
+                        $('.cart').addClass('hide');
+                        $('.emptyCart').removeClass('hide');
+                    }
+                } else {
+                    if (resp.all < 1) {
+                        btn.parent().parent().find('.button-passive').removeClass('hide');
+                        btn.parent().parent().find('.button-active').addClass('hide');
+                    } else {
+                        if (cid != resp.cart_id) {
+                            btn.attr('data-cid', resp.cart_id);
+
+                            btn.data('cid', resp.cart_id);
+                        }
+                    }
+                }
             }
         });
     });

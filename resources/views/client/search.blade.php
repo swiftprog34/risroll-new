@@ -22,7 +22,8 @@
                         @endif</p>
                     <div class="products-grid">
                         @foreach($cityWithNested->products as $product)
-                            <div class="product-item ani st_item" id="item-{{$product->id}}" data-price="{{$product->price}}"
+                            <div class="product-item ani st_item" id="item-{{$product->id}}"
+                                 data-price="{{$product->price}}"
                                  data-tags="" data-pos="{{$loop->index}}">
                                 <div class="image cover">
                                     <a href="{{route('product', ['city' => session('city'), 'id' => $product->uid])}}">
@@ -48,15 +49,52 @@
                                         <p class="cost">
                                             {{$product->price}}₽
                                         </p>
-                                        <div class="button-passive ">
-                                            <div class="s_h3 addToCart" data-id="{{$product->id}}">Добавить</div>
-                                        </div>
-                                        <div class="button-active hide">
-                                            <div class="updateCart minus animinus" data-cid="0" data-type="-"><span>-</span>
+                                        @if($userCart != null)
+                                            @if($userCart->products->contains('id', $product->id))
+                                                @foreach($userCart->products as $cartProduct)
+                                                    @if($cartProduct->id == $product->id)
+                                                        <div class="button-passive hide">
+                                                            <div class="s_h3 addToCart" data-id="{{$product->id}}">
+                                                                Добавить
+                                                            </div>
+                                                        </div>
+                                                        <div class="button-active ">
+                                                            <div class="updateCart minus animinus"
+                                                                 data-id="{{$product->id}}"
+                                                                 data-cid="{{$userCart->session_id}}" data-type="-1">
+                                                                <span>-</span>
+                                                            </div>
+                                                            <div class="kolvo">
+                                                                <span>{{$cartProduct->pivot->quantity}}</span>
+                                                            </div>
+                                                            <div class="updateCart plus aniplus"
+                                                                 data-id="{{$product->id}}"
+                                                                 data-cid="{{$userCart->session_id}}" data-type="+1">
+                                                                <span>+</span>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+                                                @endforeach
+                                            @else
+                                                <div class="button-passive ">
+                                                    <div class="s_h3 addToCart" data-id="{{$product->id}}">Добавить
+                                                    </div>
+                                                </div>
+                                                <div class="button-active hide">
+                                                    <div class="updateCart minus animinus"  data-id="{{$product->id}}" data-cid="0" data-type="-1">
+                                                        <span>-</span>
+                                                    </div>
+                                                    <div class="kolvo"><span>0</span></div>
+                                                    <div class="updateCart plus aniplus"  data-id="{{$product->id}}" data-cid="0" data-type="+1">
+                                                        <span>+</span>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @else
+                                            <div class="button-passive ">
+                                                <div class="s_h3 addToCart" data-id="{{$product->id}}">Добавить</div>
                                             </div>
-                                            <div class="kolvo"><span>0</span></div>
-                                            <div class="updateCart plus aniplus" data-cid="0" data-type="+"><span>+</span></div>
-                                        </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -68,7 +106,7 @@
         </main>
     </div>
     <script src="/client/lib/animate_add.js" async></script>
-    @include('client.components.totop')
+@include('client.components.totop')
 @include('client.components.close_win')
 @include('client.components.cookies_check')
 @include('client.components.cart')

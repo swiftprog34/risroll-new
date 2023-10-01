@@ -94,7 +94,7 @@
             </div>
             <a rel="nofollow" class="basket"
                href="{{route('checkout')}}">
-                <span class="s_h2 basketPrice">0₽</span>
+                <span class="s_h2 basketPrice">{{$userCartSum}}₽</span>
                 <div class="icon rounded basket-area"><img src="/client/images/icons/ic_basket-2_white.png" alt=""/>
                 </div>
             </a>
@@ -201,7 +201,7 @@
         </a>
     </div>
     <div class="item basket" href="">
-        <div><span class="basketPrice">0₽</span></div>
+        <div><span class="basketPrice">{{$userCartSum}}₽</span></div>
         <a class="basket-area-mobile"
            href="{{route('checkout')}}"
            onclick="(document.getElementById('page-preloader').style.display='flex')">
