@@ -103,7 +103,7 @@ class SiteController extends Controller
 
     }
 
-    public function createOrder($request) {
+    public function createOrder(Request $request) {
         dd($request);
     }
 

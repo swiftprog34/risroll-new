@@ -17,9 +17,9 @@
             </a>
         </span>
     </div>
-    <input type="hidden" id="total" value="25">
+    <input type="hidden" id="total" value="{{$userCartSum}}">
     <!-- Updated 10.12.2022 - start -->
-    <input type="hidden" id="dtotal" value="25">
+    <input type="hidden" id="dtotal" value="{{$userCartSum}}">
     <!-- Updated 10.12.2022 - end -->
     <!--Если в корзине нет товаров-->
     @if($userCart->products->count() <= 0 )
@@ -29,6 +29,7 @@
     </div>
     @else
     <!---->
+        <x-form action="{{ route('public.order.create') }}" method="post">
     <div class="cart ">
         <input type="hidden" id="bonusBal" value="0">
         <input type="hidden" id="bonusCost" name="bonus" value="0">
@@ -61,7 +62,7 @@
                 <a class="button" href="user/login.php">Хочу получать бонусы!</a>
             </div>
             <br>
-                        <!---->
+                     -->
         </div>
         <!-- Слайдер с подарками -->
         <link rel="stylesheet" href="/client/lib/carousel/carousel.css"/>
@@ -156,7 +157,7 @@
                 </div>
                 <div class="lastline">
                     <a href="javascript:void(0);" class="md-trigger" data-modal="modal-0">Очистить корзину</a>
-                    <p class="orderCost">Сумма заказа: <span>25</span>₽</p>
+                    <p class="orderCost">Сумма заказа: <span>{{$userCartSum}}</span>₽</p>
                 </div>
             </div>
         </div>
@@ -355,7 +356,7 @@
             <input type="hidden" id="bonusMaxPrc" value="50">
             <div class="block itog">
                 <div>
-                    <p class="orderCost2">Сумма заказа: <span>25</span>₽</p>
+                    <p class="orderCost2">Сумма заказа: <span>{{$userCartSum}}</span>₽</p>
                     <p>
                         Стоимость доставки: <span class="deliveryCostBtm">0₽</span>
                     </p>
@@ -364,15 +365,16 @@
                     <!-- Updated 10.12.2022 - end -->
                 </div>
                 <div>
-                    <div class="order">
-                        <div class="buttonText">Заказать: <span>25</span> ₽</div>
+                    <button class="order">
+                        <div class="buttonText">Заказать: <span>{{$userCartSum}}</span> ₽</div>
                         <img class="loaderCartImg hide" src="/client/images/load_spinner_white.gif">
-                    </div>
+                    </button>
                 </div>
                 <div id="cartMsg" class="text-error"></div>
             </div>
         </div>
     </div>
+        </x-form>
     @endif
 </div>
 <script>

@@ -23,7 +23,6 @@ class CartController extends Controller
             $userCart->save();
         }
 
-
         $desiredProduct = $userCart->products->firstWhere("id", $request->id);
 
         if($desiredProduct === null) {
@@ -37,6 +36,7 @@ class CartController extends Controller
             );
         }
 
+        $userCart = Cart::where('session_id', $sid)->first();
         $sum = $userCart->products->sum(function ($product) {
             return $product->pivot->price * $product->pivot->quantity;
         });
@@ -96,6 +96,7 @@ class CartController extends Controller
             }
         }
 
+        $userCart = Cart::where('session_id', $sid)->firstOrFail();
         $sum = $userCart->products->sum(function ($product) {
             return $product->pivot->price * $product->pivot->quantity;
         });
