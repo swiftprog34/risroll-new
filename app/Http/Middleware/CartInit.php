@@ -19,7 +19,7 @@ class CartInit
 
         $sid = session()->getId();
         $userCart = Cart::where('session_id', $sid)->first();
-
+dd($userCart);
         if($userCart === null) {
             $userCart = Cart::make([
                 'session_id' => $sid,
