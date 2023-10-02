@@ -39,7 +39,7 @@ Route::domain('{subdomain}.risroll.test')->group(function () {
     });
 });
 
-Route::domain('risroll.test')->middleware('cart')->group(function () {
+Route::domain('test.risroll.test')->middleware('cart')->group(function () {
     Route::get('/', [SiteController::class, 'index'])->name('index');
     Route::get('/product-category/{id}', [SiteController::class, 'category'])->name('category');
     Route::get('/product/{id}', [SiteController::class, 'product'])->name('product');
