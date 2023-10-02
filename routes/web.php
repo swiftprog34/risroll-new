@@ -29,17 +29,17 @@ use Illuminate\Support\Facades\Route;
 
 
 
-//Route::domain('{subdomain}.risroll.test')->group(function () {
-//    Route::middleware('subdomain')->group(function () {
-//        Route::get('/', [SiteController::class, 'index'])->name('index');
-//        Route::get('/product-category/{id}', [SiteController::class, 'category'])->name('category');
-//        Route::get('/product/{id}', [SiteController::class, 'product'])->name('product');
-////        Route::get('/', [SiteController::class, 'index'])->name('index.subdomain');
-////        Route::get('/product/{name}', [SiteController::class, 'product'])->name('product.subdomain');
-//    });
-//});
+Route::domain('{subdomain}.risroll.test')->group(function () {
+    Route::middleware('subdomain')->group(function () {
+        Route::get('/', [SiteController::class, 'index'])->name('index');
+        Route::get('/product-category/{id}', [SiteController::class, 'category'])->name('category');
+        Route::get('/product/{id}', [SiteController::class, 'product'])->name('product');
+//        Route::get('/', [SiteController::class, 'index'])->name('index.subdomain');
+//        Route::get('/product/{name}', [SiteController::class, 'product'])->name('product.subdomain');
+    });
+});
 
-Route::middleware('cart')->group(function () {
+Route::domain('risroll.test')->middleware('cart')->group(function () {
     Route::get('/', [SiteController::class, 'index'])->name('index');
     Route::get('/product-category/{id}', [SiteController::class, 'category'])->name('category');
     Route::get('/product/{id}', [SiteController::class, 'product'])->name('product');
