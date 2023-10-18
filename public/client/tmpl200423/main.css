@@ -1469,3 +1469,7 @@ img, p, span, h1, h2, h3, a, label {
     }
 
 }
+
+.owl-dot.active span {
+    background: #2AA021 !important;
+}
