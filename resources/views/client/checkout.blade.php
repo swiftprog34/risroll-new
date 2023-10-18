@@ -176,7 +176,7 @@
             </div>
             <h2 id="deliveryMethod">Способ получения заказа</h2>
             <div class="block">
-                <input id="r1" type="radio" name="user" value="delivery" aria-required="true" onChange="Selected(this)"
+                <input id="r1" type="radio" name="receiving_type" value="delivery" aria-required="true" onChange="Selected(this)"
                        checked>
                 <label for="r1">Доставка</label>
                 <div id='block1'>
@@ -222,7 +222,7 @@
                     </div>
                 </div>
                 <div class="indent"></div>
-                <input id="r2" type="radio" name="user" value="pickup" aria-required="true" onChange="Selected(this)">
+                <input id="r2" type="radio" name="receiving_type" value="pickup" aria-required="true" onChange="Selected(this)">
                 <label for="r2">Самовывоз </label>
                 <div id='block2' style='display: none;'>
                     <h3>Выберите адрес самовывоза</h3>
@@ -320,13 +320,13 @@
             </div>
             <h2>Способ оплаты</h2>
             <div class="block">
-                <input id="p1" type="radio" name="pay" value="Наличными" aria-required="true" checked="">
+                <input id="p1" type="radio" name="pay" value="cash" aria-required="true" checked="">
                 <label for="p1">Наличными</label>
                 <div class="indent"></div>
-                <input id="p2" type="radio" name="pay" value="Банковской картой" aria-required="true">
+                <input id="p2" type="radio" name="pay" value="card" aria-required="true">
                 <label for="p2">Банковской картой</label>
                 <!--<div class="indent"></div>
-                <input id="p3" type="radio" name="pay" value="Оплата онлайн" aria-required="true">
+                <input id="p3" type="radio" name="pay" value="online" aria-required="true">
                 <label for="p3">Онлайн оплата</label>-->
             </div>
             <h2>Контактная информация</h2>
