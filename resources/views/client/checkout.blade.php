@@ -272,10 +272,6 @@
                             <input type="text" id="dtDate" name="odated" value="29.09.2023" placeholder=""
                                    style="width: 25%;" readonly>
                             <select id="dtTime" name="otimed">
-                                <option value="9:00">9:00</option>
-                                <option value="9:30">9:30</option>
-                                <option value="10:00">10:00</option>
-                                <option value="10:30">10:30</option>
                                 <option value="11:00">11:00</option>
                                 <option value="11:30">11:30</option>
                                 <option value="12:00">12:00</option>
@@ -299,6 +295,8 @@
                                 <option value="21:00">21:00</option>
                                 <option value="21:30">21:30</option>
                                 <option value="22:00">22:00</option>
+                                <option value="22:30">22:30</option>
+                                <option value="23:00">23:00</option>
                             </select>
                         </div>
                         <div class="text-error"></div>
