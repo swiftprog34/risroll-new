@@ -254,6 +254,11 @@ ul, li {
     .header_bg2 {
         height: 64px;
     }
+
+    .mobile-header-info {
+        color: #fff;
+        text-align: center;
+    }
 }
 
 
@@ -741,13 +746,12 @@ nav.desktop .basket span {
         overflow: hidden;
         line-height: 1.15;
         color: #fff;
+        flex-direction: column;
     }
     nav.mobile .page_title h1 {
         text-overflow: ellipsis;
-        white-space: ;
         overflow: hidden;
-        text-align:
-
+        text-align: center;
         font-weight: 900;
     }
 

@@ -41,7 +41,7 @@
             </div>
             <div class="menu">
                 <div class="first_row">
-                    <span class="h3">RisRoll - доставка готовых блюд!</span>
+                    <span class="h3">RisRoll - доставка готовых блюд | Работаем c 11:00 до 23:00</span>
                     <form action="{{route('search', session('city'))}}" method="post" class="search">
                         @csrf
                         <input type="hidden" name="tmpl" value="">
@@ -132,6 +132,7 @@
             <a class="logo" href="{{route('index', session('city'))}}" style="display: none;">
                 <img src="/client/images/logo_white.png" title="" alt=""/>
             </a>
+            <span class="mobile-header-info">работаем c 11:00 до 23:00</span>
         </div>
         <br>
         <form action="{{route('search', session('city'))}}" method="post" class="search">
@@ -192,6 +193,7 @@
         </a>
         <div class="page_title">
             <h1>{{$header_title}}</h1>
+            <span class="mobile-header-info">работаем c 11:00 до 23:00</span>
         </div>
     </div>
 </nav>
