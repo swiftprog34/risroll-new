@@ -520,7 +520,7 @@ header .auth > a {
     z-index: 99999999;
     top: 0;
     padding: 0px .0em !important;
-    background: #fff;
+    background: #000;
     box-shadow: 0 10px 20px rgba(0,0,0,.1);
     color: #000 !important;
     transition: .2s;
@@ -573,7 +573,7 @@ nav.desktop .menu .menu_item a {
     text-decoration: none;
     font-size: 1em;
     font-weight: 500;
-    color: #000;
+    color: #fff;
 }
 nav.desktop .menu .menu_item img.arrow {
     position: relative;
@@ -595,7 +595,7 @@ nav.desktop .submenu {
     top: 100%;
     left: -16px;
     width: 100%;
-    background: #fff;
+    background: #000;
     box-shadow: 0 10px 12px 0 rgba(0,0,0,.15);
     transform: scaleY(0); -moz-transform:scaleY(0); -webkit-transform:scaleY(0); -o-transform:scaleY(0); -ms-transform:scaleY(0);
     transform-origin: 0 0; -webkit-transform-origin:0 0; -moz-transform-origin:0 0; -o-transform-origin:0 0; -ms-transform-origin:0 0;
@@ -608,13 +608,13 @@ nav.desktop .menu_item .submenu a {
     display: block;
     box-sizing: border-box;
     width: 100%;
-    background: #fff;
+    background: #000;
     border-radius: 0;
     padding: 8px 0px;
     padding-left: 16px;
     font-size: 1.2em;
     font-weight: 400;
-    color: #000;
+    color: #fff;
 }
 nav.desktop .menu_item .submenu li:hover a {
     border-bottom: 0;
@@ -630,7 +630,7 @@ nav.desktop .submenu li:hover span {
 /*---*/
 
 nav.desktop .menu_item a.activeee {
-    color: #777;
+    color: #2AA021;
 }
 
 
@@ -1119,4 +1119,16 @@ nav.desktop .basket span {
     }
 }
 
+
+/* The sticky class is added to the header with JS when it reaches its scroll position */
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%
+}
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
+.sticky + .content {
+    padding-top: 197px;
+}
 /* */

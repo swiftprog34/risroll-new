@@ -30,7 +30,7 @@
 
     });
 </script>
-<div class="main_top">
+<div class="main_top" id="sticky_header">
     <div class="top_bar">
         <form action="{{route('search', session('city'))}}" method="post" class="search">
             @csrf

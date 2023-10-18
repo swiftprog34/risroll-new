@@ -105,9 +105,9 @@
         });
     </script>
     <style>
-        .scrollTop {
-            position: relative;
-        }
+        /*.scrollTop {*/
+        /*    position: relative;*/
+        /*}*/
         /*nav.mobile .icon.back img {*/
         /*    display: none !important;*/
         /*}*/
