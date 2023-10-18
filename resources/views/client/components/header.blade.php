@@ -30,25 +30,8 @@
 
     });
 </script>
-<div class="main_top" id="sticky_header">
-    <div class="top_bar">
-        <form action="{{route('search', session('city'))}}" method="post" class="search">
-            @csrf
-            <input type="hidden" name="tmpl" value="">
-            <input type="text" name="tmpl" placeholder="Найти" required>
-            <button type="submit"><img src="/client/images/icons/ic_search_black.png"/></button>
-        </form>
-        <div class="item">
-            <i class="phone c1"></i>
-            <a rel="nofollow" href="tel:{{$cityWithNested->phone}}">{{$cityWithNested->phone}}</a>
-        </div>
-        <div class="item">
-            <i class="map c1"></i>
-            <span>{{$cityWithNested->city_name}}, @foreach($cityWithNested->pickupPoints as $point)
-                    {{$point->name}}
-                @endforeach</span>
-        </div>
-    </div>
+<div class="main_top">
+
     <header>
         <div class="container">
             <div class="logo">
@@ -59,11 +42,35 @@
             <div class="menu">
                 <div class="first_row">
                     <span class="h3">RisRoll - доставка готовых блюд!</span>
+                    <form action="{{route('search', session('city'))}}" method="post" class="search">
+                        @csrf
+                        <input type="hidden" name="tmpl" value="">
+                        <input type="text" name="tmpl" placeholder="Найти" required>
+                        <button type="submit"><img src="/client/images/icons/ic_search_black.png"/></button>
+                    </form>
                 </div>
                 <div class="second_row">
                     <a href="{{route('promotions', session('city'))}}">Акции</a>
                     <a href="{{route('contacts', session('city'))}}">Контакты</a>
                     <a href="{{route('delivery', session('city'))}}">Доставка и Оплата</a>
+                    <div class="top_bar">
+                        <div class="item">
+                            <i class="phone c1"></i>
+                            <a rel="nofollow" href="tel:{{$cityWithNested->phone}}">{{$cityWithNested->phone}}</a>
+                        </div>
+{{--                        <form action="{{route('search', session('city'))}}" method="post" class="search">--}}
+{{--                            @csrf--}}
+{{--                            <input type="hidden" name="tmpl" value="">--}}
+{{--                            <input type="text" name="tmpl" placeholder="Найти" required>--}}
+{{--                            <button type="submit"><img src="/client/images/icons/ic_search_black.png"/></button>--}}
+{{--                        </form>--}}
+                        <div class="item">
+                            <i class="map c1"></i>
+                            <span>{{$cityWithNested->city_name}}, @foreach($cityWithNested->pickupPoints as $point)
+                                    {{$point->name}}
+                                @endforeach</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

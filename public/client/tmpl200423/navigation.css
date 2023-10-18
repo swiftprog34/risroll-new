@@ -279,8 +279,7 @@ ul, li {
 }
 .top_bar a,
 .top_bar span {
-    font-size: .75em;
-    font-weight: ;
+    font-size: .9em;
     color: #fff;
 }
 
@@ -368,12 +367,21 @@ header .logo img {
 }
 
 
-
+.first_row .search {
+    height: 24px;
+    border-radius: 4px;
+    margin: 4px 0;
+    margin-right: 20px;
+    background: #efefef;
+    border-radius: 8px;
+    border: 1px solid #aaa;
+}
 
 header .menu .first_row {
     display: flex;
     align-items: center;
-    color: #000 !important;
+    color: #fff !important;
+    justify-content: space-between;
 }
 header .menu .first_row i {
     left: -8px;
