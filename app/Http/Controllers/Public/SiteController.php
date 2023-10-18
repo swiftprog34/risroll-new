@@ -32,7 +32,7 @@ class SiteController extends Controller
         }) : 0;
 
         $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
-        $header_title = "RisRoll";
+        $header_title = "RisRoll (".$cityWithNested->city_name.")";
         return view('client.index', compact('categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
     }
 
