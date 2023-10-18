@@ -22,7 +22,7 @@
     font-weight: 400;
 }
 .products_heading a.button {
-    background: #c20609;
+    background: #2AA021;
     border-radius: 999px;
     padding: 8px 24px;
     font-weight: 700;
@@ -155,7 +155,7 @@ section.banner .bg {
 }
 .filters .filter_off img {
     width: 24px;
-    background: #c20609;
+    background: #2AA021;
     border-radius: 99em;
 }
 
@@ -183,8 +183,8 @@ section.banner .bg {
 }
 
 .tags .tags_item.active {
-    background: #c20609;
-    border: 1px solid #c20609;
+    background: #2AA021;
+    border: 1px solid #2AA021;
     font-weight: 600;
     color: #fff;
 }

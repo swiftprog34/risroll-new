@@ -1,8 +1,8 @@
 /* General styles for the modal */
 
-/* 
+/*
 Styles for the html/body for special modal where we want 3d effects
-Note that we need a container wrapping all content on the page for the 
+Note that we need a container wrapping all content on the page for the
 perspective effects (not including the modals and the overlay).
 */
 .md-trigger {
@@ -171,7 +171,7 @@ perspective effects (not including the modals and the overlay).
   content: "";
   width: 100%;
   height: 100%;
-  background: #dc523b;
+  background: #1b8713;
   display: block;
   transform: scale(0);
   opacity: 1;
@@ -181,12 +181,12 @@ perspective effects (not including the modals and the overlay).
   padding-left: 8px;
 }
 .cbx:hover span:first-child {
-  border-color: #dc523b;
+  border-color: #1b8713;
 }
 
 .inp-cbx:checked + .cbx span:first-child {
-  background: #dc523b;
-  border-color: #dc523b;
+  background: #1b8713;
+  border-color: #1b8713;
   animation: wave 0.4s ease;
 }
 .inp-cbx:checked + .cbx span:first-child svg {
@@ -324,10 +324,10 @@ input.error {
 	-webkit-transform-style: preserve-3d;
 	-moz-transform-style: preserve-3d;
 	transform-style: preserve-3d;
-	-webkit-transform: translateZ(600px) rotateX(20deg); 
-	-moz-transform: translateZ(600px) rotateX(20deg); 
-	-ms-transform: translateZ(600px) rotateX(20deg); 
-	transform: translateZ(600px) rotateX(20deg); 
+	-webkit-transform: translateZ(600px) rotateX(20deg);
+	-moz-transform: translateZ(600px) rotateX(20deg);
+	-ms-transform: translateZ(600px) rotateX(20deg);
+	transform: translateZ(600px) rotateX(20deg);
 	opacity: 0;
 }
 
@@ -338,7 +338,7 @@ input.error {
 	-webkit-transform: translateZ(0px) rotateX(0deg);
 	-moz-transform: translateZ(0px) rotateX(0deg);
 	-ms-transform: translateZ(0px) rotateX(0deg);
-	transform: translateZ(0px) rotateX(0deg); 
+	transform: translateZ(0px) rotateX(0deg);
 	opacity: 1;
 }
 
@@ -353,10 +353,10 @@ input.error {
 	-webkit-transform-style: preserve-3d;
 	-moz-transform-style: preserve-3d;
 	transform-style: preserve-3d;
-	-webkit-transform: translate(30%) translateZ(600px) rotate(10deg); 
+	-webkit-transform: translate(30%) translateZ(600px) rotate(10deg);
 	-moz-transform: translate(30%) translateZ(600px) rotate(10deg);
 	-ms-transform: translate(30%) translateZ(600px) rotate(10deg);
-	transform: translate(30%) translateZ(600px) rotate(10deg); 
+	transform: translate(30%) translateZ(600px) rotate(10deg);
 	opacity: 0;
 }
 
@@ -524,7 +524,7 @@ input.error {
 
 .md-show.md-effect-12 ~ .md-overlay {
 	background: #e74c3c;
-} 
+}
 
 .md-effect-12 .md-content h3,
 .md-effect-12 .md-content {
@@ -683,7 +683,7 @@ input.error {
 	-webkit-transition: -webkit-transform 0.3s;
 	-moz-transition: -moz-transform 0.3s;
 	transition: transform 0.3s;
-}	
+}
 
 .md-show.md-effect-17 ~ .container,
 .md-show.md-effect-17 ~ .md-overlay  {
@@ -804,23 +804,23 @@ input.error {
 }
 
 @-webkit-keyframes OpenTop {
-	50% { 
-		-webkit-transform: rotateX(10deg); 
-		-webkit-animation-timing-function: ease-out; 
+	50% {
+		-webkit-transform: rotateX(10deg);
+		-webkit-animation-timing-function: ease-out;
 	}
 }
 
 @-moz-keyframes OpenTop {
-	50% { 
-		-moz-transform: rotateX(10deg); 
-		-moz-animation-timing-function: ease-out; 
+	50% {
+		-moz-transform: rotateX(10deg);
+		-moz-animation-timing-function: ease-out;
 	}
 }
 
 @keyframes OpenTop {
-	50% { 
-		transform: rotateX(10deg); 
-		animation-timing-function: ease-out; 
+	50% {
+		transform: rotateX(10deg);
+		animation-timing-function: ease-out;
 	}
 }
 
@@ -928,7 +928,7 @@ input.error {
 	border: 0;
 	border-bottom: 1px solid #ccc;
 	font-size: 1.2em;
-	color: #fff; 
+	color: #fff;
 }
 .md-effect-01 > .md-content input[type="submit"] {
 	-webkit-appearance: none;
@@ -942,7 +942,7 @@ input.error {
 	padding: 8px 24px 10px 24px;
 	font-size: 1.2em;
 	font-weight: 600;
-	color: #fff; 
+	color: #fff;
 }
 
 
@@ -954,12 +954,12 @@ input.error {
   margin-top: 48px;
   border: 0;
   color: #fff;
-  background: #dc523b;
+  background: #1b8713;
   overflow: hidden;
   padding: 8px 24px 8px 24px;
   text-transform: ;
   font-size: 1.2em;
-	color: #fff; 
+	color: #fff;
 }
 
 .btn .btn__text-dynamic,
@@ -977,7 +977,7 @@ input.error {
 }
 .btn .btn__text-dynamic {
   overflow: hidden;
-  background: #fff;  
+  background: #fff;
   font-weight: 500;
   color: #000;
 }
@@ -1014,14 +1014,14 @@ input.error {
 
 
 
-.md-effect-01 > .md-content ::-webkit-input-placeholder { 
+.md-effect-01 > .md-content ::-webkit-input-placeholder {
 	padding-left: 0;
     font-size: 1em;
     font-weight: 100;
     color: #fff;
     transition: .5s;
 }
-.md-effect-01 > .md-content :focus::-webkit-input-placeholder { 
+.md-effect-01 > .md-content :focus::-webkit-input-placeholder {
     padding-left: 100%;
     transition: .5s;
 }
@@ -1147,20 +1147,20 @@ input.error {
 
 
 
-.md-modal::-webkit-scrollbar-track { 
-    background-color: #000; 
-    box-shadow:0px 0px 3px #000 inset; 
-} 
+.md-modal::-webkit-scrollbar-track {
+    background-color: #000;
+    box-shadow:0px 0px 3px #000 inset;
+}
 
-.md-modal::-webkit-scrollbar-thumb {      
-    border-radius: 0; 
-    background-color: #fff;  
-    background-image:url(''); 
-    background-position:center; 
-    background-repeat:no-repeat; 
-} 
+.md-modal::-webkit-scrollbar-thumb {
+    border-radius: 0;
+    background-color: #fff;
+    background-image:url('');
+    background-position:center;
+    background-repeat:no-repeat;
+}
 .md-modal::-webkit-scrollbar{
-    width: 4px; 
+    width: 4px;
     height: 4px;
 }
 
@@ -1212,7 +1212,7 @@ input.error {
 	grid-column-gap: 64px;
 	grid-row-gap: 12px;
 	justify-content: center;
-	align-items: center;	
+	align-items: center;
 }
 	#cart_product .mod_group .mod_item {
 		display: grid;

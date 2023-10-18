@@ -372,7 +372,7 @@
     height: 24px;
     margin: auto 0;
     background: transparent;
-    border: 2px solid #c20609;
+    border: 2px solid #2AA021;
     border-radius: 9999px;
 }
 .mod_item input[type="radio"]:checked:after {
@@ -384,7 +384,7 @@
     width: 10px;
     height: 10px;
     border-radius: 9999px;
-    background: #c20609;
+    background: #2AA021;
     transition: 1s;
 }
 
@@ -405,8 +405,8 @@
 }
 .mod_item .checkbox input[type="checkbox"]{display:none}
 .mod_item .checkbox input[type="checkbox"]:checked + label{
-    background: #c20609;
-    border-color: #c20609;
+    background: #2AA021;
+    border-color: #2AA021;
 }
 .mod_item .checkbox input[type="checkbox"]:checked + label:after{
     transform:scale(1.3);
@@ -420,7 +420,7 @@
     height: 21px;
     margin-right: 0px;
     background: transparent;
-    border: 2px solid #c20609;
+    border: 2px solid #2AA021;
     border-radius: 10%;
     position: relative;
     cursor: pointer;
@@ -486,7 +486,7 @@
     overflow: hidden;
     border: 0;
     border-radius: 160px;
-    background: #c20609;
+    background: #2AA021;
     padding: 0;
     font-size: 1.3em;
     font-weight: 500;
@@ -660,7 +660,7 @@
     overflow: hidden;
     border: 0;
     border-radius: 12px;
-    background: #c20609;
+    background: #2AA021;
     padding: 0;
     font-size: .9em;
     font-weight: 700;
@@ -684,7 +684,7 @@
     overflow: hidden;
     border: 0;
     border-radius: 12px;
-    background: #c20609;
+    background: #2AA021;
     padding: 0;
     font-size: 1.5em;
     font-weight: 500;

@@ -53,7 +53,7 @@
         <div class="container">
             <div class="logo">
                 <a class="" href="{{route('index', session('city'))}}" style="margin: 0;">
-                    <img style="position: relative; left: -2px;" src="/client/images/logo.png" alt=""/>
+                    <img style="position: relative; left: -2px;" src="/client/images/logo_white.png" alt=""/>
                 </a>
             </div>
             <div class="menu">
@@ -123,7 +123,7 @@
     <div class="body">
         <div class="top">
             <a class="logo" href="{{route('index', session('city'))}}" style="display: none;">
-                <img src="/client/images/logo.png" title="" alt=""/>
+                <img src="/client/images/logo_white.png" title="" alt=""/>
             </a>
         </div>
         <br>

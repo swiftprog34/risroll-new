@@ -432,7 +432,7 @@ i.c {
 }
 
 i.c1 {
-    background: #dc523b;
+    background: #1b8713;
 }
 
 i.c2 {
@@ -510,7 +510,7 @@ i.dark-grey {
 }
 
 #cookie_notification .button {
-    background: #c20609;
+    background: #2AA021;
     border: none;
     border-radius: 8px;
     padding: 8px 24px;
@@ -634,7 +634,7 @@ i.dark-grey {
     left: 0;
     display: block;
     height: 100%;
-    background: #c20609;
+    background: #2AA021;
     border-radius: 9999px;
 }
 .range_area span {
@@ -684,7 +684,7 @@ span.joop {
 .text_area a.button {
     display: block;
     cursor: pointer;
-    background: #c20609;
+    background: #2AA021;
     border-radius: 12px;
     padding: 8px 16px;
     font-size: .85em;
@@ -973,7 +973,7 @@ a.readmore-js-toggle {
     background: #aaa;
 }
 .slider_scale_items .item .button.c2 {
-    background: #c20609;
+    background: #2AA021;
 }
 .slider_scale_items .item .button.c3 {
     background: #378e18;
@@ -1182,7 +1182,7 @@ a.readmore-js-toggle {
 
     ::-webkit-scrollbar-thumb {
         border-radius: 11110px;
-        background-color: #c20609;
+        background-color: #2AA021;
         background-image: url('');
         background-position: center;
         background-repeat: no-repeat;
@@ -1448,7 +1448,7 @@ img, p, span, h1, h2, h3, a, label {
 }
 
 .readmore_button_open {
-    background: #c20609;
+    background: #2AA021;
     color: #fff !important;
 }
 

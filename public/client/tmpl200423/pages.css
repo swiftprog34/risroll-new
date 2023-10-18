@@ -84,7 +84,7 @@ ol.documentation {
     display: inline-flex;
     align-items: center;
     height: 36px;
-    background: #c20609;
+    background: #2AA021;
     border-radius: 99px;
     padding: 0 12px;
     font-weight: 700;
@@ -210,7 +210,7 @@ ol.documentation {
     position: relative;
     left: 0%;
     width: 100%;
-    background: #c20609;
+    background: #2AA021;
     opacity: 1;
     border-radius: 18px;
     padding: 10px 5px;
@@ -493,7 +493,7 @@ ol.documentation {
     cursor: pointer;
     width: auto;
     height: 72px;
-    background: #c20609;
+    background: #2AA021;
     border: 0;
     border-radius: 8px;
     padding: 0 2em;
@@ -550,8 +550,8 @@ ol.documentation {
 }
 .check-material input[type="checkbox"]{display:none}
 .check-material input[type="checkbox"]:checked + label{
-    background: #c20609;
-    border-color: #c20609;
+    background: #2AA021;
+    border-color: #2AA021;
 
 }
 .check-material input[type="checkbox"]:checked + label:after{
@@ -563,7 +563,7 @@ ol.documentation {
     width: 18px;
     height: 18px;
     background: transparent;
-    border: 2px solid #c20609;
+    border: 2px solid #2AA021;
     border-radius: 10%;
     position: relative;
     cursor: pointer;
@@ -632,7 +632,7 @@ ol.documentation {
     background: green;
 }
 .form_send_comment2 input[type="submit"]:hover {
-    background: #c20609;
+    background: #2AA021;
 }
 
 
@@ -791,7 +791,7 @@ ol.documentation {
     justify-content: center;
     width: 196px;
     height: 128px;
-    background: #c20609;
+    background: #2AA021;
     border-radius: 12px !important;
     font-weight: 700;
     color: #fff;
@@ -823,7 +823,7 @@ ol.documentation {
 .bonuses_info_section span {
     display: inline-block;
     margin-bottom: 8px;
-    background: #c20609;
+    background: #2AA021;
     border-radius: 8px;
     padding: 6px 12px;
     font-size: 1.25em;
@@ -854,7 +854,7 @@ ol.documentation {
     display: inline-flex;
     height: 40px;
     align-items: center;
-    background: #c20609;
+    background: #2AA021;
     border-radius: 8px;
     padding: 4px 12px;
     font-weight: 600;
@@ -899,7 +899,7 @@ ol.documentation {
         justify-content: center;
         width: 196px;
         height: 140px;
-        background: #c20609;
+        background: #2AA021;
         border-radius: 12px !important;
         font-weight: 700;
         color: #fff;
@@ -930,7 +930,7 @@ ol.documentation {
         width: 50px !important;
         height: 50px !important;
         margin-bottom: 0px;
-        background: #c20609;
+        background: #2AA021;
         border-radius: 99em;
         padding: 1.0em;
         font-size: 24px;

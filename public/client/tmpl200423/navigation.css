@@ -163,7 +163,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: #c20609;
+        background: #2AA021;
         border-radius: 12px;
         font-weight: 700;
         color: #fff;
@@ -208,7 +208,7 @@ ul, li {
     z-index: 9;
     top: 0;
     width: 100%;
-    background: #fff;
+    background: #000;
     box-shadow: 0 0 5px 0 rgba(0,0,0,.1);
     padding: 0 0 0 0;
 }
@@ -220,7 +220,7 @@ ul, li {
 
 @media screen and (max-width: 1200px) {
     .main_top {
-        background: #fff !important;
+        background: #000 !important;
         padding-bottom: 0px !important;
     }
 }
@@ -391,7 +391,7 @@ header .menu .second_row {
 }
 header .menu .second_row a {
     display: block;
-    background: #c20609;
+    background: #2AA021;
     margin-right: 1.5%;
     border-radius: 12px;
     padding: 8px 16px;
@@ -400,7 +400,8 @@ header .menu .second_row a {
     color: #fff !important;
 }
 header .menu .second_row a.activeee {
-    color: #ccc !important;
+    /*color: #ccc !important;*/
+    background: #26cb1b;
 }
 
 
@@ -638,11 +639,11 @@ nav.desktop .basket {
     justify-content: flex-end;
     align-items: center;
     text-align: right;
-    color: #000;
+    color: #fff;
 }
 nav.desktop .basket .icon.rounded {
     display: block;
-    background: #c20609;
+    background: #2AA021;
     border-radius: 3200px;
 }
 nav.desktop .basket .icon.rounded img {
@@ -1109,7 +1110,7 @@ nav.desktop .basket span {
         display: flex;
         height: auto;
         align-items: center;
-        background: #c20609;
+        background: #2AA021;
         border-radius: 999px;
         padding: 12px 8px;
         font-size: 15px;

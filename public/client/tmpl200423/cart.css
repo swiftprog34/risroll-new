@@ -13,7 +13,7 @@
   }
   .emptyCart span {
     position: absolute;
-    /*background: #c20609;*/
+    /*background: #2AA021;*/
     border-radius: 99em;
     /*text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;*/
     padding: 4px 12px;
@@ -117,14 +117,14 @@
     align-items: center;
     justify-content: center;
     height: 56px;
-    background: #c20609;
+    background: #2AA021;
     border-radius: 12px;
     padding: 0 12px;
     font-weight: 700;
     color: #fff;
   }
   .notUser .button:hover {
-    background: #e73437;
+    background: #3fa937;
   }
 
 @media screen and (max-width: 800px) {
@@ -313,7 +313,7 @@
       overflow: hidden;
       border: 0;
       border-radius: 12px;
-      background: #c20609;
+      background: #2AA021;
       padding: 0;
       font-size: 1.5em;
       font-weight: 500;
@@ -611,7 +611,7 @@
     width: 28px;
     height: 28px;
     background: transparent;
-    border: 2px solid #c20609;
+    border: 2px solid #2AA021;
     border-radius: 9999px;
   }
   .cart .block input[type="radio"]:checked:after {
@@ -623,7 +623,7 @@
     width: 12px;
     height: 12px;
     border-radius: 9999px;
-    background: #c20609;
+    background: #2AA021;
     transition: 1s;
   }
   .cart .block input[type="radio"] + label {
@@ -663,7 +663,7 @@
     top: 0px;
     left: 16px;
     display: inline-block;
-    background: #c20609;
+    background: #2AA021;
     border-radius: 8px;
     padding: 4px 12px;
     font-weight: 600;
@@ -872,8 +872,8 @@
   }
   .cart .check-material input[type="checkbox"]{display:none}
   .cart .check-material input[type="checkbox"]:checked + label{
-    background: #c20609;
-    border-color:#c20609
+    background: #2AA021;
+    border-color:#2AA021
   }
   .cart .check-material input[type="checkbox"]:checked + label:after{
     transform:scale(1.3)
@@ -887,7 +887,7 @@
     height: 22px;
     margin-right: 20px;
     background: transparent;
-    border: 2px solid #c20609;
+    border: 2px solid #2AA021;
     border-radius: 10%;
     position: relative;
     cursor: pointer;
@@ -960,7 +960,7 @@
   color: #fff;
 }
   #applyCouponBtn {
-    background: #c20609;
+    background: #2AA021;
   }
   #resetCouponBtn {
     background: #efefef;
@@ -1022,7 +1022,7 @@
   height: 64px;
   border: 0;
   border-radius: 16px;
-  background: #c20609;
+  background: #2AA021;
   font-size: 1.5em;
   font-weight: 600;
   color: #fff;
@@ -1211,7 +1211,7 @@
         .sumList span {
           display: inline-block;
           margin: 0 12px 12px 0;
-          background: #c20609;
+          background: #2AA021;
           border-radius: 8px;
           padding: 4px 8px;
           font-size: .85em;
@@ -1235,7 +1235,7 @@
         align-items: center;
         justify-content: center;
         height: 48px;
-        background: #c20609;
+        background: #2AA021;
         border-radius: 8px;
         text-align: center;
         font-size: 1.15em;
@@ -1275,7 +1275,7 @@
         .sumList span {
           display: inline-block;
           margin: 0 8px 8px 0;
-          background: #c20609;
+          background: #2AA021;
           border-radius: 8px;
           padding: 2px 6px;
           font-size: .85em;
@@ -1418,7 +1418,7 @@ input.error::placeholder {
           height: 32px;
           align-items: center;
           justify-content: center;
-          background: #c20609;
+          background: #2AA021;
           border-radius: 12px;
           font-size: 28px;
           font-weight: 400;
@@ -1587,7 +1587,7 @@ input.error::placeholder {
   justify-content: center;
   width: 36px;
   height: 36px;
-  background: #c20609;
+  background: #2AA021;
   border: none;
   border-radius: 12px;
   font-size: 20px;
