@@ -127,7 +127,7 @@
 <!---->
 <!-- Окно с разделами для мобильной версии -->
 <div class="win win_hide" id="navmenu-page" style="display: none;">
-    <div class="body">
+    <div class="mobile-menu_wrapper">
         <div class="top">
             <a class="logo" href="{{route('index', session('city'))}}" style="display: none;">
                 <img src="/client/images/logo_white.png" title="" alt=""/>
@@ -140,6 +140,9 @@
             <input type="text" name="tmpl" placeholder="Найти" required>
             <button type="submit"><img src="/client/images/icons/ic_search_black.png"/></button>
         </form>
+    </div>
+    <div class="body">
+
         <div class="nav_list">
             <a class="item r2" href="{{route('promotions', session('city'))}}">
                 <i class="ic_win_stock black"></i>
@@ -188,7 +191,7 @@
             <img src="/client/images/icons/ic_close_page_black.png" alt=""/>
         </a>
         <div class="page_title">
-            <h1>TODO</h1>
+            <h1>{{$header_title}}</h1>
         </div>
     </div>
 </nav>

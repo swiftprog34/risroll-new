@@ -111,6 +111,12 @@
         /*nav.mobile .icon.back img {*/
         /*    display: none !important;*/
         /*}*/
+        @media screen and (max-width: 1025px) {
+            #toTop {
+                display: none !important;
+            }
+        }
+
     </style>
     <style type="text/css">
         @media screen and (max-width: 800px) {

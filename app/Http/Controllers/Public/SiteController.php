@@ -32,7 +32,8 @@ class SiteController extends Controller
         }) : 0;
 
         $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
-        return view('client.index', compact('categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart'));
+        $header_title = "RisRoll";
+        return view('client.index', compact('categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
     }
 
     public function category(Request $request, $uid)
@@ -54,7 +55,9 @@ class SiteController extends Controller
             return $product->pivot->price * $product->pivot->quantity;
         }) : 0;
 
-        return view('client.category', compact('cityWithNested', 'currentCategory', 'categoriesMainDesktop', 'userCartSum', 'userCart'));
+        $header_title = $currentCategory->title;
+
+        return view('client.category', compact('cityWithNested', 'currentCategory', 'categoriesMainDesktop', 'userCartSum', 'userCart', 'header_title'));
     }
 
     public function product(Request $request, $uid)
@@ -74,7 +77,9 @@ class SiteController extends Controller
             return $product->pivot->price * $product->pivot->quantity;
         }) : 0 ;
 
-        return view('client.product', compact('cityWithNested', 'categoriesMainDesktop', 'product', 'userCartSum', 'userCart'));
+        $header_title = $product->title;
+
+        return view('client.product', compact('cityWithNested', 'categoriesMainDesktop', 'product', 'userCartSum', 'userCart', 'header_title'));
     }
 
     public function page()
@@ -96,7 +101,9 @@ class SiteController extends Controller
             return $product->pivot->price * $product->pivot->quantity;
         }) : 0;
 
-        return view('client.checkout', compact('categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart'));
+        $header_title = "Корзина";
+
+        return view('client.checkout', compact('categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
     }
 
     public function chooseCity($choosedCity) {
@@ -123,8 +130,10 @@ class SiteController extends Controller
             return $product->pivot->price * $product->pivot->quantity;
         }) : 0;
 
+        $header_title = "Пользовательское соглашение";
+
         $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
-        return view('client.terms', compact('categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart'));
+        return view('client.terms', compact('categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
     }
 
     public function privacy(Request $request) {
@@ -143,8 +152,10 @@ class SiteController extends Controller
             return $product->pivot->price * $product->pivot->quantity;
         }) : 0;
 
+
+        $header_title = "Политика конфиденциальности";
         $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
-        return view('client.privacy', compact('categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart'));
+        return view('client.privacy', compact('categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
     }
 
     public function promotions(Request $request) {
@@ -162,9 +173,11 @@ class SiteController extends Controller
         $userCartSum = $userCart !== null ? $userCart->products->sum(function ($product) {
             return $product->pivot->price * $product->pivot->quantity;
         }) : 0;
+        $header_title = "Акции";
+
 
         $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
-        return view('client.promotions', compact('categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart'));
+        return view('client.promotions', compact('categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
     }
 
     public function contacts(Request $request) {
@@ -183,8 +196,10 @@ class SiteController extends Controller
             return $product->pivot->price * $product->pivot->quantity;
         }) : 0;
 
+        $header_title = "Контакты";
+
         $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
-        return view('client.contacts', compact('categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart'));
+        return view('client.contacts', compact('categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
     }
 
     public function delivery(Request $request) {
@@ -203,8 +218,10 @@ class SiteController extends Controller
             return $product->pivot->price * $product->pivot->quantity;
         }) : 0;
 
+        $header_title = "Доставка и оплата";
+
         $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
-        return view('client.delivery', compact('categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart'));
+        return view('client.delivery', compact('categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
     }
 
     public function search(Request $request) {
@@ -225,7 +242,9 @@ class SiteController extends Controller
             return $product->pivot->price * $product->pivot->quantity;
         }) : 0;
 
+        $header_title = "Поиск";
+
         $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
-        return view('client.search', compact('categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart'));
+        return view('client.search', compact('categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
     }
 }
