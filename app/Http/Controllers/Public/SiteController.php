@@ -247,9 +247,9 @@ class SiteController extends Controller
     }
 
     public function createOrder(Request $request) {
-        dd($request);
+//        dd($request);
 
-        if($request->locations != null) {
+        if($request->has('locations')) {
             $location =  Pickup::findOrFail($request->locations);
         } else {
             $location = $request->locations;
