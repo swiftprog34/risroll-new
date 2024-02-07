@@ -56,7 +56,7 @@
                     <div class="top_bar">
                         <div class="item">
                             <i class="phone c1"></i>
-                            <a rel="nofollow" style="    width: 111px;" href="tel:{{$cityWithNested->getPhoneNumberAttribute()}}">{{$cityWithNested->getPhoneNumberAttribute()}}</a>
+                            <a rel="nofollow" style="    width: 120px;" href="tel:{{$cityWithNested->getPhoneNumberAttribute()}}">{{$cityWithNested->getPhoneNumberAttribute()}}</a>
                         </div>
 {{--                        <form action="{{route('search', session('city'))}}" method="post" class="search">--}}
 {{--                            @csrf--}}
