@@ -45,7 +45,7 @@
                     <form action="{{route('search', session('city'))}}" method="post" class="search">
                         @csrf
                         <input type="hidden" name="tmpl" value="">
-                        <input type="text" name="tmpl" placeholder="Найти" required>
+                        <input type="text" name="tmpl" placeholder="Что будем искать?" required>
                         <button type="submit"><img src="/client/images/icons/ic_search_black.png"/></button>
                     </form>
                 </div>
@@ -138,7 +138,7 @@
         <form action="{{route('search', session('city'))}}" method="post" class="search">
             @csrf
             <input type="hidden" name="tmpl" value="">
-            <input type="text" name="tmpl" placeholder="Найти" required>
+            <input type="text" name="tmpl" placeholder="Что будем искать?" required>
             <button type="submit"><img src="/client/images/icons/ic_search_black.png"/></button>
         </form>
     </div>
@@ -210,7 +210,7 @@
           id="mobile_search_form" >
         @csrf
         <input type="hidden" name="tmpl" value="">
-        <input type="text" name="tmpl" placeholder="Найти" required>
+        <input type="text" name="tmpl" placeholder="Что будем искать?" required>
         <button type="submit"><img src="/client/images/icons/ic_search_black.png"/></button>
     </form>
 </nav>
