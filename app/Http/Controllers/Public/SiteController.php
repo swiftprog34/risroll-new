@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
+use App\Mail\SendOrderEmail;
 use App\Models\Cart;
 use App\Models\Category;
 use App\Models\City;
@@ -10,7 +11,7 @@ use App\Models\Order;
 use App\Models\Pickup;
 use App\Models\Product;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Mail;
 class SiteController extends Controller
 {
     public function index(Request $request)
@@ -247,27 +248,48 @@ class SiteController extends Controller
     }
 
     public function createOrder(Request $request) {
-        dd($request);
+//       dd($request);
+        $subdomain = $request->route()->parameter('subdomain') ?: 'samara';
+        $cityWithNested = City::where('slug', $subdomain)->with(['categories' => function($categories) {
+            $categories->orderBy('sort_order');
+        }])->with(['pickupPoints' => function($points) {
+            $points->orderBy('name');
+        }])->with(['promotions' => function($promotions) {
+            $promotions->orderBy('sort_order');
+        }])->with(['products' => function($products) {
+            $products->where('title', 'like', '%' . request('tmpl') . '%');
+        }])->firstOrFail();
+        $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
+        $sid = session()->getId();
+        $userCart = Cart::where('session_id', $sid)->with('products')->first();
+        $userCartSum = $userCart !== null ? $userCart->products->sum(function ($product) {
+            return $product->pivot->price * $product->pivot->quantity;
+        }) : 0;
+
+        $order = new Order();
 
         if($request->has('locations')) {
             $location =  Pickup::findOrFail($request->locations);
         } else {
             $location = $request->locations;
         }
-        $persons = $request->persons;
-        $street = $request->street;
-        $home = $request->home;
-        $apart = $request->apart;
-        $entrance = $request->entrance;
-        $floor = $request->floor;
-        $receiving_type = $request->receiving_type;
-        $toDate = $request->odated;
-        $datetime = $request->datetime;
-        $toTime = $request->otimed;
-        $payType = $request->pay;
-        $userName = $request->uname;
-        $phone = $request->phone;
-        $comment = $request->comment;
+        $order->user_id = 0;
+        $order->persons = $request->persons;
+        $order->street = $request->street;
+        $order->home = $request->home;
+        $order->apart = $request->apart;
+        $order->entrance = $request->entrance;
+        $order->floor = $request->floor;
+        $order->receiving_type = $request->receiving_type;
+        $order->to_date = $request->odated;
+        $order->date_time = $request->datetime;
+        $order->to_time = $request->otimed;
+        $order->pay_type = $request->pay;
+        $order->username = $request->uname;
+        $order->phone = $request->phone;
+        $order->comment = $request->comment;
+
+        $order->save();
 
         $sid = session()->getId();
         $userCart = Cart::where('session_id', $sid)->with('products')->first();
@@ -275,33 +297,31 @@ class SiteController extends Controller
             return $product->pivot->price * $product->pivot->quantity;
         }) : 0;
 
+        $total_sum = 0;
         foreach ($userCart->products as $cartProduct) {
             $sum = $cartProduct->pivot->quantity * $cartProduct->pivot->price;
+            $total_sum = $total_sum + $sum;
             $quantity = $cartProduct->pivot->quantity;
             $title = $cartProduct->title;
-            echo "Товар $title в количестве $quantity на сумму $sum";
-            echo ' <br/>';
+            $order->products()->attach($order->id,
+                [
+                    'product_id' => $cartProduct->id,
+                    'price' => $cartProduct->pivot->price,
+                    'quantity' => $cartProduct->pivot->quantity
+                ]
+            );
         }
 
-        if($location !== null) {
-            echo "Cамовывоз $location->name";
-        }
-        echo '<br/>';
-        echo "Количество персон $persons";
-        echo ' <br/>';
-        echo "улица $street, дом $home, квартира $apart, подьезд $entrance, этаж, $floor";
-        echo ' <br/>';
-        echo "способ получения заказа $receiving_type";
-        echo ' <br/>';
-        echo "если нужно, $datetime, на дату/время $toDate / $toTime";
-        echo ' <br/>';
-        echo "с типом оплаты $payType";
-        echo ' <br/>';
-        echo "пользователь $userName, телефон $phone";
-        echo ' <br/>';
-        echo "комментарий к заказу $comment";
+        $order->total_sum_without_delivery = $total_sum;
+        $order->total_sum = $total_sum + $request->delivery_price;
+        $order->delivery_price = $request->delivery_price;
+        $order->location = $location;
 
-        $userCart = Cart::where('session_id', $sid)->with('products')->first();
-        $userCart->delete();
+        $order->save();
+
+        Mail::send(new SendOrderEmail($order, $cityWithNested->email, ''));
+//        $userCart = Cart::where('session_id', $sid)->with('products')->first();
+//        $userCart->delete();
+        return view('client.ordered', compact('cityWithNested', 'categoriesMainDesktop', 'userCartSum'));
     }
 }
