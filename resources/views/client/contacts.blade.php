@@ -73,8 +73,8 @@
             </div>
             <div class="item">
                 <img class="icon" src="client/images/color_icons/ic_map.png" alt=""/>
-                <h3>{{$cityWithNested->city_name}}, @foreach($cityWithNested->pickupPoints as $point)
-                        {{$point->name}}
+                <h3><strong>{{$cityWithNested->city_name}}</strong><br> @foreach($cityWithNested->pickupPoints as $point)
+                        {{$point->name}}<br>
                     @endforeach</h3>
             </div>
             <a class="item" href="tel:{{$cityWithNested->getPhoneNumberAttribute()}}">
