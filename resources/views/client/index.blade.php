@@ -8,9 +8,9 @@
                href="{{$cityWithNested->gis_link}}">
                 <img src="/client/images/color_icons/ic_map.png">
                 <span>
-                    <strong>{{$cityWithNested->city_name}}</strong>
+                    <strong>{{$cityWithNested->city_name}}</strong><br>
                     @foreach($cityWithNested->pickupPoints as $point)
-                        {{$point->name}},
+                        {{$point->name}}<br>
                     @endforeach</span>
                 <img src="/client/images/icons/ic_link.png">
             </a>
