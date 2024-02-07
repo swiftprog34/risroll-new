@@ -20,7 +20,7 @@
             </span>
         </div>
         <div class="title_filters_grid">
-            <h1 class="cat_name">{{$cityWithNested->city_name}} - Заказать вкусные роллы недорого</h1>
+            <h1 class="cat_name">{{$cityWithNested->city_name}} - Заказать {{mb_strtolower($currentCategory->title,'UTF-8')}} недорого</h1>
             <div class="filters">
                 <div class="filter_off" id="delItemsFilters">
                     <img src="/client/images/icons/ic_clear_filters.png">
