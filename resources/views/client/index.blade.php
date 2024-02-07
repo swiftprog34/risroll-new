@@ -8,14 +8,15 @@
                href="{{$cityWithNested->gis_link}}">
                 <img src="/client/images/color_icons/ic_map.png">
                 <span>
+                    <strong>{{$cityWithNested->city_name}}</strong>
                     @foreach($cityWithNested->pickupPoints as $point)
-                        {{$point->name}}
+                        {{$point->name}},
                     @endforeach</span>
                 <img src="/client/images/icons/ic_link.png">
             </a>
-            <a rel="nofollow" class="item" href="tel:+7(345)2500765">
+            <a rel="nofollow" class="item" href="tel:{{$cityWithNested->getPhoneNumberAttribute()}}">
                 <img src="/client/images/color_icons/ic_phone.png">
-                <span>{{$cityWithNested->phone}}</span>
+                <span>{{$cityWithNested->getPhoneNumberAttribute()}}</span>
                 <img src="/client/images/icons/ic_link.png">
             </a>
         </div>

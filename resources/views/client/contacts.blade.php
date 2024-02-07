@@ -77,9 +77,9 @@
                         {{$point->name}}
                     @endforeach</h3>
             </div>
-            <a class="item" href="tel:{{$cityWithNested->phone}}">
+            <a class="item" href="tel:{{$cityWithNested->getPhoneNumberAttribute()}}">
                 <img class="icon" src="client/images/color_icons/ic_phone.png" alt=""/>
-                <h3>{{$cityWithNested->phone}}</h3>
+                <h3>{{$cityWithNested->getPhoneNumberAttribute()}}</h3>
             </a>
             <a class="item" href="{{$cityWithNested->vk_link}}" target="_blank">
                 <img class="icon" src="client/images/color_icons/ic_vk.png" alt=""/>

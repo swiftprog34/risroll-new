@@ -33,7 +33,7 @@ class SiteController extends Controller
         }) : 0;
 
         $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
-        $header_title = "RisRoll (".$cityWithNested->city_name.")";
+        $header_title = "RisRoll";
         return view('client.index', compact('categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
     }
 
@@ -216,7 +216,7 @@ class SiteController extends Controller
             return $product->pivot->price * $product->pivot->quantity;
         }) : 0;
 
-        $header_title = "Доставка и оплата";
+        $header_title = "Доставка";
 
         $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
         return view('client.delivery', compact('categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));

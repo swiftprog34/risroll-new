@@ -14,7 +14,7 @@
                 ->
                 <span itemscope itemprop="itemListElement" itemtype="http://schema.org/ListItem">
 	                <a itemprop="item" title="" href="{{route('delivery', session('city'))}}">
-	                    <span itemprop="name">Доставка и оплата</span>
+	                    <span itemprop="name">Доставка</span>
 	                    <meta itemprop="position" content="2">
 	                </a>
 	            </span>

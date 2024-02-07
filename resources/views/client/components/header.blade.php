@@ -52,11 +52,11 @@
                 <div class="second_row">
                     <a href="{{route('promotions', session('city'))}}">Акции</a>
                     <a href="{{route('contacts', session('city'))}}">Контакты</a>
-                    <a href="{{route('delivery', session('city'))}}">Доставка и Оплата</a>
+                    <a href="{{route('delivery', session('city'))}}">Доставка</a>
                     <div class="top_bar">
                         <div class="item">
                             <i class="phone c1"></i>
-                            <a rel="nofollow" href="tel:{{$cityWithNested->phone}}">{{$cityWithNested->phone}}</a>
+                            <a rel="nofollow" style="    width: 111px;" href="tel:{{$cityWithNested->getPhoneNumberAttribute()}}">{{$cityWithNested->getPhoneNumberAttribute()}}</a>
                         </div>
 {{--                        <form action="{{route('search', session('city'))}}" method="post" class="search">--}}
 {{--                            @csrf--}}
@@ -159,7 +159,7 @@
             <a class="item r2"
                href="{{route('delivery', session('city'))}}">
                 <i class="ic_win_info black"></i>
-                <span>Доставка и Оплата</span>
+                <span>Доставка</span>
                 <img src="/client/images/icons/ic_link.png">
             </a>
         </div>
@@ -192,16 +192,46 @@
             <img src="/client/images/icons/ic_close_page_black.png" alt=""/>
         </a>
         <div class="page_title">
-            <h1>{{$header_title}}</h1>
+            <div class="logo" style="text-align: center;margin-bottom: 1px;">
+                <a class="" href="{{route('index', session('city'))}}" style="margin: 0;">
+                    <img style="position: relative; width: 27%;" src="/client/images/logo_white.png"  alt=""/>
+                </a>
+            </div>
             <span class="mobile-header-info">работаем c 11:00 до 23:00</span>
         </div>
+        <a class="icon open_mobile_search" id="open_mobile_search" href="javascript:void(0);" onclick="">
+            <img src="/client/images/icons/ic_search_white.png" alt=""/>
+        </a>
+        <a class="icon close_mobile_search win_hide" id="close_mobile_search" href="javascript:void(0);" onclick="">
+            <img src="/client/images/icons/ic_close_white.png" alt=""/>
+        </a>
     </div>
+    <form action="{{route('search', session('city'))}}" method="post" class="search win_hide mobile_search_form"
+          id="mobile_search_form" >
+        @csrf
+        <input type="hidden" name="tmpl" value="">
+        <input type="text" name="tmpl" placeholder="Найти" required>
+        <button type="submit"><img src="/client/images/icons/ic_search_black.png"/></button>
+    </form>
 </nav>
+
+<script>
+    $('body').on('click', '.open_mobile_search', function () {
+        $('#mobile_search_form').removeClass('win_hide');
+        $('#close_mobile_search').removeClass('win_hide');
+        $('#open_mobile_search').addClass('win_hide');
+    });
+    $('body').on('click', '.close_mobile_search', function () {
+        $('#mobile_search_form').addClass('win_hide');
+        $('#close_mobile_search').addClass('win_hide');
+        $('#open_mobile_search').removeClass('win_hide');
+    });
+</script>
 <!-- -->
 <!-- Bottom bar -->
 <div class="bottom_bar">
     <div class="item " href="">
-        <a class="icon profile" href="tel:{{$cityWithNested->phone}}">
+        <a class="icon profile" href="tel:{{$cityWithNested->getPhoneNumberAttribute()}}">
             <img src="/client/images/icons/ic_phone_black.png" alt=""/>
             <label>Позвонить</label>
         </a>

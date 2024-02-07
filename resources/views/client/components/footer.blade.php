@@ -3,6 +3,7 @@
         <img class="logo_footer" src="/client/images/logo_white.png" title="" alt=""/>
         <div class="social">
             <a rel="nofollow" href="{{$cityWithNested->vk_link}}" target="_blank"><i class="vk"></i></a>
+            <a rel="nofollow" href="{{$cityWithNested->instagram_link}}" target="_blank"><i class="instagram"></i></a>
         </div>
         <ul class="f_cats">
             @foreach($cityWithNested->categories as $category)
@@ -17,10 +18,10 @@
                     {{$point->name}}
                 @endforeach
             </li>
-            <li><a rel="nofollow" href="tel:{{$cityWithNested->phone}}">{{$cityWithNested->phone}}</a></li>
+            <li><a rel="nofollow" href="tel:{{$cityWithNested->getPhoneNumberAttribute()}}">{{$cityWithNested->getPhoneNumberAttribute()}}</a></li>
         </ul>
         <div class="lastline">
-            <p class="">Copyright © 2023 RisRoll. Все права защищены!</p>
+            <p class="">Copyright © {{date("Y")}} RisRoll. Все права защищены!</p>
             <a rel="nofollow" href="{{route('terms', ['city' => session('city')])}}">Пользовательское соглашение</a>
             <a rel="nofollow" href="{{route('privacy', ['city' => session('city')])}}">Политика конфиденциальности</a>
         </div>
