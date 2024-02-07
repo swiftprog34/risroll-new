@@ -66,8 +66,8 @@
 {{--                        </form>--}}
                         <div class="item">
                             <i class="map c1"></i>
-                            <span>{{$cityWithNested->city_name}}, @foreach($cityWithNested->pickupPoints as $point)
-                                    {{$point->name}}
+                            <span><strong>{{$cityWithNested->city_name}}. </strong><br> @foreach($cityWithNested->pickupPoints as $point)
+                                    {{$point->name}}<br>
                                 @endforeach</span>
                         </div>
                     </div>
