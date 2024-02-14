@@ -416,6 +416,22 @@ header .menu .first_row {
     color: #fff !important;
     justify-content: space-between;
 }
+
+header .menu .first_row select {
+    width: auto;
+    height: 28px;
+    background: #f7f7f7;
+    border: 0;
+    border-radius: 8px;
+    -webkit-appearance: none;
+    background-image: url(../images/icons/ic_select.png);
+    background-position: right 10px center;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    padding: 0 32px 0 16px;
+    font-size: 1em;
+    color: #000;
+}
 header .menu .first_row i {
     left: -8px;
     width: 28px;

@@ -42,6 +42,14 @@
             <div class="menu">
                 <div class="first_row">
                     <span class="h3">RisRoll - доставка готовых блюд | Работаем c 11:00 до 23:00</span>
+                    <form action="/" method="get">
+                        <select id="city_chooser" name="locations">
+                            @foreach($cities as $city)
+                                <option value="{{$city->slug}}" @if($city->id === $cityWithNested->id) selected @endif>{{$city->city_name}}</option>
+                            @endforeach
+                        </select>
+                    </form>
+
                     <form action="{{route('search', session('city'))}}" method="post" class="search">
                         @csrf
                         <input type="hidden" name="tmpl" value="">
@@ -82,7 +90,7 @@
                     <div class="menu_item">
                         <img class="preview" src={{$category->image == null ? "/client/images/noimg.png" : $category->image->path}}
                              alt="{{$category->title}}"/>
-                        <a href="{{route('category', ['city' => session('city'), 'id' => $category->uid])}}">{{$category->title}}</a>
+                        <a href="{{route('category', ['subdomain' => session('city'), 'id' => $category->uid])}}">{{$category->title}}</a>
                     </div>
                 @endforeach
                 <div class="menu_item"><a href="#">Еще</a><img class="arrow"
@@ -92,7 +100,7 @@
                         @foreach($cityWithNested->categories as $category)
                             @if($loop->index > 8)
                                 <li>
-                                    <a href="{{route('category', ['city' => session('city'), 'id' => $category->uid])}}">{{$category->title}}</a>
+                                    <a href="{{route('category', ['subdomain' => session('city'), 'id' => $category->uid])}}">{{$category->title}}</a>
                                 </li>
                             @endif
                         @endforeach
@@ -100,7 +108,7 @@
                 </div>
             </div>
             <a rel="nofollow" class="basket"
-               href="{{route('checkout')}}">
+               href="{{route('checkout', session('city'))}}">
                 <span class="s_h2 basketPrice">{{$userCartSum}}₽</span>
                 <div class="icon rounded basket-area"><img src="/client/images/icons/ic_basket-2_white.png" alt=""/>
                 </div>
@@ -110,6 +118,12 @@
 </div>
 <!--Смена стиля при скролле-->
 <script>
+    var select = document.getElementById('city_chooser');
+    select.onchange = function(){
+        this.form.action = 'http://' + select.value + '.risroll.test';
+        this.form.submit();
+    };
+
     $(window).scroll(function () {
         if (window.innerWidth >= 800) {
             var h = 144;
@@ -166,7 +180,7 @@
         <div class="win_categories_grid">
             @foreach($cityWithNested->categories as $category)
                 <a class="item r3"
-                   href="{{route('category', ['city' => session('city'), 'id' => $category->uid])}}">
+                   href="{{route('category', ['subdomain' => session('city'), 'id' => $category->uid])}}">
                     <img class="photo" src={{$category->image == null ? "/client/images/noimg.png" : $category->image->path}}
                          alt="{{$category->title}}"/>
                     <span class="cat">{{$category->title}}</span>
@@ -245,7 +259,7 @@
     <div class="item basket" href="">
         <div><span class="basketPrice">{{$userCartSum}}₽</span></div>
         <a class="basket-area-mobile"
-           href="{{route('checkout')}}"
+           href="{{route('checkout', session('city'))}}"
            onclick="(document.getElementById('page-preloader').style.display='flex')">
             <img src="/client/images/icons/ic_basket_black.png" alt=""/>
             <label>Корзина</label>

@@ -13,7 +13,7 @@
             ->
             <span itemscope itemprop="itemListElement" itemtype="http://schema.org/ListItem">
                 <a itemprop="item" title="{{$currentCategory->title}}"
-                   href="{{route('category', ['city' => session('city'), 'id' => $currentCategory->uid])}}">
+                   href="{{route('category', ['subdomain' => session('city'), 'id' => $currentCategory->uid])}}">
                     <span itemprop="name">{{$currentCategory->title}}</span>
                     <meta itemprop="position" content="2">
                 </a>
@@ -42,7 +42,7 @@
                     <div class="product-item ani st_item" id="item-{{$product->id}}" data-price="{{$product->price}}"
                          data-tags="" data-pos="{{$loop->index}}">
                         <div class="image cover">
-                            <a href="{{route('product', ['city' => session('city'), 'id' => $product->uid])}}">
+                            <a href="{{route('product', ['subdomain' => session('city'), 'id' => $product->uid])}}">
                                 <img class="lazyImg"
                                      src={{$product->image == null ? "/client/images/noimg.png" : $product->image->path}}
                                      data-original="{{$product->image}}"
@@ -136,7 +136,7 @@
         <div class="home-slider3 owl-carousel owl-theme ">
             @foreach($cityWithNested->categories as $category)
                 <a class="slider_item "
-                   href="{{route('category', ['city' => session('city'), 'id' => $category->uid])}}">
+                   href="{{route('category', ['subdomain' => session('city'), 'id' => $category->uid])}}">
                     <img src="{{$category->image == null ? "/client/images/noimg.png" : $category->image->path}}"
                          alt="{{$category->title}}"
                          title="{{$category->title}}"/>
