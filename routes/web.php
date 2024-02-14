@@ -29,7 +29,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-//Route::domain('{subdomain}.risroll.test')->group(function () {
+//Route::domain('{subdomain}.risroll.ru')->group(function () {
 //    Route::middleware('subdomain')->group(function () {
 //        Route::get('/', [SiteController::class, 'index'])->name('index');
 //        Route::get('/product-category/{id}', [SiteController::class, 'category'])->name('category');
@@ -41,7 +41,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::domain('risroll.test')->group(function () {
+Route::domain('risroll.ru')->group(function () {
     Route::prefix('administrator')->group(function() {
         Route::get('/', [AdminMainController::class, 'index'])->name('admin.index');
         Route::resource('city', CityController::class);
@@ -62,7 +62,7 @@ Route::domain('risroll.test')->group(function () {
     });
 });
 
-Route::domain('risroll.test')->group(function () {
+Route::domain('risroll.ru')->group(function () {
    Route::middleware('subdomain')->group(function () {
     Route::middleware('cart')->group(function () {
         Route::get('/', [SiteController::class, 'index'])->name('index');
@@ -84,7 +84,7 @@ Route::domain('risroll.test')->group(function () {
    });
 });
 
-Route::domain('{subdomain}.risroll.test')->group(function () {
+Route::domain('{subdomain}.risroll.ru')->group(function () {
     Route::middleware('subdomain')->group(function () {
         Route::middleware('cart')->group(function () {
             Route::get('/', [SiteController::class, 'index'])->name('index');
