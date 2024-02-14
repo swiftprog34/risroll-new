@@ -8,7 +8,7 @@
         <ul class="f_cats">
             @foreach($cityWithNested->categories as $category)
                 <li>
-                    <a href="{{route('category', ['city' => session('city'), 'id' => $category->uid])}}">{{$category->title}}</a>
+                    <a href="{{route('category', ['subdomain' => session('city'), 'id' => $category->uid])}}">{{$category->title}}</a>
                 </li>
             @endforeach
         </ul>
@@ -22,8 +22,8 @@
         </ul>
         <div class="lastline">
             <p class="">Copyright © {{date("Y")}} RisRoll. Все права защищены!</p>
-            <a rel="nofollow" href="{{route('terms', ['city' => session('city')])}}">Пользовательское соглашение</a>
-            <a rel="nofollow" href="{{route('privacy', ['city' => session('city')])}}">Политика конфиденциальности</a>
+            <a rel="nofollow" href="{{route('terms', session('city'))}}">Пользовательское соглашение</a>
+            <a rel="nofollow" href="{{route('privacy', session('city'))}}">Политика конфиденциальности</a>
         </div>
     </div>
     <div class="bg0"></div>

@@ -29,7 +29,7 @@
     </div>
     @else
     <!---->
-        <x-form action="{{ route('public.order.create') }}" method="post">
+        <x-form action="{{ route('public.order.create', session('city')) }}" method="post">
     <div class="cart ">
         <input type="hidden" id="bonusBal" value="0">
         <input type="hidden" id="bonusCost" name="bonus" value="0">

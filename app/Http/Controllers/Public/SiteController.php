@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
+use App\Mail\SendOrderEmail;
 use App\Models\Cart;
 use App\Models\Category;
 use App\Models\City;
@@ -10,13 +11,13 @@ use App\Models\Order;
 use App\Models\Pickup;
 use App\Models\Product;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Mail;
 class SiteController extends Controller
 {
     public function index(Request $request)
     {
-
         $subdomain = $request->route()->parameter('subdomain') ?: 'samara';
+        $cities = City::all();
         $cityWithNested = City::where('slug', $subdomain)->with(['categories' => function($categories) {
             $categories->orderBy('sort_order');
         }])->with(['pickupPoints' => function($points) {
@@ -34,20 +35,22 @@ class SiteController extends Controller
 
         $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
         $header_title = "RisRoll";
-        return view('client.index', compact('categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
+        return view('client.index', compact('cities','categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
     }
 
-    public function category(Request $request, $uid)
+    public function category(Request $request)
     {
+        $id = $request->route()->parameter('id');
         $subdomain = $request->route()->parameter('subdomain') ?: 'samara';
-
+        $cities = City::all();
         $cityWithNested = City::where('slug', $subdomain)->with(['categories' => function($categories) {
             $categories->orderBy('sort_order');
         }])->firstOrFail();
 
-        $currentCategory = Category::where(["uid" => $uid])->with(['products' => function($products){
+        $currentCategory = Category::where(["uid" => $id])->with(['products' => function($products){
             $products->orderBy('sort_order');
         }])->firstOrFail();
+
         $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
 
         $sid = session()->getId();
@@ -58,13 +61,14 @@ class SiteController extends Controller
 
         $header_title = $currentCategory->title;
 
-        return view('client.category', compact('cityWithNested', 'currentCategory', 'categoriesMainDesktop', 'userCartSum', 'userCart', 'header_title'));
+        return view('client.category', compact('cities','cityWithNested', 'currentCategory', 'categoriesMainDesktop', 'userCartSum', 'userCart', 'header_title'));
     }
 
-    public function product(Request $request, $uid)
+    public function product(Request $request)
     {
+        $uid = $request->route()->parameter('id');
         $subdomain = $request->route()->parameter('subdomain') ?: 'samara';
-
+        $cities = City::all();
         $cityWithNested = City::where('slug', $subdomain)->with(['categories' => function($categories) {
             $categories->orderBy('sort_order');
         }])->firstOrFail();
@@ -80,7 +84,7 @@ class SiteController extends Controller
 
         $header_title = $product->title;
 
-        return view('client.product', compact('cityWithNested', 'categoriesMainDesktop', 'product', 'userCartSum', 'userCart', 'header_title'));
+        return view('client.product', compact('cities','cityWithNested', 'categoriesMainDesktop', 'product', 'userCartSum', 'userCart', 'header_title'));
     }
 
     public function page()
@@ -91,6 +95,7 @@ class SiteController extends Controller
     public function checkout(Request $request)
     {
         $subdomain = $request->route()->parameter('subdomain') ?: 'samara';
+        $cities = City::all();
         $cityWithNested = City::where('slug', $subdomain)->with(['categories' => function($categories) {
             $categories->orderBy('sort_order');
         }])->firstOrFail();
@@ -104,7 +109,7 @@ class SiteController extends Controller
 
         $header_title = "Корзина";
 
-        return view('client.checkout', compact('categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
+        return view('client.checkout', compact('cities','categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
     }
 
     public function chooseCity($choosedCity) {
@@ -114,6 +119,7 @@ class SiteController extends Controller
 
     public function terms(Request $request) {
         $subdomain = $request->route()->parameter('subdomain') ?: 'samara';
+        $cities = City::all();
         $cityWithNested = City::where('slug', $subdomain)->with(['categories' => function($categories) {
             $categories->orderBy('sort_order');
         }])->with(['pickupPoints' => function($points) {
@@ -131,11 +137,12 @@ class SiteController extends Controller
         $header_title = "Пользовательское соглашение";
 
         $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
-        return view('client.terms', compact('categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
+        return view('client.terms', compact('cities','categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
     }
 
     public function privacy(Request $request) {
         $subdomain = $request->route()->parameter('subdomain') ?: 'samara';
+        $cities = City::all();
         $cityWithNested = City::where('slug', $subdomain)->with(['categories' => function($categories) {
             $categories->orderBy('sort_order');
         }])->with(['pickupPoints' => function($points) {
@@ -153,11 +160,12 @@ class SiteController extends Controller
 
         $header_title = "Политика конфиденциальности";
         $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
-        return view('client.privacy', compact('categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
+        return view('client.privacy', compact('cities','categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
     }
 
     public function promotions(Request $request) {
         $subdomain = $request->route()->parameter('subdomain') ?: 'samara';
+        $cities = City::all();
         $cityWithNested = City::where('slug', $subdomain)->with(['categories' => function($categories) {
             $categories->orderBy('sort_order');
         }])->with(['pickupPoints' => function($points) {
@@ -175,11 +183,12 @@ class SiteController extends Controller
 
 
         $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
-        return view('client.promotions', compact('categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
+        return view('client.promotions', compact('cities','categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
     }
 
     public function contacts(Request $request) {
         $subdomain = $request->route()->parameter('subdomain') ?: 'samara';
+        $cities = City::all();
         $cityWithNested = City::where('slug', $subdomain)->with(['categories' => function($categories) {
             $categories->orderBy('sort_order');
         }])->with(['pickupPoints' => function($points) {
@@ -197,11 +206,12 @@ class SiteController extends Controller
         $header_title = "Контакты";
 
         $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
-        return view('client.contacts', compact('categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
+        return view('client.contacts', compact('cities','categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
     }
 
     public function delivery(Request $request) {
         $subdomain = $request->route()->parameter('subdomain') ?: 'samara';
+        $cities = City::all();
         $cityWithNested = City::where('slug', $subdomain)->with(['categories' => function($categories) {
             $categories->orderBy('sort_order');
         }])->with(['pickupPoints' => function($points) {
@@ -219,11 +229,12 @@ class SiteController extends Controller
         $header_title = "Доставка";
 
         $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
-        return view('client.delivery', compact('categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
+        return view('client.delivery', compact('cities','categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
     }
 
     public function search(Request $request) {
         $subdomain = $request->route()->parameter('subdomain') ?: 'samara';
+        $cities = City::all();
         $cityWithNested = City::where('slug', $subdomain)->with(['categories' => function($categories) {
             $categories->orderBy('sort_order');
         }])->with(['pickupPoints' => function($points) {
@@ -243,31 +254,52 @@ class SiteController extends Controller
         $header_title = "Поиск";
 
         $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
-        return view('client.search', compact('categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
+        return view('client.search', compact('cities','categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
     }
 
     public function createOrder(Request $request) {
-        dd($request);
+        $subdomain = $request->route()->parameter('subdomain') ?: 'samara';
+        $cities = City::all();
+        $cityWithNested = City::where('slug', $subdomain)->with(['categories' => function($categories) {
+            $categories->orderBy('sort_order');
+        }])->with(['pickupPoints' => function($points) {
+            $points->orderBy('name');
+        }])->with(['promotions' => function($promotions) {
+            $promotions->orderBy('sort_order');
+        }])->with(['products' => function($products) {
+            $products->where('title', 'like', '%' . request('tmpl') . '%');
+        }])->firstOrFail();
+        $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
+        $sid = session()->getId();
+        $userCart = Cart::where('session_id', $sid)->with('products')->first();
+        $userCartSum = $userCart !== null ? $userCart->products->sum(function ($product) {
+            return $product->pivot->price * $product->pivot->quantity;
+        }) : 0;
+
+        $order = new Order();
 
         if($request->has('locations')) {
             $location =  Pickup::findOrFail($request->locations);
         } else {
             $location = $request->locations;
         }
-        $persons = $request->persons;
-        $street = $request->street;
-        $home = $request->home;
-        $apart = $request->apart;
-        $entrance = $request->entrance;
-        $floor = $request->floor;
-        $receiving_type = $request->receiving_type;
-        $toDate = $request->odated;
-        $datetime = $request->datetime;
-        $toTime = $request->otimed;
-        $payType = $request->pay;
-        $userName = $request->uname;
-        $phone = $request->phone;
-        $comment = $request->comment;
+        $order->user_id = 0;
+        $order->persons = $request->persons;
+        $order->street = $request->street;
+        $order->home = $request->home;
+        $order->apart = $request->apart;
+        $order->entrance = $request->entrance;
+        $order->floor = $request->floor;
+        $order->receiving_type = $request->receiving_type;
+        $order->to_date = $request->odated;
+        $order->date_time = $request->datetime;
+        $order->to_time = $request->otimed;
+        $order->pay_type = $request->pay;
+        $order->username = $request->uname;
+        $order->phone = $request->phone;
+        $order->comment = $request->comment;
+
+        $order->save();
 
         $sid = session()->getId();
         $userCart = Cart::where('session_id', $sid)->with('products')->first();
@@ -275,33 +307,31 @@ class SiteController extends Controller
             return $product->pivot->price * $product->pivot->quantity;
         }) : 0;
 
+        $total_sum = 0;
         foreach ($userCart->products as $cartProduct) {
             $sum = $cartProduct->pivot->quantity * $cartProduct->pivot->price;
+            $total_sum = $total_sum + $sum;
             $quantity = $cartProduct->pivot->quantity;
             $title = $cartProduct->title;
-            echo "Товар $title в количестве $quantity на сумму $sum";
-            echo ' <br/>';
+            $order->products()->attach($order->id,
+                [
+                    'product_id' => $cartProduct->id,
+                    'price' => $cartProduct->pivot->price,
+                    'quantity' => $cartProduct->pivot->quantity
+                ]
+            );
         }
 
-        if($location !== null) {
-            echo "Cамовывоз $location->name";
-        }
-        echo '<br/>';
-        echo "Количество персон $persons";
-        echo ' <br/>';
-        echo "улица $street, дом $home, квартира $apart, подьезд $entrance, этаж, $floor";
-        echo ' <br/>';
-        echo "способ получения заказа $receiving_type";
-        echo ' <br/>';
-        echo "если нужно, $datetime, на дату/время $toDate / $toTime";
-        echo ' <br/>';
-        echo "с типом оплаты $payType";
-        echo ' <br/>';
-        echo "пользователь $userName, телефон $phone";
-        echo ' <br/>';
-        echo "комментарий к заказу $comment";
+        $order->total_sum_without_delivery = $total_sum;
+        $order->total_sum = $total_sum + $request->delivery_price;
+        $order->delivery_price = $request->delivery_price;
+        $order->location = $location;
 
-        $userCart = Cart::where('session_id', $sid)->with('products')->first();
-        $userCart->delete();
+        $order->save();
+
+        Mail::send(new SendOrderEmail($order, $cityWithNested->email, ''));
+//        $userCart = Cart::where('session_id', $sid)->with('products')->first();
+//        $userCart->delete();
+        return view('client.ordered', compact('cities','cityWithNested', 'categoriesMainDesktop', 'userCartSum'));
     }
 }

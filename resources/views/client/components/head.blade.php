@@ -8,7 +8,7 @@
     <meta name="description"
           content="Risroll - Заказать доставку суши сетов и роллов в городе {{$cityWithNested->city_name}} по доступным ценам!">
     <meta name="keywords" content=" ">
-    <link rel="canonical" href="{{route('index')}}">
+    <link rel="canonical" href="{{route('index', session('city'))}}">
     <link rel="apple-touch-icon" sizes="57x57" href="/client/images/favicon/apple-icon-57x57.png@v=2">
     <link rel="apple-touch-icon" sizes="60x60" href="/client/images/favicon/apple-icon-60x60.png@v=2">
     <link rel="apple-touch-icon" sizes="72x72" href="/client/images/favicon/apple-icon-72x72.png@v=2">

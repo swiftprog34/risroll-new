@@ -6,14 +6,14 @@
 
         <div class="breadcrumbs" itemscope itemtype="http://schema.org/BreadcrumbList">
             <span itemscope itemprop="itemListElement" itemtype="http://schema.org/ListItem">
-                <a itemprop="item" title="Главная" href="{{route('index', ['city' => session('city')])}}">
+                <a itemprop="item" title="Главная" href="{{route('index', ['subdomain' => session('city')])}}">
                     <span itemprop="name">Главная</span>
                     <meta itemprop="position" content="1">
                 </a>
             </span>
             ->
             <span itemscope itemprop="itemListElement" itemtype="http://schema.org/ListItem">
-                <a itemprop="item" title="" href="{{route('terms', ['city' => session('city')])}}">
+                <a itemprop="item" title="" href="{{route('terms', ['subdomain' => session('city')])}}">
                     <span itemprop="name">Пользовательское соглашение</span>
                     <meta itemprop="position" content="2">
                 </a>
