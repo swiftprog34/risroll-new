@@ -66,21 +66,21 @@
 
         });
     </script>
-    <!-- Плавный переход по якорям -->
-    <script>
-        $(document).ready(function () {
-            $("a[href*=#]").on("click", function (e) {
-                var anchor = $(this);
-                var name = anchor.attr("href").replace(new RegExp("#", "gi"), "");
-                var fixed_offset = 72;
-                $('html, body').stop().animate({
-                    scrollTop: $("a[name=" + name + "]").offset().top - fixed_offset
-                }, 700);
-                e.preventDefault();
-                return false;
-            });
-        });
-    </script>
+{{--    <!-- Плавный переход по якорям -->--}}
+{{--    <script>--}}
+{{--        $(document).ready(function () {--}}
+{{--            $("a[href*=#]").on("click", function (e) {--}}
+{{--                var anchor = $(this);--}}
+{{--                var name = anchor.attr("href").replace(new RegExp("#", "gi"), "");--}}
+{{--                var fixed_offset = 72;--}}
+{{--                $('html, body').stop().animate({--}}
+{{--                    scrollTop: $("a[name=" + name + "]").offset().top - fixed_offset--}}
+{{--                }, 700);--}}
+{{--                e.preventDefault();--}}
+{{--                return false;--}}
+{{--            });--}}
+{{--        });--}}
+{{--    </script>--}}
     <!---->
     <link href="/client/lib/animate/animate.css" type="text/css" rel="stylesheet">
     <script src="/client/lib/animate/wow.min.js"></script>

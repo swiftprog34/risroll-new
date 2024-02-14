@@ -33,6 +33,7 @@ a {
         font-weight: 700;
         text-align: center;
         margin-bottom: 27px;
+        scroll-margin-top: 150px;
     }
 
     .s_h3 {
@@ -57,9 +58,33 @@ main {
 
 @media screen and (max-width: 767px) {
     main {
-        top: 0px;
+        /*top: 0px;*/
+        top: 65px;
         margin-top: 12px !important;
     }
+
+    .slider-categories-item {
+        border-radius: 8px;
+        padding: 2px 5px;
+        background: #2AA021;
+        font-weight: 500;
+        color: #fff;
+    }
+
+    .home-slider-categories-wrapper .home-slider-categories {
+        padding-top: 18px;
+    }
+
+    .home-slider-categories-wrapper {
+        position: sticky;
+        top: 75px;
+        z-index: 100;
+        height: 60px;
+        background: #fff;
+        padding-left: 10px;
+        border-bottom: 1px solid #bbc9bd;
+    }
+
 }
 
 

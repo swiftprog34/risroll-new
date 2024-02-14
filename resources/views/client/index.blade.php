@@ -3,6 +3,13 @@
 <div class="theme">
     @include('client.components.header')
     <main>
+        <div class="slider03 home-slider-categories-wrapper">
+            <div class="home-slider-categories owl-carousel owl-theme ">
+                @foreach($cityWithNested->categories as $category)
+                    <div class=""><a href="#category-{{$category->id}}" class="slider-categories-item">{{$category->title}}</a></h4></div>
+                @endforeach
+            </div>
+        </div>
         <div class="delivery_info_grid">
             <a rel="nofollow" class="item"
                href="{{$cityWithNested->gis_link}}">
@@ -37,6 +44,20 @@
         <link rel="stylesheet" href="/client/lib/carousel/carousel.css"/>
         <script src="/client/lib/carousel/owl.carousel_v2.min.js"></script>
         <script>
+
+            const smoothLinks = document.querySelectorAll('a[href^="#"]');
+            for (let smoothLink of smoothLinks) {
+                smoothLink.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const id = smoothLink.getAttribute('href');
+
+                    document.querySelector(id).scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                });
+            }
+
             $(document).ready(function () {
 
                 $(".home-slider").owlCarousel({
@@ -91,11 +112,25 @@
             </div>
         </div>
         <br><br>
-        <a name="cats"></a>
+
+        <!-- Owl Carousel -->
+        <link rel="stylesheet" href="/client/lib/carousel/carousel.css"/>
+        <script src="/client/lib/carousel/owl.carousel_v2.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('.home-slider-categories').owlCarousel({
+                    margin:10,
+                    loop:false,
+                    autoWidth:true,
+                    dots:false,
+                    items:4
+                })
+            });
+        </script>
         <section class="">
             <div class="container">
                 @foreach($cityWithNested->categories as $category)
-                    <h2>{{ $category->title }}</h2>
+                    <h2  id="category-{{$category->id}}">{{ $category->title }}</h2>
                     {{--                    <a class="category"--}}
                     {{--                       href="{{route('category', ['city' => session('city'), 'id' => $category->uid])}}"--}}
                     {{--                       onclick="(document.getElementById('page-preloader').style.display='flex')">--}}
