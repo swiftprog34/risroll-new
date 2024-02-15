@@ -84,6 +84,7 @@
                             autoplay: true,
                             autoplayTimeout: 5000,
                             autoplayHoverPause: true,
+                            dots:false,
 
                         },
                         767: {
@@ -94,6 +95,7 @@
                             autoplay: true,
                             autoplayTimeout: 5000,
                             autoplayHoverPause: true,
+                            dots:false,
 
                         },
                         0: {
@@ -102,7 +104,7 @@
                             loop: false,
                             nav: false,
                             autoplay: true,
-                            dots: true,
+                            dots:false,
                         }
                     }
                 });
