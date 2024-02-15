@@ -49,7 +49,7 @@
                         <p class="s_h3">{{$product->description}}<br></p>
                     </div>
                     <div class="product_row item_weight">
-                        <span>xxxxx8шт.   Вес: xxxxxx320г.</span>
+                        <span>Вес: 320г.</span>
                         <input type='hidden' id='price-{{$product->id}}' value='{{$product->price}}'
                                data-external_id='{{$product->uid}}'>
                     </div>
