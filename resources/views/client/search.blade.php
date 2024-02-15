@@ -47,7 +47,7 @@
                                     </div>
                                     <div class="cost-line">
                                         <p class="cost">
-                                            {{$product->price}}₽
+                                            @price($product->price)₽
                                         </p>
                                         @if($userCart != null)
                                             @if($userCart->products->contains('id', $product->id))
