@@ -111,7 +111,9 @@
         <meta itemprop="priceCurrency" content="RUB">
     </span>
 </span></section>
+
     </main>
+    @include('client.components.footer')
 </div>
 <script src="/client/lib/animate_add.js" async></script>
 @include('client.components.totop')

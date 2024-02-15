@@ -120,7 +120,7 @@
 <script>
     var select = document.getElementById('city_chooser');
     select.onchange = function(){
-        this.form.action = 'http://' + select.value + '.risroll.ru';
+        this.form.action = 'http://' + select.value + '.risroll.test';
         this.form.submit();
     };
 

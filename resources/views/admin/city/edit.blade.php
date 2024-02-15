@@ -23,6 +23,10 @@
         <div class="mb-3">
             <x-form-textarea name="promotions_page_info" label="Информация на странице 'Акции' (Необязательно)" />
         </div>
+        <div class="mb-3">
+            <input type="hidden" name="can_make_orders" value="0" />
+            <x-form-checkbox name="can_make_orders" label="Разрешено формировать заказы" />
+        </div>
         @endbind
         <div class="mb-3">
             <button class="btn btn-success">Обновить</button>
