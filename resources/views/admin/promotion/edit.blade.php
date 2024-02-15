@@ -5,6 +5,9 @@
         <div class="mb-3">
             <x-form-input type="checkbox" name="is_active" :checked="$promotion->is_active" label="Акция активна после публикации?" />
         </div>
+        <div class="mb-3">
+            <x-form-input name="link" label='Ссылка на внешний ресурс вида "https://ссылка"' />
+        </div>
         @endbind
         <div class="mb-3">
             <button class="btn btn-success">Обновить</button>
