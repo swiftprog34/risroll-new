@@ -17,7 +17,11 @@
                 @foreach($city->promotions as $promotion)
                     <tr data-id="{{$promotion->id}}">
                         <td>{{ $promotion->name }}</td>
-                        <td>{{ $promotion->is_active }}</td>
+                        <td>
+                            @bind($promotion)
+                            <x-form-checkbox name="is_active" disabled/>
+                            @endbind
+                        </td>
                         <td><a href="{{ route('promotion.edit', [ $promotion->id ]) }}">Редактировать</a></td>
                         <td><x-form method="delete" :action="route('promotion.destroy', [ $promotion->id ])">
                             <button class="btn btn-danger">Удалить акцию</button>

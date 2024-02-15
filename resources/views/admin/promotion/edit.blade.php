@@ -3,7 +3,8 @@
         @bind($promotion)
         @include('admin.promotion.base_form')
         <div class="mb-3">
-            <x-form-input type="checkbox" name="is_active" :checked="$promotion->is_active" label="Акция активна после публикации?" />
+            <input type="hidden" name="is_active" value="0" />
+            <x-form-checkbox name="is_active" label="Акция активна после публикации?" />
         </div>
         <div class="mb-3">
             <x-form-input name="link" label='Ссылка на внешний ресурс вида "https://ссылка"' />

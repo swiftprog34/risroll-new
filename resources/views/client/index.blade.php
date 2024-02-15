@@ -27,6 +27,7 @@
                 <img src="/client/images/icons/ic_link.png">
             </a>
         </div>
+        @if($cityWithNested->promotions->count() > 0)
         <div class="slider02">
             <div class="home-slider owl-carousel owl-theme ">
                 @foreach($cityWithNested->promotions as $promotion)
@@ -71,7 +72,7 @@
                     margin: 40,
                     smartSpeed: 400,
                     navSpeed: 400,
-
+                    dots:false,
                     navText: ['<span class="arrow-prev"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"> <circle cx="17" cy="17" r="17" fill="#373535"></circle> <path d="M14.759 9.8418L20.9409 16.9997L14.759 24.1576" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>', '<span class="arrow-next"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"> <circle cx="17" cy="17" r="17" fill="#373535"></circle> <path d="M14.759 9.8418L20.9409 16.9997L14.759 24.1576" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path> </svg></span>'],
 
                     responsive: {
@@ -107,6 +108,7 @@
                 });
             });
         </script>
+        @endif
         <div class="container">
             <div class="heading mobile-none000">
                 <div class="line"><img src="/client/images/de-line-1.png" alt=""/></div>

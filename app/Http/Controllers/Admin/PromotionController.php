@@ -64,12 +64,6 @@ class PromotionController extends Controller
             $data['expiration_date'] = $datetime;
         }
 
-        $is_active = "0";
-        if($request->has('is_active')) {
-            $is_active = "1";
-        }
-        $data['is_active'] = $is_active;
-
         $promotion->update($data);
         return redirect()->route('promotion.index')->with('alert', trans('alerts.promotions.edited'));
     }
