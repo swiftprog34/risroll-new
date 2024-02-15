@@ -182,7 +182,7 @@
     flex-direction: column;
     height: 56px;
     margin-top: 10px !important;
-    margin-bottom: 15px !important;
+    margin-bottom: 17px !important;
 }
 .products .product-item .oldcost {
     position: ;
@@ -424,7 +424,7 @@
 
     .products .product-item .cost-line {
         margin: 0;
-        margin-bottom: 5px !important;
+        margin-bottom: 0px !important;
     }
     .products .product-item .cost {
         font-size: 16px;
@@ -578,7 +578,8 @@
     }
 
     .products .product-item .button-passive .addToCart {
-        width: 108px;
+        /*width: 108px;*/
+        width: 100%;
         height: 32px;
         color: #fff;
     }
@@ -597,7 +598,8 @@
 
     .products .product-item .button-active .kolvo {
         top: 1px;
-        width: 44px;
+        /*width: 44px;*/
+        width: 80px;
         font-size: 16px;
     }
 

@@ -645,6 +645,7 @@
 .button-active {
     display: flex;
     align-items: center;
+    width: 100%;
 }
 
 
@@ -655,7 +656,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 120px;
+    /*width: 120px;*/
+    width: 100%;
     height: 40px;
     overflow: hidden;
     border: 0;
@@ -683,7 +685,7 @@
     height: 40px;
     overflow: hidden;
     border: 0;
-    border-radius: 12px;
+    border-radius: 6px;
     background: #2AA021;
     padding: 0;
     font-size: 1.5em;
@@ -712,7 +714,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 48px;
+    /*width: 48px;*/
+    width: 150px;
     text-align: center;
     font-size: 1.2em;
     font-weight: 500;
