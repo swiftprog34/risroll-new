@@ -216,7 +216,8 @@
         display: grid;
         /*grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));*/
         grid-template-columns: repeat(auto-fill, minmax(207px, 1fr));
-        grid-column-gap: 1em;
+        /*grid-column-gap: 1em;*/
+        grid-column-gap: 0.7em;
         grid-row-gap: 3em;
         margin-bottom: 32px;
         padding: 0;
