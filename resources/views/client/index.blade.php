@@ -119,11 +119,11 @@
         <script>
             $(document).ready(function () {
                 $('.home-slider-categories').owlCarousel({
-                    margin:10,
-                    loop:false,
+                    margin:5,
+                    loop:true,
                     autoWidth:true,
                     dots:false,
-                    items:4
+                    items:6
                 })
             });
         </script>

@@ -120,7 +120,7 @@
             });
         </script>
         <!---->
-        <div class="container">
+        <div class="container custom-cart-container">
             <h2>Вы добавили</h2>
             <div class="cart_block">
                 <div class="every" id="cart-list">
@@ -362,12 +362,21 @@
                     <p class="promoCost hide">Промокод: <span>0₽</span></p>
                     <!-- Updated 10.12.2022 - end -->
                 </div>
+                @if($cityWithNested->can_make_orders == 1)
                 <div>
                     <button class="order">
                         <div class="buttonText">Заказать: <span>{{$userCartSum}}</span> ₽</div>
                         <img class="loaderCartImg hide" src="/client/images/load_spinner_white.gif">
                     </button>
                 </div>
+                @else
+                <div>
+                    <div class="order-disabled">
+                        <div class="buttonText">Заказ не возможен по техническим причинам</div>
+                        <img class="loaderCartImg hide" src="/client/images/load_spinner_white.gif">
+                    </div>
+                </div>
+                @endif
                 <div id="cartMsg" class="text-error"></div>
             </div>
         </div>
@@ -375,7 +384,32 @@
         </x-form>
     @endif
 </div>
+@if($cityWithNested->can_make_orders == 0)
+    <div id="cant_make_orders_notification">
+        <p>В данный момент, по техническим причинам, заказы оформлять нельзя :-(.</p>
+        <button class="button cant_make_orders_accept">Понятно</button>
+    </div>
+@endif
 <script>
+    function checkCookiesCantMakeOrder() {
+        let cookieCant_make_ordersDate = localStorage.getItem('cookieCant_make_ordersDate');
+        let cookieNotification = document.getElementById('cant_make_orders_notification');
+        let cookieBtn = cookieNotification.querySelector('.cant_make_orders_accept');
+
+        // Если записи про кукисы нет или она просрочена на 1 год, то показываем информацию про кукисы
+        if (!cookieCant_make_ordersDate || (+cookieCant_make_ordersDate + 8640000) < Date.now()) {
+            cookieNotification.classList.add('show');
+        }
+
+        // При клике на кнопку, в локальное хранилище записывается текущая дата в системе UNIX
+        cookieBtn.addEventListener('click', function () {
+            localStorage.setItem('cookieCant_make_ordersDate', Date.now());
+            cookieNotification.classList.remove('show');
+        })
+    }
+
+    checkCookiesCantMakeOrder()
+
     var dates = [new Date("2020-12-25"), new Date("2020-12-31"), new Date("2020-12-26"), new Date("2021-01-01"), new Date("2021-01-02"), new Date("2021-01-03"), new Date("2020-12-29"), new Date("2020-12-30"), new Date("2021-03-05"), new Date("2021-03-04"), new Date("2021-05-22"),];
 
     function offDays(date) {

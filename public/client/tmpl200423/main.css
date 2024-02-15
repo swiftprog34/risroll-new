@@ -59,7 +59,6 @@ element.style {
     color: #000;
 }
 
-
 /*
 #c20609
 #c20609
@@ -494,10 +493,10 @@ i.dark-grey {
     border-radius: 4px;
     box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.4);
 }
+
 #cookie_notification.show{
     display: grid;
 }
-
 
 #cookie_notification p {
     margin: 0;
@@ -506,12 +505,56 @@ i.dark-grey {
     color: $color_text;
 }
 
-
 .cookie_accept{
     margin: 0 0 0 25px;
 }
 
 #cookie_notification .button {
+    background: #2AA021;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 24px;
+    font-weight: 700;
+    color: #fff;
+}
+
+#cant_make_orders_notification {
+    position: fixed;
+    z-index: 999999999999;
+    top: 40%;
+    left: 50%;
+    /* bottom: 15px; */
+    display: none;
+    grid-template-columns: 1fr auto;
+    grid-column-gap: 16px;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    max-width: 30%;
+    transform: translateX(-50%);
+    height: 160px;
+    padding: 25px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.4);
+}
+
+#cant_make_orders_notification.show{
+    display: block;
+}
+
+#cant_make_orders_notification p {
+    margin: 0;
+    font-size: 19px;
+    text-align: left;
+    color: #000;
+}
+
+.cant_make_orders_accept {
+    margin: 25px 0 0 0px;
+}
+
+#cant_make_orders_notification .button {
     background: #2AA021;
     border: none;
     border-radius: 8px;
@@ -532,6 +575,12 @@ i.dark-grey {
     }
     .cookie_accept{
         margin: 10px 0 0 0;
+    }
+
+    #cant_make_orders_notification {
+        width: 80%;
+        max-width: 90%;
+        height: 140px;
     }
 
 }
@@ -1056,6 +1105,12 @@ a.readmore-js-toggle {
 
 }
 
+@media screen and (max-width: 767px) {
+    main {
+        top: 65px !important;
+        margin-top: 12px !important;
+    }
+}
 
 
 
