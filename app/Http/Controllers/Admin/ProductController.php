@@ -20,7 +20,8 @@ class ProductController extends Controller
         $data = $request->all();
         $data['slug'] = Str::slug($data["title"], '-', 'ru');
         $product->update($data);
-        return redirect()->route('category.index')->with('alert', trans('alerts.products.edited'));
+        $city = $product->city;
+        return redirect()->back()->with('alert', trans('alerts.products.edited'));
     }
 
     public function updateOrder(Request $request){

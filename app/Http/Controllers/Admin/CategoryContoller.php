@@ -29,7 +29,7 @@ class CategoryContoller extends Controller
         $data = $request->all();
         $data['slug'] = Str::slug($data["title"], '-', 'ru');
         $category->update($data);
-        return redirect()->route('category.edit', [$category->id])->with('alert', trans('alerts.categories.edited'));
+        return redirect()->back()->with('alert', trans('alerts.categories.edited'));
     }
 
     public function updateOrder(Request $request){

@@ -78,7 +78,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Товар</th>
                                 <th scope="col">Артикул</th>
-                                <th scope="col">Цена в копейках</th>
+                                <th scope="col">Цена</th>
                                 <th scope="col">Видимость на сайте</th>
                             </tr>
                             </thead>

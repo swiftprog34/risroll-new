@@ -8,6 +8,9 @@
             <x-form-textarea name="description" label="Описание" />
         </div>
         <div class="mb-3">
+            <x-form-input type="number" name="weight" label="Вес в граммах" />
+        </div>
+        <div class="mb-3">
             <x-form-input type="number" name="price" label="Цена (рекомендуется обновлять из Мобидел!)" />
         </div>
         <div class="mb-3">

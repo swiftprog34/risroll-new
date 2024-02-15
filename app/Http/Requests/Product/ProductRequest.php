@@ -27,6 +27,7 @@ class ProductRequest extends FormRequest
             'description' => ['required', 'string'],
             'price' => ['required', 'string'],
             'is_active' => ['required', 'integer'],
+            'weight' => ['required', 'integer'],
         ];
     }
 
@@ -37,7 +38,8 @@ class ProductRequest extends FormRequest
             'title'             => 'Заголовок',
             'description'       => 'Описание',
             'price'             => 'Цена',
-            'is_active'         => 'Товар доступен на сайте'
+            'is_active'         => 'доступность тоара на сайте',
+            'weight'            => 'Вес'
         ];
     }
 }
