@@ -1522,7 +1522,8 @@ input.error::placeholder {
 @media screen and (max-width: 1480px) {
 
   .slider02 {
-    min-height: 360px;
+    /*min-height: 360px;*/
+      min-height: 165px;
   }
 
   .slider_recommend {
