@@ -5,7 +5,7 @@
         <div id="choose_city">
             <p>В каком вы городе?</p>
             <form action="/" method="get">
-                <select id="city_chooser_popup" name="locations">
+                <select id="city_chooser_popup" name="location">
                     @foreach($cities as $city)
                         <option value="{{$city->slug}}" @if($city->id === $cityWithNested->id) selected @endif>{{$city->city_name}}</option>
                     @endforeach
@@ -15,14 +15,14 @@
             </form>
         </div>
     </div>
-@endif
+
 <!--googleon: index-->
 <!--/noindex-->
 <script>
-    var select = document.getElementById('city_chooser_popup');
+    var selectPopup = document.getElementById('city_chooser_popup');
     var chooseButton = document.getElementById('city_choose_button');
     chooseButton.onclick = function(){
-        this.form.action = 'http://' + select.value + '.risroll.ru';
+        this.form.action = 'http://' + selectPopup.value + '.risroll.ru';
         this.form.submit();
     };
 
@@ -40,3 +40,4 @@
         }
     });
 </script>
+@endif
