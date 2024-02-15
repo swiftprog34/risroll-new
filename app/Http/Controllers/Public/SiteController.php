@@ -11,11 +11,13 @@ use App\Models\Order;
 use App\Models\Pickup;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Mail;
 class SiteController extends Controller
 {
     public function index(Request $request)
     {
+
         $subdomain = $request->route()->parameter('subdomain') ?: 'samara';
         $cities = City::all();
         $cityWithNested = City::where('slug', $subdomain)->with(['categories' => function($categories) {
@@ -33,9 +35,14 @@ class SiteController extends Controller
             return $product->pivot->price * $product->pivot->quantity;
         }) : 0;
 
+        $now = Carbon::now('GMT+'.$cityWithNested->utc_time);
+        $time_from = Carbon::createFromTimeString($cityWithNested->time_from, 'GMT+'.$cityWithNested->utc_time);
+        $time_till = Carbon::createFromTimeString($cityWithNested->time_till, 'GMT+'.$cityWithNested->utc_time);
+        $can_receive_orders = $now->between($time_from, $time_till);
+
         $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
         $header_title = "RisRoll";
-        return view('client.index', compact('cities','categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
+        return view('client.index', compact('can_receive_orders', 'cities','categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
     }
 
     public function category(Request $request)
@@ -59,9 +66,14 @@ class SiteController extends Controller
             return $product->pivot->price * $product->pivot->quantity;
         }) : 0;
 
+        $now = Carbon::now('GMT+'.$cityWithNested->utc_time);
+        $time_from = Carbon::createFromTimeString($cityWithNested->time_from, 'GMT+'.$cityWithNested->utc_time);
+        $time_till = Carbon::createFromTimeString($cityWithNested->time_till, 'GMT+'.$cityWithNested->utc_time);
+        $can_receive_orders = $now->between($time_from, $time_till);
+
         $header_title = $currentCategory->title;
 
-        return view('client.category', compact('cities','cityWithNested', 'currentCategory', 'categoriesMainDesktop', 'userCartSum', 'userCart', 'header_title'));
+        return view('client.category', compact('can_receive_orders', 'cities','cityWithNested', 'currentCategory', 'categoriesMainDesktop', 'userCartSum', 'userCart', 'header_title'));
     }
 
     public function product(Request $request)
@@ -82,9 +94,14 @@ class SiteController extends Controller
             return $product->pivot->price * $product->pivot->quantity;
         }) : 0 ;
 
+        $now = Carbon::now('GMT+'.$cityWithNested->utc_time);
+        $time_from = Carbon::createFromTimeString($cityWithNested->time_from, 'GMT+'.$cityWithNested->utc_time);
+        $time_till = Carbon::createFromTimeString($cityWithNested->time_till, 'GMT+'.$cityWithNested->utc_time);
+        $can_receive_orders = $now->between($time_from, $time_till);
+
         $header_title = $product->title;
 
-        return view('client.product', compact('cities','cityWithNested', 'categoriesMainDesktop', 'product', 'userCartSum', 'userCart', 'header_title'));
+        return view('client.product', compact('can_receive_orders', 'cities','cityWithNested', 'categoriesMainDesktop', 'product', 'userCartSum', 'userCart', 'header_title'));
     }
 
     public function page()
@@ -107,9 +124,14 @@ class SiteController extends Controller
             return $product->pivot->price * $product->pivot->quantity;
         }) : 0;
 
+        $now = Carbon::now('GMT+'.$cityWithNested->utc_time);
+        $time_from = Carbon::createFromTimeString($cityWithNested->time_from, 'GMT+'.$cityWithNested->utc_time);
+        $time_till = Carbon::createFromTimeString($cityWithNested->time_till, 'GMT+'.$cityWithNested->utc_time);
+        $can_receive_orders = $now->between($time_from, $time_till);
+
         $header_title = "Корзина";
 
-        return view('client.checkout', compact('cities','categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
+        return view('client.checkout', compact('can_receive_orders', 'cities','categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
     }
 
     public function chooseCity($choosedCity) {
@@ -134,10 +156,15 @@ class SiteController extends Controller
             return $product->pivot->price * $product->pivot->quantity;
         }) : 0;
 
+        $now = Carbon::now('GMT+'.$cityWithNested->utc_time);
+        $time_from = Carbon::createFromTimeString($cityWithNested->time_from, 'GMT+'.$cityWithNested->utc_time);
+        $time_till = Carbon::createFromTimeString($cityWithNested->time_till, 'GMT+'.$cityWithNested->utc_time);
+        $can_receive_orders = $now->between($time_from, $time_till);
+
         $header_title = "Пользовательское соглашение";
 
         $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
-        return view('client.terms', compact('cities','categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
+        return view('client.terms', compact('can_receive_orders', 'cities','categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
     }
 
     public function privacy(Request $request) {
@@ -157,10 +184,14 @@ class SiteController extends Controller
             return $product->pivot->price * $product->pivot->quantity;
         }) : 0;
 
+        $now = Carbon::now('GMT+'.$cityWithNested->utc_time);
+        $time_from = Carbon::createFromTimeString($cityWithNested->time_from, 'GMT+'.$cityWithNested->utc_time);
+        $time_till = Carbon::createFromTimeString($cityWithNested->time_till, 'GMT+'.$cityWithNested->utc_time);
+        $can_receive_orders = $now->between($time_from, $time_till);
 
         $header_title = "Политика конфиденциальности";
         $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
-        return view('client.privacy', compact('cities','categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
+        return view('client.privacy', compact('can_receive_orders', 'cities','categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
     }
 
     public function promotions(Request $request) {
@@ -181,9 +212,13 @@ class SiteController extends Controller
         }) : 0;
         $header_title = "Акции";
 
+        $now = Carbon::now('GMT+'.$cityWithNested->utc_time);
+        $time_from = Carbon::createFromTimeString($cityWithNested->time_from, 'GMT+'.$cityWithNested->utc_time);
+        $time_till = Carbon::createFromTimeString($cityWithNested->time_till, 'GMT+'.$cityWithNested->utc_time);
+        $can_receive_orders = $now->between($time_from, $time_till);
 
         $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
-        return view('client.promotions', compact('cities','categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
+        return view('client.promotions', compact('can_receive_orders', 'cities','categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
     }
 
     public function contacts(Request $request) {
@@ -203,10 +238,15 @@ class SiteController extends Controller
             return $product->pivot->price * $product->pivot->quantity;
         }) : 0;
 
+        $now = Carbon::now('GMT+'.$cityWithNested->utc_time);
+        $time_from = Carbon::createFromTimeString($cityWithNested->time_from, 'GMT+'.$cityWithNested->utc_time);
+        $time_till = Carbon::createFromTimeString($cityWithNested->time_till, 'GMT+'.$cityWithNested->utc_time);
+        $can_receive_orders = $now->between($time_from, $time_till);
+
         $header_title = "Контакты";
 
         $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
-        return view('client.contacts', compact('cities','categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
+        return view('client.contacts', compact('can_receive_orders', 'cities','categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
     }
 
     public function delivery(Request $request) {
@@ -226,10 +266,15 @@ class SiteController extends Controller
             return $product->pivot->price * $product->pivot->quantity;
         }) : 0;
 
+        $now = Carbon::now('GMT+'.$cityWithNested->utc_time);
+        $time_from = Carbon::createFromTimeString($cityWithNested->time_from, 'GMT+'.$cityWithNested->utc_time);
+        $time_till = Carbon::createFromTimeString($cityWithNested->time_till, 'GMT+'.$cityWithNested->utc_time);
+        $can_receive_orders = $now->between($time_from, $time_till);
+
         $header_title = "Доставка";
 
         $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
-        return view('client.delivery', compact('cities','categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
+        return view('client.delivery', compact('can_receive_orders', 'cities','categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
     }
 
     public function search(Request $request) {
@@ -251,10 +296,15 @@ class SiteController extends Controller
             return $product->pivot->price * $product->pivot->quantity;
         }) : 0;
 
+        $now = Carbon::now('GMT+'.$cityWithNested->utc_time);
+        $time_from = Carbon::createFromTimeString($cityWithNested->time_from, 'GMT+'.$cityWithNested->utc_time);
+        $time_till = Carbon::createFromTimeString($cityWithNested->time_till, 'GMT+'.$cityWithNested->utc_time);
+        $can_receive_orders = $now->between($time_from, $time_till);
+
         $header_title = "Поиск";
 
         $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
-        return view('client.search', compact('cities','categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
+        return view('client.search', compact('can_receive_orders', 'cities','categoriesMainDesktop', 'cityWithNested', 'userCartSum', 'userCart', 'header_title'));
     }
 
     public function createOrder(Request $request) {
@@ -328,10 +378,14 @@ class SiteController extends Controller
         $order->location = $location;
 
         $order->save();
+        $now = Carbon::now('GMT+'.$cityWithNested->utc_time);
+        $time_from = Carbon::createFromTimeString($cityWithNested->time_from, 'GMT+'.$cityWithNested->utc_time);
+        $time_till = Carbon::createFromTimeString($cityWithNested->time_till, 'GMT+'.$cityWithNested->utc_time);
+        $can_receive_orders = $now->between($time_from, $time_till);
 
         Mail::send(new SendOrderEmail($order, $cityWithNested->email, ''));
 //        $userCart = Cart::where('session_id', $sid)->with('products')->first();
 //        $userCart->delete();
-        return view('client.ordered', compact('cities','cityWithNested', 'categoriesMainDesktop', 'userCartSum'));
+        return view('client.ordered', compact('can_receive_orders', 'cities','cityWithNested', 'categoriesMainDesktop', 'userCartSum'));
     }
 }

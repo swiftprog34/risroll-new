@@ -27,9 +27,19 @@
             <input type="hidden" name="can_make_orders" value="0" />
             <x-form-checkbox name="can_make_orders" label="Разрешено формировать заказы" />
         </div>
+        <div class="mb-3">
+            <x-form-input name="utc_time" type="number" min="0" max="9" step="1" label="Часовой пояс города GMT+ (от 0 до 9)" />
+        </div>
+        <div class="mb-3">
+            <x-form-input name="time_from" type="time" label="Время начала приема заказов" />
+        </div>
+        <div class="mb-3">
+            <x-form-input name="time_till" type="time" label="Время окончания приема заказов" />
+        </div>
         @endbind
         <div class="mb-3">
             <button class="btn btn-success">Обновить</button>
         </div>
     </x-form>
 </x-layout.admin>
+
