@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('promotions', function (Blueprint $table) {
-            $table->text('link')->default('https://vk.com/feed');
+            $table->text('link')->nullable();
         });
     }
 
