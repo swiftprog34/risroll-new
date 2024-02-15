@@ -518,7 +518,7 @@ i.dark-grey {
     color: #fff;
 }
 
-#cant_make_orders_notification, #cant_receive_orders_notification {
+#cant_make_orders_notification, #cant_receive_orders_notification, #choose_city {
     position: fixed;
     z-index: 999999999999;
     top: 40%;
@@ -539,22 +539,52 @@ i.dark-grey {
     box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.4);
 }
 
-#cant_make_orders_notification.show, #cant_receive_orders_notification.show{
+#choose_city {
+    display: block !important;
+}
+
+#choose_city select {
+    color: black !important;
+}
+
+.modal-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+}
+
+
+#choose_city select option {
+    color: black !important;
+}
+
+#cant_make_orders_notification.show,
+#cant_receive_orders_notification.show,
+#choose_city.show{
     display: block;
 }
 
-#cant_make_orders_notification p, #cant_receive_orders_notification p {
+#cant_make_orders_notification p,
+#cant_receive_orders_notification p,
+#choose_city p{
     margin: 0;
     font-size: 19px;
     text-align: left;
     color: #000;
 }
 
-.cant_make_orders_accept, .cant_receive_orders_accept {
+.cant_make_orders_accept, .cant_receive_orders_accept, .choose_city_accept {
     margin: 25px 0 0 0px;
 }
 
-#cant_make_orders_notification .button, #cant_receive_orders_notification .button {
+#cant_make_orders_notification .button,
+#cant_receive_orders_notification .button,
+#choose_city button{
     background: #2AA021;
     border: none;
     border-radius: 8px;
@@ -577,7 +607,7 @@ i.dark-grey {
         margin: 10px 0 0 0;
     }
 
-    #cant_make_orders_notification, #cant_receive_orders_notification {
+    #cant_make_orders_notification, #cant_receive_orders_notification, #choose_city {
         width: 80%;
         max-width: 90%;
         height: 140px;

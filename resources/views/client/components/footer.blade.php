@@ -11,6 +11,9 @@
         <button class="button cant_receive_orders_accept">Хочу оформить предзаказ</button>
     </div>
     @endif
+
+
+
     <div class="container">
         <img class="logo_footer" src="/client/images/logo_white.png" title="" alt=""/>
         <div class="social">
@@ -82,5 +85,6 @@
 
             checkCookiesCantReceiveOrder()
             @endif
+
         </script>
 </footer>

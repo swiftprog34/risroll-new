@@ -15,6 +15,7 @@ class SubDomainMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
+
 //        dd($request->subdomain);
         if (!in_array($request->subdomain, config('subdomains'))) {
             return  redirect()->route('index', 'samara');
@@ -23,6 +24,7 @@ class SubDomainMiddleware
         $request->session()->put('city', $request->subdomain);
 
         if($request->subdomain == null) {
+            $request->session()->put('need_choose_city', 'true');
             $request->session()->put('city', 'samara');
         }
 

@@ -131,6 +131,7 @@
     });
 </script>
 @include('client.components.cart')
+@include('client.components.choose_city')
 </body>
 </html>
 

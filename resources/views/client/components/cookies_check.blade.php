@@ -1,5 +1,6 @@
 <!--noindex-->
 <!--googleoff: index-->
+@if(!session()->has('need_choose_city'))
 <div id="cookie_notification">
     <p>Для улучшения работы сайта и его взаимодействия с пользователями мы используем файлы cookie. Продолжая работу с
         сайтом, Вы разрешаете использование cookie-файлов. Вы всегда можете отключить файлы cookie в настройках Вашего
@@ -28,3 +29,4 @@
 
     checkCookies();
 </script>
+@endif
