@@ -18,7 +18,11 @@
                 @foreach($city->categories as $category)
                     <tr data-id="{{$category->id}}">
                         <td>{{ $category->title }}</td>
-                        <td>{{ $category->is_active }}</td>
+                        <td>
+                            @bind($category)
+                            <x-form-checkbox name="is_active"/>
+                            @endbind
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -85,7 +89,11 @@
                                 <td><a href="{{ route('product.edit', [ $product->id ]) }}">{{ $product->title }}</a></td>
                                 <td>{{ $product->sku}}</td>
                                 <td>{{ $product->price}}</td>
-                                <td>{{ $product->is_active}}</td>
+                                <td>
+                                    @bind($product)
+                                    <x-form-checkbox name="is_active"/>
+                                    @endbind
+                                </td>
                             </tr>
                             @endforeach
                             </tbody>

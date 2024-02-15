@@ -182,7 +182,7 @@
                                                         @if($cartProduct->id == $product->id)
                                                             <div class="button-passive hide">
                                                                 <div class="s_h3 addToCart" data-id="{{$product->id}}">
-                                                                    Добавить
+                                                                    В корзину
                                                                 </div>
                                                             </div>
                                                             <div class="button-active ">
@@ -207,7 +207,7 @@
                                                 @else
                                                     <div class="button-passive ">
                                                         <div class="s_h3 addToCart" data-id="{{$product->id}}">
-                                                            Добавить
+                                                            В корзину
                                                         </div>
                                                     </div>
                                                     <div class="button-active hide">
@@ -224,7 +224,7 @@
                                                 @endif
                                             @else
                                                 <div class="button-passive ">
-                                                    <div class="s_h3 addToCart" data-id="{{$product->id}}">Добавить
+                                                    <div class="s_h3 addToCart" data-id="{{$product->id}}">В корзину
                                                     </div>
                                                 </div>
                                             @endif

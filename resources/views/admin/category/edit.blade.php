@@ -2,7 +2,14 @@
     <x-form action="{{ route('category.update', [ $category->id ]) }}" method="patch">
         @bind($category)
         <div class="mb-3">
+            <x-form-input name="title" label="Название" />
+        </div>
+        <div class="mb-3">
             <x-form-textarea name="description" label="Информация на странице категории" />
+        </div>
+        <div class="mb-3">
+            <input type="hidden" name="is_active" value="0" />
+            <x-form-checkbox name="is_active" label="Категория доступна на сайте" />
         </div>
         @endbind
         <div class="mb-3">

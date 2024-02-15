@@ -420,7 +420,7 @@
 
     @if($cityWithNested->can_make_orders == 1 && !$can_receive_orders)
     function checkCookiesCantReceiveOrder() {
-        let cookieCant_receive_ordersDate = localStorage.getItem('cant_receive_orders_notification');
+        let cookieCant_receive_ordersDate = localStorage.getItem('cookieCant_receive_ordersDate');
         let cookieNotification = document.getElementById('cant_receive_orders_notification');
         let cookieBtn = cookieNotification.querySelector('.cant_receive_orders_accept');
 

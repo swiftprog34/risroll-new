@@ -60,6 +60,7 @@ Route::domain(config('app.url'))->group(function () {
         Route::post('category/update-order', [CategoryContoller::class, 'updateOrder']);
         Route::post('product/update-order', [ProductController::class, 'updateOrder']);
         Route::post('promotion/update-order', [PromotionController::class, 'updateOrder']);
+        Route::get('{city}/category/', [CategoryContoller::class, 'index'])->name('category.index');
     });
 });
 

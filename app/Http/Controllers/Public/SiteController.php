@@ -17,7 +17,6 @@ class SiteController extends Controller
 {
     public function index(Request $request)
     {
-
         $subdomain = $request->route()->parameter('subdomain') ?: 'samara';
         $cities = City::all();
         $cityWithNested = City::where('slug', $subdomain)->with(['categories' => function($categories) {

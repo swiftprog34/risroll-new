@@ -6,12 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\City;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
 class CategoryContoller extends Controller
 {
-    public function index()
+    public function index($subdomain)
     {
-        $citiesWithNested = City::with(['categories' => function($cats) {
+        $citiesWithNested = City::where('slug', $subdomain)->with(['categories' => function($cats) {
             $cats->orderBy('sort_order')->with(['products' => function($prods){
                 $prods->orderBy('sort_order');
             }]);
@@ -26,7 +26,9 @@ class CategoryContoller extends Controller
 
     public function update(Request $request, Category $category)
     {
-        $category->update($request->only('description'));
+        $data = $request->all();
+        $data['slug'] = Str::slug($data["title"], '-', 'ru');
+        $category->update($data);
         return redirect()->route('category.edit', [$category->id])->with('alert', trans('alerts.categories.edited'));
     }
 
