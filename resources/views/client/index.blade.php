@@ -162,7 +162,7 @@
                                         </a>
                                     </div>
                                     <div class="text">
-                                        <a href="">
+                                        <a href="{{route('product', ['subdomain' => session('city'), 'slug' => $product->slug])}}">
                                             <h3 class="title" title="{{$product->title}}">{{$product->title}}</h3>
                                             <p class="desc"
                                                title="{{$product->description}}">{{$product->description}}</p>
