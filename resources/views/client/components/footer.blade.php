@@ -5,6 +5,12 @@
         <button class="button cant_make_orders_accept">Понятно</button>
     </div>
     @endif
+    @if($cityWithNested->can_make_orders == 1 && !$can_receive_orders)
+    <div id="cant_receive_orders_notification">
+        <p>Принимаем заказы<br>с {{$cityWithNested->time_from}}<br>до {{$cityWithNested->time_till}}.</p>
+        <button class="button cant_receive_orders_accept">Хочу оформить предзаказ</button>
+    </div>
+    @endif
     <div class="container">
         <img class="logo_footer" src="/client/images/logo_white.png" title="" alt=""/>
         <div class="social">
@@ -35,6 +41,7 @@
     <div class="bg0"></div>
     <div class="splash"></div>
         <script>
+            @if($cityWithNested->can_make_orders == 0)
             function checkCookiesCantMakeOrder() {
                 let cookieCant_make_ordersDate = localStorage.getItem('cookieCant_make_ordersDate');
                 let cookieNotification = document.getElementById('cant_make_orders_notification');
@@ -53,5 +60,27 @@
             }
 
             checkCookiesCantMakeOrder()
+            @endif
+
+            @if($cityWithNested->can_make_orders == 1 && !$can_receive_orders)
+            function checkCookiesCantReceiveOrder() {
+                let cookieCant_receive_ordersDate = localStorage.getItem('cant_receive_orders_notification');
+                let cookieNotification = document.getElementById('cant_receive_orders_notification');
+                let cookieBtn = cookieNotification.querySelector('.cant_receive_orders_accept');
+
+                // Если записи про кукисы нет или она просрочена на 1 год, то показываем информацию про кукисы
+                if (!cookieCant_receive_ordersDate || (+cookieCant_receive_ordersDate + 8640000) < Date.now()) {
+                    cookieNotification.classList.add('show');
+                }
+
+                // При клике на кнопку, в локальное хранилище записывается текущая дата в системе UNIX
+                cookieBtn.addEventListener('click', function () {
+                    localStorage.setItem('cookieCant_receive_ordersDate', Date.now());
+                    cookieNotification.classList.remove('show');
+                })
+            }
+
+            checkCookiesCantReceiveOrder()
+            @endif
         </script>
 </footer>
