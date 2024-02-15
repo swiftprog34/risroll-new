@@ -13,7 +13,7 @@
             ->
             <span itemscope itemprop="itemListElement" itemtype="http://schema.org/ListItem">
                 <a itemprop="item" title="{{$product->category->title}}"
-                   href="{{route('category', ['subdomain' => session('city'), 'id' => $product->category->uid])}}">
+                   href="{{route('category', ['subdomain' => session('city'), 'slug' => $product->category->slug])}}">
                     <span itemprop="name">{{$product->category->title}}</span>
                     <meta itemprop="position" content="2">
                 </a>
@@ -21,7 +21,7 @@
             ->
             <span itemscope itemprop="itemListElement" itemtype="http://schema.org/ListItem">
                 <a itemprop="item" title="{{$product->title}}"
-                   href="{{route('product', ['subdomain' => session('city'), 'id' =>  $product->uid])}}">
+                   href="{{route('product', ['subdomain' => session('city'), 'slug' =>  $product->slug])}}">
                     <span itemprop="name">{{$product->title}}</span>
                     <meta itemprop="position" content="3">
                 </a>

@@ -152,7 +152,7 @@
                                      data-price="{{$product->price}}"
                                      data-tags="" data-pos="{{$loop->index}}">
                                     <div class="image cover">
-                                        <a href="{{route('product', ['subdomain' => session('city'), 'id' => $product->uid])}}">
+                                        <a href="{{route('product', ['subdomain' => session('city'), 'slug' => $product->slug])}}">
                                             <img class="lazyImg"
                                                  src={{$product->image == null ? "/client/images/noimg.png" : $product->image->path}}
                                      data-original="{{$product->image}}"

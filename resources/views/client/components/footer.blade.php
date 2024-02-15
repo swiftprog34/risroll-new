@@ -20,7 +20,7 @@
         <ul class="f_cats">
             @foreach($cityWithNested->categories as $category)
                 <li>
-                    <a href="{{route('category', ['subdomain' => session('city'), 'id' => $category->uid])}}">{{$category->title}}</a>
+                    <a href="{{route('category', ['subdomain' => session('city'), 'slug' => $category->slug])}}">{{$category->title}}</a>
                 </li>
             @endforeach
         </ul>

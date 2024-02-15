@@ -68,8 +68,8 @@ Route::domain(config('app.url'))->group(function () {
    Route::middleware('subdomain')->group(function () {
     Route::middleware('cart')->group(function () {
         Route::get('/', [SiteController::class, 'index'])->name('index');
-        Route::get('/product-category/{id}', [SiteController::class, 'category'])->name('category');
-        Route::get('/product/{id}', [SiteController::class, 'product'])->name('product');
+        Route::get('/product-category/{slug}', [SiteController::class, 'category'])->name('category');
+        Route::get('/product/{slug}', [SiteController::class, 'product'])->name('product');
         Route::get('/checkout', [SiteController::class, 'checkout'])->name('checkout');
         Route::get('/terms-of-use', [SiteController::class, 'terms'])->name('terms');
         Route::get('/privacy-policy', [SiteController::class, 'privacy'])->name('privacy');
@@ -90,8 +90,8 @@ Route::domain('{subdomain}.'.config('app.url'))->group(function () {
     Route::middleware('subdomain')->group(function () {
         Route::middleware('cart')->group(function () {
             Route::get('/', [SiteController::class, 'index'])->name('index');
-            Route::get('/product-category/{id}', [SiteController::class, 'category'])->name('category');
-            Route::get('/product/{id}', [SiteController::class, 'product'])->name('product');
+            Route::get('/product-category/{slug}', [SiteController::class, 'category'])->name('category');
+            Route::get('/product/{slug}', [SiteController::class, 'product'])->name('product');
             Route::get('/checkout', [SiteController::class, 'checkout'])->name('checkout');
             Route::get('/terms-of-use', [SiteController::class, 'terms'])->name('terms');
             Route::get('/privacy-policy', [SiteController::class, 'privacy'])->name('privacy');

@@ -90,7 +90,7 @@
                     <div class="menu_item">
                         <img class="preview" src={{$category->image == null ? "/client/images/noimg.png" : $category->image->path}}
                              alt="{{$category->title}}"/>
-                        <a href="{{route('category', ['subdomain' => session('city'), 'id' => $category->uid])}}">{{$category->title}}</a>
+                        <a href="{{route('category', ['subdomain' => session('city'), 'slug' => $category->slug])}}">{{$category->title}}</a>
                     </div>
                 @endforeach
                 <div class="menu_item"><a href="#">Еще</a><img class="arrow"
@@ -100,7 +100,7 @@
                         @foreach($cityWithNested->categories as $category)
                             @if($loop->index > 8)
                                 <li>
-                                    <a href="{{route('category', ['subdomain' => session('city'), 'id' => $category->uid])}}">{{$category->title}}</a>
+                                    <a href="{{route('category', ['subdomain' => session('city'), 'slug' => $category->slug])}}">{{$category->title}}</a>
                                 </li>
                             @endif
                         @endforeach
@@ -180,7 +180,7 @@
         <div class="win_categories_grid">
             @foreach($cityWithNested->categories as $category)
                 <a class="item r3"
-                   href="{{route('category', ['subdomain' => session('city'), 'id' => $category->uid])}}">
+                   href="{{route('category', ['subdomain' => session('city'), 'slug' => $category->slug])}}">
                     <img class="photo" src={{$category->image == null ? "/client/images/noimg.png" : $category->image->path}}
                          alt="{{$category->title}}"/>
                     <span class="cat">{{$category->title}}</span>

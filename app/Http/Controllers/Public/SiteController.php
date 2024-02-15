@@ -46,14 +46,18 @@ class SiteController extends Controller
 
     public function category(Request $request)
     {
-        $id = $request->route()->parameter('id');
+//        $id = $request->route()->parameter('id');
+        $id = $request->route()->parameter('slug');
         $subdomain = $request->route()->parameter('subdomain') ?: 'samara';
         $cities = City::all();
         $cityWithNested = City::where('slug', $subdomain)->with(['categories' => function($categories) {
             $categories->orderBy('sort_order');
         }])->firstOrFail();
 
-        $currentCategory = Category::where(["uid" => $id])->with(['products' => function($products){
+//        $currentCategory = Category::where(["uid" => $id])->with(['products' => function($products){
+//            $products->orderBy('sort_order');
+//        }])->firstOrFail();
+        $currentCategory = Category::where(["slug" => $id])->with(['products' => function($products){
             $products->orderBy('sort_order');
         }])->firstOrFail();
 
@@ -77,7 +81,8 @@ class SiteController extends Controller
 
     public function product(Request $request)
     {
-        $uid = $request->route()->parameter('id');
+        //$uid = $request->route()->parameter('id');
+        $uid = $request->route()->parameter('slug');
         $subdomain = $request->route()->parameter('subdomain') ?: 'samara';
         $cities = City::all();
         $cityWithNested = City::where('slug', $subdomain)->with(['categories' => function($categories) {
@@ -85,7 +90,8 @@ class SiteController extends Controller
         }])->firstOrFail();
 
         $categoriesMainDesktop = Category::where('city_id', $cityWithNested->id)->take(8)->get();
-        $product = Product::where(["uid"=> $uid])->with('category')->firstOrFail();
+//        $product = Product::where(["uid"=> $uid])->with('category')->firstOrFail();
+        $product = Product::where(["slug"=> $uid])->with('category')->firstOrFail();
 
         $sid = session()->getId();
         $userCart = Cart::where('session_id', $sid)->with('products')->first();
