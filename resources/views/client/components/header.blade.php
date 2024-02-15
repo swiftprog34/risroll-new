@@ -199,9 +199,13 @@
 <!-- Верхний бар для мобильной версии -->
 <nav class="mobile">
     <div class="container">
+        @if((!request()->is('/')))
         <a class="icon back" href="{{route('index', session('city'))}}" onclick="">
             <img src="/client/images/icons/ic_back_black.png" alt=""/>
         </a>
+        @else
+        <div class="icon " style="display: flex !important" ></div>
+        @endif
         <a class="icon close_page" href="{{route('index', session('city'))}}" onclick="">
             <img src="/client/images/icons/ic_close_page_black.png" alt=""/>
         </a>
