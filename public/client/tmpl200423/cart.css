@@ -181,9 +181,10 @@
 
   .cart,
   .emptyCart {
-    border-radius: 10px;
-    text-align: center;
-    color: #000;
+      border-radius: 10px;
+      text-align: center;
+      color: #000;
+      top: 150px;
   }
 
     .cart_block, .block {
