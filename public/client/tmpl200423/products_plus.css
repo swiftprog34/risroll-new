@@ -429,7 +429,7 @@
 
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 320px) {
 
     .products .products-grid {
         grid-row-gap: 16px;
