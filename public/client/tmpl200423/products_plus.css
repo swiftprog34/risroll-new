@@ -94,7 +94,7 @@
     position: relative;
     display: flex !important;
     align-items: center;
-    height: 50px;
+    height: 75px;
     margin-bottom: 4px;
     text-align: left;
     overflow: hidden;
@@ -149,25 +149,40 @@
     }
 
     .products .product-item .weight span {
+        /*position: relative;*/
+        /*top: 0px;*/
+
+        /*display: flex;*/
+        /*box-sizing: border-box;*/
+        /*align-items: center;*/
+
+        /*width: 100%;*/
+        /*height: 32px;*/
+        /*margin: 8px 0 0 0;*/
+
+        /*background: #f5f5f5;*/
+        /*border: 1px solid #f5f5f5;*/
+        /*border-radius: 4px;*/
+
+        /*padding-left: 4px;*/
+
+        /*font-weight: 400;*/
+        /*color: #000;*/
         position: relative;
         top: 0px;
-
         display: flex;
         box-sizing: border-box;
         align-items: center;
-
         width: 100%;
         height: 32px;
         margin: 8px 0 0 0;
-
         background: #f5f5f5;
         border: 1px solid #f5f5f5;
         border-radius: 4px;
-
-        padding-left: 4px;
-
+        padding-left: 0px;
         font-weight: 400;
         color: #000;
+        padding-left: 0px;
     }
 }
 
@@ -181,7 +196,7 @@
     width: 100%;
     flex-direction: column;
     height: 56px;
-    margin-top: 10px !important;
+    margin-top: 0px !important;
     margin-bottom: 17px !important;
 }
 .products .product-item .oldcost {
@@ -194,12 +209,21 @@
     color: #aaa;
 }
 .products .product-item .cost {
+    /*position: relative;*/
+    /*display: inline-block;*/
+    /*text-align: left;*/
+    /*font-size: 1.2em;*/
+    /*font-weight: 700;*/
+    /*color: #000;*/
+    /*margin-bottom: 5px;*/
     position: relative;
-    display: inline-block;
+    display: block;
     text-align: left;
     font-size: 1.2em;
     font-weight: 700;
+    width: 100%;
     color: #000;
+    margin-left: 5px;
     margin-bottom: 5px;
 }
 
@@ -239,7 +263,8 @@
         align-items: center;
         justify-content: center;
         width: 100%;
-        height: 180px;
+        /*height: 180px;*/
+        height: 228px;
         text-align: center;
         overflow: hidden !important;
     }
@@ -358,7 +383,8 @@
     }
     .products .product-item .image.cover img {
         min-width: 100%;
-        height: 128px;
+        /*height: 128px;*/
+        height: 100%;
     }
 
     .products .product-item .image img.label {
