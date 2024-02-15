@@ -3,7 +3,7 @@
 <div class="theme">
     @include('client.components.header')
     <main>
-        <div class="slider03 home-slider-categories-wrapper">
+        <div class="slider03 home-slider-categories-wrapper" id="home-slider-categories-wrapper">
             <div class="home-slider-categories owl-carousel owl-theme ">
                 @foreach($cityWithNested->categories as $category)
                     <div class=""><a href="#category-{{$category->id}}" class="slider-categories-item">{{$category->title}}</a></h4></div>

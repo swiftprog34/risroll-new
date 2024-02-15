@@ -85,6 +85,9 @@ main {
         border-bottom: 1px solid #bbc9bd;
     }
 
+    .home-slider-categories-wrapper-search {
+        top: 114px;
+    }
 }
 
 

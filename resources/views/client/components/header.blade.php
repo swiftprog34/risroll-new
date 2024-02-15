@@ -234,11 +234,13 @@
         $('#mobile_search_form').removeClass('win_hide');
         $('#close_mobile_search').removeClass('win_hide');
         $('#open_mobile_search').addClass('win_hide');
+        $('#home-slider-categories-wrapper').addClass('home-slider-categories-wrapper-search');
     });
     $('body').on('click', '.close_mobile_search', function () {
         $('#mobile_search_form').addClass('win_hide');
         $('#close_mobile_search').addClass('win_hide');
         $('#open_mobile_search').removeClass('win_hide');
+        $('#home-slider-categories-wrapper').removeClass('home-slider-categories-wrapper-search');
     });
 </script>
 <!-- -->
