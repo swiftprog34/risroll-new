@@ -30,12 +30,18 @@
         <div class="slider02">
             <div class="home-slider owl-carousel owl-theme ">
                 @foreach($cityWithNested->promotions as $promotion)
+                    @if($promotion->link !== null)
+                        <a href="{!! $promotion->link !!}" target="_blank">
+                    @endif
                     @if($promotion->image !== null)
                         <div class="home-slider__item">
                             <img
                                 src="{{$promotion->image == null ? "/client/images/noimg.png" : $promotion->image->path}}"
                                 alt="{{$promotion->name}}" title="{{$promotion->name}}"/>
                         </div>
+                    @endif
+                    @if($promotion->link !== null)
+                    </a>
                     @endif
                 @endforeach
             </div>
