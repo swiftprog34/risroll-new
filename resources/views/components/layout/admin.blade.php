@@ -85,7 +85,7 @@
                     <div class="col col-3">
                         <div class="list-group">
                             <li class="list-group-item">
-                                <a href="{{ route('city.index') }}">Города</a>
+                                <a href="{{ route('city.index') }}">Города и витрина</a>
                             </li>
                             <li class="list-group-item">
                                 <a href="{{ route('manager.index') }}">Менеджеры</a>

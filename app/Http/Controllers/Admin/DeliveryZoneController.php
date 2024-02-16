@@ -14,8 +14,11 @@ class DeliveryZoneController extends Controller
 
     public function index()
     {
-        $zones = DeliveryZone::with('city')->get();
-        return view('admin.zone.index', compact('zones'));
+        $citiesWithNested = City::with(['deliveryZones' => function($deliveryZones) {
+            $deliveryZones->get();
+        }])->get();
+        //$zones = DeliveryZone::with('city')->get();
+        return view('admin.zone.index', compact('citiesWithNested'));
     }
 
     public function create()

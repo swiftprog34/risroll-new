@@ -61,6 +61,7 @@ Route::domain(config('app.url'))->group(function () {
         Route::post('category/update-order', [CategoryContoller::class, 'updateOrder']);
         Route::post('product/update-order', [ProductController::class, 'updateOrder']);
         Route::post('promotion/update-order', [PromotionController::class, 'updateOrder']);
+        Route::post('pickup/update-order', [PromotionController::class, 'updateOrder']);
         Route::get('{city}/category/', [CategoryContoller::class, 'index'])->name('category.index');
     });
 });
@@ -108,13 +109,6 @@ Route::domain('{subdomain}.'.config('app.url'))->group(function () {
         });
     });
 });
-
-
-
-
-
-
-
 
 Auth::routes(['login' => false, 'reset' => false]);
 Route::get('manager-login', 'App\Http\Controllers\Auth\LoginController@showLoginForm');

@@ -14,8 +14,12 @@ class PickupPointController extends Controller
 
     public function index()
     {
-        $pickups = Pickup::with('city')->get();
-        return view('admin.pickup.index', compact('pickups'));
+        $citiesWithNested = City::with(['pickupPoints' => function($pickups) {
+            $pickups->orderBy('sort_order');
+        }])->get();
+
+        //$pickups = Pickup::with('city')->get();
+        return view('admin.pickup.index', compact('citiesWithNested'));
     }
 
     public function create()
@@ -46,5 +50,19 @@ class PickupPointController extends Controller
     {
         $pickup->delete();
         return redirect()->route('pickup.index')->with('alert', trans('alerts.pickups.deleted'));
+    }
+
+    public function updateOrder(Request $request){
+        if($request->has('ids')){
+            $arr = explode(',',$request->input('ids'));
+
+            foreach($arr as $sortOrder => $id){
+                $category = Pickup::find($id);
+                $category->sort_order = $sortOrder;
+                $category->save();
+            }
+            return ['success'=>true,'message'=>'Updated'];
+        }
+        return ['success'=>false,'message'=>'error'];
     }
 }

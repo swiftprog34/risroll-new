@@ -662,15 +662,16 @@
     color: #000;
   }
   .cart .block span.deliveryCost {
-    position: relative;
-    top: 0px;
-    left: 16px;
-    display: inline-block;
-    background: #2AA021;
-    border-radius: 8px;
-    padding: 4px 12px;
-    font-weight: 600;
-    color: #fff;
+      position: relative;
+      top: 0px;
+      margin-bottom: 10px;
+      /*left: 16px;*/
+      display: inline-block;
+      background: #2AA021;
+      border-radius: 8px;
+      padding: 4px 12px;
+      font-weight: 600;
+      color: #fff;
   }
 
 
@@ -1093,7 +1094,7 @@
     #block1, #block2 {
       position: relative;
       display: block;
-      margin: 24px 4px 4px !important;
+      margin: 14px 4px 4px !important;
     }
 
   label + div {

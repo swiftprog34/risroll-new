@@ -15,7 +15,7 @@
             <x-form-input name="contact_map" label="Iframe ссылка Yandex на карту всех пунктов самовывоза (Необязательно)" />
         </div>
         <div class="mb-3">
-            <x-form-textarea name="delivery_page_info" label="Информация на странице 'Доставка' (Необязательно)" />
+            <x-form-textarea name="delivery_page_info" label="Информация на странице 'Доставка' а так же в блоке 'Доставка' на странице оформения заказа (Необязательно)" />
         </div>
         <div class="mb-3">
             <x-form-input name="delivery_map" label="Iframe ссылка Yandex на карту зоны доставок (Необязательно)" />
