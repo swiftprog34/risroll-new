@@ -532,7 +532,7 @@ i.dark-grey {
     width: 20%;
     max-width: 30%;
     transform: translateX(-50%);
-    height: 160px;
+    height: 200px;
     padding: 25px;
     background-color: white;
     border-radius: 4px;
@@ -593,6 +593,24 @@ i.dark-grey {
     color: #fff;
 }
 
+#cant_receive_orders_notification {
+    text-align: center;
+}
+
+#cant_receive_orders_notification h3 {
+    color: #2aa021;font-size: 1.3em !important;
+}
+
+#cant_receive_orders_notification div {
+    color: #000;
+}
+
+#cant_receive_orders_notification div span {
+    color: #000;
+    font-size: 30px;
+}
+
+
 @media (max-width: 1024px) {
 
     #cookie_notification {
@@ -610,7 +628,7 @@ i.dark-grey {
     #cant_make_orders_notification, #cant_receive_orders_notification, #choose_city {
         width: 80%;
         max-width: 90%;
-        height: 140px;
+        height: 205px;
     }
 
 }

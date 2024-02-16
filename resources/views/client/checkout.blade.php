@@ -392,8 +392,10 @@
 @endif
 @if($cityWithNested->can_make_orders == 1 && !$can_receive_orders)
     <div id="cant_receive_orders_notification">
-        <p>Принимаем заказы<br>с {{$cityWithNested->time_from}}<br>до {{$cityWithNested->time_till}}.</p>
-        <button class="button cant_receive_orders_accept">Хочу оформить предзаказ</button>
+        <h3>Принимаем заказы</h3>
+        <div>c <span>{{date('G:i',strtotime($cityWithNested->time_from))}}</span></div>
+        <div>до <span>{{date('G:i',strtotime($cityWithNested->time_till))}}</span></div>
+        <button class="button cant_receive_orders_accept">Оформи предзаказ</button>
     </div>
 @endif
 <script>
