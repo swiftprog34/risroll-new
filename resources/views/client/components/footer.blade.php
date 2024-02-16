@@ -1,9 +1,10 @@
 <footer>
     @if($cityWithNested->can_make_orders == 0)
-    <div id="cant_make_orders_notification">
-        <p>В данный момент, по техническим причинам, заказы оформлять нельзя :-(.</p>
-        <button class="button cant_make_orders_accept">Понятно</button>
-    </div>
+        <div id="cant_make_orders_notification">
+            <h3>Внимание</h3>
+            <div>В данный момент, по техническим причинам, заказы оформлять нельзя.</div>
+            <button class="button cant_make_orders_accept">Я понял</button>
+        </div>
     @endif
     @if($cityWithNested->can_make_orders == 1 && !$can_receive_orders)
     <div id="cant_receive_orders_notification">

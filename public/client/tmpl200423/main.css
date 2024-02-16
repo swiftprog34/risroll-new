@@ -539,6 +539,10 @@ i.dark-grey {
     box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.4);
 }
 
+#cant_make_orders_notification, #choose_city {
+    height: 173px;
+}
+
 #choose_city {
     display: block !important;
 }
@@ -593,23 +597,25 @@ i.dark-grey {
     color: #fff;
 }
 
-#cant_receive_orders_notification {
+#cant_receive_orders_notification, #cant_make_orders_notification {
     text-align: center;
 }
 
-#cant_receive_orders_notification h3 {
+#cant_receive_orders_notification h3,
+#cant_make_orders_notification h3 {
     color: #2aa021;font-size: 1.3em !important;
 }
 
-#cant_receive_orders_notification div {
+#cant_receive_orders_notification div,
+#cant_make_orders_notification div {
     color: #000;
 }
 
-#cant_receive_orders_notification div span {
+#cant_receive_orders_notification div span,
+#cant_make_orders_notification div span {
     color: #000;
     font-size: 30px;
 }
-
 
 @media (max-width: 1024px) {
 
@@ -625,12 +631,17 @@ i.dark-grey {
         margin: 10px 0 0 0;
     }
 
-    #cant_make_orders_notification, #cant_receive_orders_notification, #choose_city {
+    #cant_receive_orders_notification {
         width: 80%;
         max-width: 90%;
         height: 205px;
     }
 
+    #cant_make_orders_notification, #choose_city {
+        width: 80%;
+        max-width: 90%;
+        height: 160px;
+    }
 }
 
 
