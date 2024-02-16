@@ -1,4 +1,4 @@
-<x-layout.admin title="Все менеджеры">
+<x-layout.admin title="Все пользователи">
     <a href="{{ route('manager.create') }}">Добавить менеджера</a> |
     <hr>
     <div class="row">

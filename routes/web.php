@@ -110,7 +110,7 @@ Route::domain('{subdomain}.'.config('app.url'))->group(function () {
     });
 });
 
-Auth::routes(['login' => false, 'reset' => false]);
+Auth::routes(['login' => false,'register' => false, 'reset' => false]);
 Route::get('manager-login', 'App\Http\Controllers\Auth\LoginController@showLoginForm');
 Route::post('manager-login', 'App\Http\Controllers\Auth\LoginController@login')->name('login');
 
