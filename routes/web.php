@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\PromotionController;
 use App\Http\Controllers\Public\CartController;
 use App\Http\Controllers\Public\SiteController;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,7 +44,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::domain(config('app.url'))->group(function () {
-    Route::prefix('administrator')->group(function() {
+    Route::prefix('administrator')->middleware('auth')->group(function() {
         Route::get('/', [AdminMainController::class, 'index'])->name('admin.index');
         Route::resource('city', CityController::class);
         Route::resource('manager', ManagerController::class);
@@ -114,3 +115,9 @@ Route::domain('{subdomain}.'.config('app.url'))->group(function () {
 
 
 
+
+Auth::routes(['login' => false, 'reset' => false]);
+Route::get('manager-login', 'App\Http\Controllers\Auth\LoginController@showLoginForm');
+Route::post('manager-login', 'App\Http\Controllers\Auth\LoginController@login')->name('login');
+
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
