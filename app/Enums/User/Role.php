@@ -7,13 +7,15 @@ enum Role : int{
     case SEO = 5;
     case SELLER = 10;
     case CONTENT = 15;
+    case ADMIN = 100;
 
     public function text(){
         return match($this){
             self::CLIENT => 'Клиент',
             self::SEO => 'Сеошник',
             self::SELLER => 'Менеджер отдела продаж',
-            self::CONTENT => 'Контент менеджер'
+            self::CONTENT => 'Контент менеджер',
+            self::ADMIN => 'Администратор'
         };
     }
 
