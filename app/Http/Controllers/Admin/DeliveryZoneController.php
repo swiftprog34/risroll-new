@@ -33,9 +33,10 @@ class DeliveryZoneController extends Controller
         return redirect()->route('zone.index')->with('alert', trans('alerts.zones.created'));
     }
 
-    public function edit(string $id)
+    public function edit(DeliveryZone $zone)
     {
-        $zone = DeliveryZone::with('indices')->with('goodsReceivings')->firstOrFail();
+//        dd($zone);
+//        $zone = $zone::with('indices')->with('goodsReceivings')->firstOrFail();
         $cities = City::orderBy('city_name')->pluck('city_name', 'id');
         $indices = $zone->indices->implode('value', ', ');
         $receivings = $zone->goodsReceivings;
@@ -46,17 +47,20 @@ class DeliveryZoneController extends Controller
     {
         $zone->update($request->validated());
         if($request->has('indicies')) {
-            $indices = explode(",", $request->indicies);
+            $indiciesString = trim($request->indicies);
+            $indices = explode(",", strip_tags($indiciesString));
             $currentIndices = $zone->indices;
             foreach ($currentIndices as $currentIndex) {
                 $index = Index::findOrFail($currentIndex->id);
                 $index->delete();
             }
-            foreach ($indices as $index) {
-                $index = Index::create([
-                    'value' => trim($index),
-                    'delivery_zone_id' => $zone->id
-                ]);
+            if(strlen($indiciesString) > 0) {
+                foreach ($indices as $index) {
+                    Index::create([
+                        'value' => trim($index),
+                        'delivery_zone_id' => $zone->id
+                    ]);
+                }
             }
         }
 
