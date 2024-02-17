@@ -31,7 +31,6 @@
             </x-form>
         </div>
     @endforeach
-
     <hr>
     <a href="{{ route('receiving.create') }}">Добавить способ получения товаров</a> |
     <hr>
