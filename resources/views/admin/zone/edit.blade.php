@@ -11,7 +11,7 @@
             <x-form-select name="city_id" label="В каком городе" :options="$cities"  :size="$cities->count()" placeholder="Не выбран" />
         </div>
         <div class="mb-3">
-            <x-form-textarea name="indicies" :default="$indices" label="Индексы" />
+            <x-form-textarea name="indicies" :default="$indices" label="Индексы (указывать через запятую!!)" />
         </div>
         @endbind
 
